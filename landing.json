@@ -1,0 +1,79 @@
+{
+  "version": 2,
+  "title": "IBM Cloud® Databases for MongoDB",
+  "introduction": "MongoDB is a JSON document store with a rich query and aggregation framework.",
+  "product_page": "https://www.ibm.com/products/databases-for-mongodb",
+  "console_page": "/databases/databases-for-mongodb/create",
+   "section_topics": {
+    "links": [
+      {
+        "title": "Connecting with the MongoDB Shell",
+        "href": "/docs/databases-for-mongodb?topic=databases-for-mongodb-connecting-cli-client"
+      },
+      {
+        "title": "Upgrading to a new major version",
+        "href": "/docs/databases-for-mongodb?topic=databases-for-mongodb-upgrading&interface=ui"
+      },
+      {
+        "title": "Release notes",
+        "href": "/docs/databases-for-mongodb?topic=databases-for-mongodb-mongodb-relnotes"
+      },
+      {
+        "title": "Provisioning",
+        "href": "/docs/databases-for-mongodb?topic=databases-for-mongodb-provisioning&interface=ui"
+      },
+      {
+        "title": "Plan overview",
+        "href": "/docs/databases-for-mongodb?topic=databases-for-mongodb-mongodb-plans"
+      },
+      {
+        "title": "Service endpoint integration",
+        "href": "/docs/databases-for-mongodb?topic=databases-for-mongodb-service-endpoints&interface=ui"
+      },
+      {
+        "title": "Managing Cloud Database backups",
+        "href": "/docs/databases-for-mongodb?topic=databases-for-mongodb-dashboard-backups&interface=ui"
+      }
+    ]
+  },
+  "section_highlights": [
+    {
+      "title": "IBM named a leader for cloud database management systems",
+      "description": "Gartner named IBM a leader in Gartner Magic Quadrant for 2021 Cloud Database Management Systems.",
+      "href": "https://www.ibm.com/blog/ibm-is-named-a-leader-in-the-2021-gartner-magic-quadrant-for-cloud-database-management-systems-dbms/",
+      "type": "blog"
+    },
+    {
+      "title": "IBM Training - Cloud",
+      "description": "Includes Power Virtual Server, SAP, VMware, Advocate, Architect, Developer, and Site Reliability Engineer, and more",
+      "href": "https://www.ibm.com/training/cloud",
+      "type": "training"
+    }
+  ],
+  "section_devtools": {
+    "api": "/apidocs/cloud-databases-api/cloud-databases-api-v5#introduction", 
+    "cli": "/docs/databases-cli-plugin", 
+    "terraform": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/database"
+    },
+  "section_updates": {
+    "view_more": "/docs/databases-for-mongodb?topic=databases-for-mongodb-mongodb-relnotes",
+    "tiles": [
+      {
+        "date": "16 September 2024",
+        "title": "Private endpoints as new default"
+      },
+      {
+        "date": "10 July 2024",
+        "title": "Point In Time Recovery (PITR) speed enhancements for the Enterprise plan"
+      },
+      {
+        "date": "1 May 2024",
+        "title": "New hosting models"
+      },
+      {
+        "date": "18 January 2024",
+        "title": "Databases for MongoDB End of life announcement: Version 5 reaches end of life on September 25, 2024"
+      }
+    ]
+  }
+}
