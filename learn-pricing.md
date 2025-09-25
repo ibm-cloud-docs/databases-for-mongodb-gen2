@@ -1,11 +1,11 @@
 ---
 copyright:
-  years: 2019, 2025
-lastupdated: "2025-09-24"
+  years: 2025
+lastupdated: "2025-09-25"
 
-keyowrds: mongodb, databases, pricing, scaling, resources
+keywords: mongodb gen 2, pricing
 
-subcollection: databases-for-mongodb
+subcollection: databases-for-mongodb-gen2
 
 ---
 
@@ -14,48 +14,63 @@ subcollection: databases-for-mongodb
 # Pricing
 {: #pricing}
 
-All instances of {{site.data.keyword.databases-for-mongodb_full}} deploy as highly available MongoDB clusters with three data members. Your data is replicated on all members. 
-
-Both the Standard Plan and the Enterprise Plan are priced based on the total amount of disk storage, RAM, and backup storage that is allocated to deployments, prorated hourly. 
-
-Minimum deployment sizes depend on the hosting model used. For more information, see [hosting models](/docs/databases-for-mongodb?topic=databases-for-mongodb-hosting-models&interface=api).
-
-## Shared Compute
-{: #pricing-shared-compute}
-
-{{site.data.keyword.databases-for-mongodb}} Standard Plan deployments have a minimum of 10 GB of disk, 4 GB of RAM and 2 CPU cores per data member.
-{{site.data.keyword.databases-for-mongodb}} Enterprise Plan deployments are not available on Shared Compute.
-
-## Isolated Compute
-{: #pricing-isolated-compute}
-
-{{site.data.keyword.databases-for-mongodb}} Standard Plan deployments have a minimum of 10 GB of disk, 16 GB of RAM and 4 CPU cores per data member.
-{{site.data.keyword.databases-for-mongodb}} Enterprise Plan deployments have a minimum of 20 GB of disk, 16 GB of RAM and 4 CPU cores per data member.
-
-A {{site.data.keyword.databases-for-mongodb}} EE Analytics node (only available on the Enterprise Plan) is priced as an additional data member.
+All instances of {{site.data.keyword.databases-for-mongodb}} deploy as highly available MongoDB clusters with three data members, with your data replicated on all members. Pricing is based on the total amount of disk storage, RAM, virtual CPU cores, and backup storage that is allocated to deployments, prorated hourly. Gen 2 {{site.data.keyword.databases-for-mongodb}} deployments have a minimum of 5 GB of disk and the smallest profile provides 4 vCPU cores.
 
 ## Using the pricing calculator
-{: #mongodb-price-calc}
+{: #pricing-calc}
 
-Templates are provided for ease of use and provide balanced resource allocations appropriate for general-purpose workloads. The **Custom** tab can be used to configure Disk, RAM, and vCPU, as desired.
+For pricing estimation, use the **Add to estimate** button on the [{{site.data.keyword.databases-for-mongodb}} catalog page](https://cloud.ibm.com/databases/databases-for-mongodb/create). Input your total consumption across three data members into the calculator. This is roughly triple the size of your data because your data is replicated to all members. For example, 5 GB of disk with a 4 by 20 profile across three data members would be priced at 15 GB of disk and 12 vCPU, 60 GB of RAM respectively. 
 
-For combined pricing estimation, you can use the **Add to estimate** button at the bottom of the [{{site.data.keyword.databases-for-mongodb}} catalog page](https://cloud.ibm.com/databases/databases-for-mongodb/create){: external}.
-
-## Backups pricing
+## Gen 2 Backups pricing
 {: #pricing-backup}
 
-You receive your total disk space purchased, per database, in free backup storage. For example, in a given month, if you have a {{site.data.keyword.databases-for-mongodb}} deployment that has 20 GB of disk per member, you receive 60 GB of backup storage free for that month (because all deployments have three members). If your backup storage utilization is greater than 60 GB for the month (in this scenario), you are charged an overage of $0.03/ month per gigabyte. 
+{{site.data.keyword.databases-for}} now uses a snapshot based backup model, with pricing aligned to the size of your provisioned database storage. Snapshots differ from traditional backups in that they are block-level incremental copies, therefore you are billed based on how much data has changed since the last snapshot, not just the total size of your database. 
 
-By default, {{site.data.keyword.databases-for}} provides a daily backup that is stored for 30 days. These backups, and any on-demand backups you make, all count toward the allocation.
+By default, {{site.data.keyword.databases-for-mongodb}} provides a daily backup that is stored for 30 days. These backups, and any on-demand backups you make, all count toward the above allocation.
 
-In the example, if your database contains 2 GB of data and you have not taken any on-demand backups, then your total backup size is 2 GB x 30 = 60 GB. Your backup costs are nil.
 
-If your database contains 15 GB of data and you have not taken any on-demand backups, your total backup size is 15 GB x 30 = 450 GB. In this scenario, your backup costs are (450 GB - 60 GB) * 0.03 = $11.7 per month.
+## Backup storage included
 
-Most deployments will never go over the allotted credit.
+* You receive free backup storage equal to the total provisioned disk size of your deployment. 
+
+* This includes both automated daily backups and manual (on-demand) snapshots.
+
+* Example: If your 3 member {{site.data.keyword.databases-for-mongodb}} deployment is provisioned with 100 GB of disk per member, you get 300 GB of backup storage included at no cost.
+
+Overage charges:
+
+* The overage is billed monthly.
+
+* Total snapshot storage = Day 1 full + (Daily change × 29 days x number of members)
+
+* Overage is charged at $0.095 per GB per month.
+
+Worked example, for a 3-member MongoDB deployment with 100 GB of data per member:
+
+* Day 1: A full snapshot is taken. Each snapshot captures the full volume, so you consume 300 GB of snapshot storage (100 GB × 3).
+
+This example models a worst-case scenario where the snapshot size equals the full file system, which is typically smaller than the disk volume. For new databases, the first snapshot is much smaller and grows over time, helping reduce backup costs.
+{: note}
+
+* Day 2: You write 10 GB of new data to each member. The next snapshot is incremental — it only stores the changes since the last snapshot. So you consume an additional 30 GB (10 GB × 3 members), bringing your total snapshot usage to 330 GB.
+
+* Day 30: You write 2 GB of data per day *(--CONFIRM logic - needs clarity), bringing your total snapshot usage to ((2x28) + 330) = 386 GB
+
+* In a given month, if you have a {{site.data.keyword.databases-for-mongodb}} deployment that has 100 GB of disk per member, and has three data members, you receive 300 GB of snapshot storage free for that month. Your backup storage utilization is greater than 300 GB for the month (in this scenario), you are charged an overage of $0.095/month per gigabyte, therefore your total bill = (386 GB - 300 GB) X 0.095 = $8.17.
+
+* With large deployments and frequent writes, you’re more likely to exceed the free tier after the first snapshot, and your snapshot storage costs will grow quickly.
+
+* Cross-region copies: If you choose to copy snapshots to another region, {{site.data.keyword.cloud}} charges for the full size of the snapshot in the destination region (not incremental) and continued incremental growth in the original region as new snapshots are taken.
+
 
 ## Scaling per member
-{: #mongodb-scale-member}
+{: #scaling-member}
 
-{{site.data.keyword.databases-for-mongodb}} deployments have allocations for disk, CPU and RAM that are set by you at provisioning time. RAM and CPU can be scaled up and down depending on your workload needs. Disk cannot be scaled down, only up, to protect the integrity of your data. For more information on how to scale your resources, see [Scaling disk, memory, and CPU](/docs/databases-for-mongodb?topic=databases-for-mongodb-resources-scaling).
+{{site.data.keyword.databases-for-mongodb}} deployments have minimum and maximum allocation for disk and RAM as shown. Scaling deployments through the API and CLI provides more granularity and also allows a user to scale a database instance up to 4 TB of disk per member. Minimum and maximum CPU and RAM combinations vary per region, see [Isolated Compute](add link).(--will we have an isolated compute page -> yes, it already exists in the common docs).
 
+| Resource | Minimum | Maximum | Scaling granularity (API/CLI) |
+| ---------- | ----- | ----- | ------- |
+| Disk | 5 GB per member | 4 TB per member | 1024 MB per member |
+| RAM | 16 GB | 240 GB | Isolated Compute – Resource scaling via T-shirt sizes |
+| CPU | 4 vCPU | 48 vCPU| Isolated Compute – Resource scaling via T-shirt sizes |
+{: caption="Scaling Limits" caption-side="top"}
