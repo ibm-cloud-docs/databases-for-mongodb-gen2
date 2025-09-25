@@ -22,7 +22,8 @@ toc:
           label: What is MongoDB?
           href: https://www.ibm.com/cloud/learn/mongodb
       - getting-started.md
-      - isolated-compute.md
+      - include: ../cloud-databases/overview.md
+      - include: ../cloud-databases/isolated-compute.md
       - learn-dashboard-overview.md
       - learn-performance.md
       - learn-pricing.md
@@ -47,7 +48,6 @@ toc:
           label: Managing resources
           topics:
           - howto-resources-scaling.md
-          - howto-autoscaling.md
           - howto-managing-connections.md
       - include: ../cloud-databases/howto-manage-backups.md
       - topicgroup:
