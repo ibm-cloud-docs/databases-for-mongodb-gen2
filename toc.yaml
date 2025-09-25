@@ -1,15 +1,15 @@
 ---
 toc:
   properties:
-    subcollection: databases-for-mongodb
-    service-name: databases-for-mongodb
-    version: 2
+    subcollection: databases-for-mongodb-gen2
+    service-name: databases-for-mongodb-gen2
+    version: 1
     category: database
     audience: service
-    href: /docs/databases-for-mongodb
+    href: /docs/databases-for-mongodb-gen2
     console-page: /catalog/services/databases-for-mongodb
-    product-page: https://www.ibm.com/cloud/databases-for-mongodb
-    path: databases-for-mongodb
+    product-page: https://www.ibm.com/cloud/databases-for-mongodb-gen2
+    path: databases-for-mongodb-gen2
     label: Databases For MongoDB
   entries:
   - navgroup:
@@ -27,8 +27,6 @@ toc:
           label: Hosting models
           topics: 
           - include: ../cloud-databases/hosting-models.md
-          - include: ../cloud-databases/hosting-models-transition.md
-          - include: ../cloud-databases/hosting-models-faq.md
           - include: ../cloud-databases/hosting-pricing.md
       - learn-dashboard-overview.md
       - learn-performance.md
@@ -43,12 +41,6 @@ toc:
       - howto-getting-connection-strings.md
       - include: ../cloud-databases/closures.md
       - include: ../cloud-databases/ha-dr.md
-      - topicgroup:
-          label: MongoDB Enterprise Edition
-          topics:
-          - howto-auditlogging.md
-          - howto-ops-manager.md
-          - howto-pitr.md
       - topicgroup:
           label: Connecting to Databases for MongoDB
           topics:
