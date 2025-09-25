@@ -22,11 +22,7 @@ toc:
           label: What is MongoDB?
           href: https://www.ibm.com/cloud/learn/mongodb
       - getting-started.md
-      - topicgroup:
-          label: Hosting models
-          topics: 
-          - include: ../cloud-databases/isolated-compute.md
-          - include: ../cloud-databases/pricing.md
+      - isolated-compute.md
       - learn-dashboard-overview.md
       - learn-performance.md
       - learn-pricing.md
@@ -79,10 +75,6 @@ toc:
       id: tutorial
       topics:
       - include: ../cloud-databases/hello-world-tutorial.md
-      - include: ../cloud-databases/k8-tutorial.md
-      - include: ../cloud-databases/disk-util-alerts-tutorial.md
-      - howto-geo-queries.md
-      - howto-timeseries.md
   - navgroup:
       id: reference
       topics:
