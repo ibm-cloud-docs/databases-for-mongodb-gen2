@@ -2,11 +2,11 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-09-24"
+lastupdated: "2025-09-25"
 
 keywords: mongodb, databases, mongodb compass, mongodbee, mongodb enterprise, mongodb ee provision, mongodb compass, mongodb ops manager, mongodb compass, admin password, logging and monitoring, gen2
 
-subcollection: databases-for-mongodb
+subcollection: databases-for-mongodb-gen2
 
 content-type: tutorial
 
