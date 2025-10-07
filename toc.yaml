@@ -1,4 +1,3 @@
----
 toc:
   properties:
     subcollection: databases-for-mongodb-gen2
@@ -55,11 +54,11 @@ toc:
           topics:
           - include: ../cloud-databases/cdb-logging-monitoring.md
           - include: ../cloud-databases/logging.md
-          - include: ../cloud-databases/reference-monitoring.md 
+          - include: ../cloud-databases/reference-monitoring.md
           - include: ../cloud-databases/at-events.md
       - topicgroup:
           label: Enhancing security
-          topics:          
+          topics:
           - include: ../cloud-databases/manage-scc.md
           - learn-security-compliance.md
           - include: ../cloud-databases/howto-cbr.md

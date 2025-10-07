@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-09-25"
+lastupdated: "2025-10-07"
 
 keywords: mongodb, databases, mongodb compass, mongodbee, mongodb enterprise, mongodb ee provision, mongodb compass, mongodb ops manager, mongodb compass, admin password, logging and monitoring, gen2
 
@@ -218,20 +218,20 @@ Follow [these steps](/docs/databases-for-mongodb?topic=databases-for-mongodb-pro
 
  The parameters name, target, resource_group, and resource_plan_id are all required.
 
-List of Additional Parameters (all new parameters)
+List of additional parameters (all new parameters):
 
-- backup_id- A CRN of a backup resource to restore from. The backup must be created by a database deployment with the same service ID. The backup is loaded after provisioning and the new deployment starts up that uses that data. A backup CRN is in the format crn:v1:<...>:backup:<uuid>. If omitted, the database is provisioned empty.
-- version - The version of the database to be provisioned. If omitted, the database is created with the most recent major and minor version.
-- disk_encryption_key_crn - The CRN of a KMS key (for example, Hyper Protect Crypto Services or Key Protect), which is then used for disk encryption. A KMS key CRN is in the format crn:v1:<...>:key:<id>.
-- backup_encryption_key_crn - The CRN of a KMS key (for example, Hyper Protect Crypto Services or Key Protect), which is then used for backup encryption. A KMS key CRN is in the format crn:v1:<...>:key:<id>.
+- `backup_id` - A CRN of a backup resource to restore from. The backup must be created by a database deployment with the same service ID. The backup is loaded after provisioning and the new deployment starts up that uses that data. A backup CRN is in the format `crn:v1:<...>:backup:<uuid>`. If omitted, the database is provisioned empty.
+- `version` - The version of the database to be provisioned. If omitted, the database is created with the most recent major and minor version.
+- `disk_encryption_key_crn` - The CRN of a KMS key (for example, Hyper Protect Crypto Services or Key Protect), which is then used for disk encryption. A KMS key CRN is in the format `crn:v1:<...>:key:<id>`.
+- `backup_encryption_key_crn` - The CRN of a KMS key (for example, Hyper Protect Crypto Services or Key Protect), which is then used for backup encryption. A KMS key CRN is in the format `crn:v1:<...>:key:<id>`.
 
-Note: To use a key for your backups, you must first enable the service-to-service delegation.
+To use a key for your backups, you must first enable the service-to-service delegation.
 {: note}
 
-- members_memory_allocation_mb - Total amount of memory to be shared between the database members within the database. For example, if the value is "6", and there are three database members, then the deployment gets 6 GB of RAM total, giving 2 GB of RAM per member. If omitted, the default value is used for the database type is used.
-- members_disk_allocation_mb - Total amount of disk to be shared between the database members within the database. For example, if the value is "30720", and there are three members, then the deployment gets 30 GB of disk total, giving 10 GB of disk per member. If omitted, the default value for the database type is used.
-- members_cpu_allocation_count - Enables and allocates the number of specified dedicated cores to your deployment. For example, to use two dedicated cores per member, use "members_cpu_allocation_count":"2". If omitted, the default value "Shared CPU" uses compute resources on shared hosts.
-- service_endpoints - The Service endpoints supported on your deployment, public or private. This is a required parameter. --fix needed?
+- `members_memory_allocation_mb` - Total amount of memory to be shared between the database members within the database. For example, if the value is "6", and there are three database members, then the deployment gets 6 GB of RAM total, giving 2 GB of RAM per member. If omitted, the default value for the database type is used.
+- `members_disk_allocation_mb` - Total amount of disk to be shared between the database members within the database. For example, if the value is "30720", and there are three members, then the deployment gets 30 GB of disk total, giving 10 GB of disk per member. If omitted, the default value for the database type is used.
+- `members_cpu_allocation_count` - Enables and allocates the number of specified dedicated cores to your deployment. For example, to use two dedicated cores per member, use *`"members_cpu_allocation_count":"2"`*. If omitted, the default value *Shared CPU* uses compute resources on shared hosts.
+- `service_endpoints` - The service endpoint supported on your deployment: private. This is a required parameter. --fix needed?
 
 --fix the TF steps
 
