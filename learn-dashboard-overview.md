@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-10-07"
+lastupdated: "2025-10-09"
 
 keywords: deployment, crn, task, gui, api endpoint, gen2
 
@@ -36,7 +36,7 @@ The resources tab contains information and configuration options on the size and
 
 Every time you make administrative changes to your service (such as scaling, or taking a manual backup), a task starts up. The _Recent tasks_ panel shows only the **latest task**, including its name and progress bar. After completion, the most recent task remains visible for a short period of time.
 
-To view more than the latest task, you can configure an [{{site.data.keyword.logs_full}}](/docs/databases-for-mongodb?topic=databases-for-mongodb-logging) instance to capture and retain logs from your deployment.  
+To view more than the latest task, you can configure an [{{site.data.keyword.logs_full}}](/docs/cloud-logs?topic=cloud-logs-getting-started){: external} instance to capture and retain logs from your deployment.  
 
 A historical record of tasks from any time period is available through [{{site.data.keyword.atracker_full}}](/docs/databases-for-mongodb?topic=databases-for-mongodb-at_events). Tasks can also be retrieved programmatically from the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#listdeploymenttasks) and [CLI plug-in](https://cloud.ibm.com/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-tasks-list).
 
@@ -119,10 +119,3 @@ For more information, see [Managing service credentials](/docs/databases-for-mon
 
 In Gen 2 deployments, **service credentials are required as the first step to connect**. Unlike Gen 1, an admin password is not provided by default. If no credential exists, you are prompted to create one on the _Overview_ page before you can establish any database connection.
 {: note}
-
-## View docs
-{: #dashboard-overview-view-docs}
-
-[--- I think this paragraph is superfluent and can be deleted - pls. confirm]
-
-The **View docs** link from the *Actions* drop list opens the main documentation page for {{site.data.keyword.databases-for-mongodb}} in a new tab.
