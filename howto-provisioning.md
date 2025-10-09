@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-10-07"
+lastupdated: "2025-10-09"
 
 keywords: provision cloud databases, terraform, provisioning parameters, cli, resource controller api, provision mongodb, provision mongodb standard, provision mongodb ee
 
@@ -33,26 +33,25 @@ Provision from the console by specifying the following parameters.
 
 Select the platform for your deployment.  
 
-- **Gen 1** – {{site.data.keyword.ibm}}’s original platform, available across all IBM Cloud data centers.  
+- **Gen 1** – {{site.data.keyword.cloud}}’s original platform, available across all IBM Cloud data centers.  
 - **Gen 2** – {{site.data.keyword.cloud}}'s latest platform, based on a highly secure software-defined networking architecture. Gen 2 is optimized for cloud-native applications and currently available only in Montreal.
 
-For more details, see [Gen 1 and Gen 2 platforms](/docs/databases-for-mongodb?topic=databases-for-mongodb-platforms&interface=ui). (--fix with right url)
-
+For more details, see [Overview of Gen 1 (Classic) and Gen 2 (VPC)](/docs-draft/cloud-databases-gen2?topic=cloud-databases-gen2-overview-gen1-gen2&interface=ui). 
 
 ### Hosting model
 {: #hosting_model}
 {: ui}
 
-On Gen 2, the only available hosting model is **Isolated**, which is a secure single-tenant offering for complex, highly-performant enterprise workloads. For more information, see [Isolated compute](add link).
+On Gen 2, the only available hosting model is **Isolated**, which is a secure single-tenant offering for complex, highly-performant enterprise workloads. For more information, see [Isolated Compute](/docs-draft/cloud-databases-gen2?topic=cloud-databases-gen2-isolated-compute&interface=ui).
 
 ### Resource allocation
 {: #resource_allocation}
 {: ui}
 
-Choose the initial host size and disk configuration for your deployment. Each GB of disk provides 10 IOPS(--confirm). Host size and disk allocation apply per instance member.
+Choose the initial host size and disk configuration for your deployment. Host size and disk allocation apply per instance member.
 
 - **Host size:** Select from available configurations of vCPU and RAM to match your workload needs. 
-- **Disk:** Configure the initial disk size for your deployment. Use the slider to set disk capacity. Disk size determines the IOPS allocation.  
+- **Disk:** Configure the initial disk size for your deployment. Use the slider to set disk capacity. Disk size determines the IOPS allocation. Each GB of disk provides 5 IOPS.
 
 Disk size can be increased after provisioning but cannot be decreased to prevent data loss.
 {: note}
@@ -85,7 +84,7 @@ Before provisioning, follow the instructions provided in the documentation to in
    ```
    {: pre}
 
-2. Select the [hosting model](/docs/databases-for-mongodb?topic=databases-for-mongodb-hosting-models&interface=cli) you want your database to be provisioned on. You can change this later.
+2. You can provision {{site.data.keyword.databases-for-mongodb_full}} instances on the [Isolated Compute](/docs-draft/cloud-databases-gen2?topic=cloud-databases-gen2-isolated-compute&interface=ui) hosting model on the Gen 2 platform.
 
 3. Provision your database with the following command:
 
@@ -250,8 +249,8 @@ Follow these steps to provision by using the [Resource Controller API](https://c
    ```
    {: pre}
 
-4. Select the [hosting model](/docs/cloud-databases?topic=cloud-databases-hosting-models&interface=api) you want your database to be provisioned on. You can change this later.
-
+4. You can provision {{site.data.keyword.databases-for-mongodb_full}} instances on the [Isolated Compute](/docs-draft/cloud-databases-gen2?topic=cloud-databases-gen2-isolated-compute&interface=ui) hosting model on the Gen 2 platform.
+(--fix with new payload for cdp flavors)
    A host flavor represents fixed sizes of guaranteed resource allocations. To see which host flavors are available in your region, call the [host flavors capability endpoint](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#capability){: external} like this:
 
     ```sh
@@ -497,7 +496,7 @@ Use Terraform to manage your infrastructure through the [`ibm_database` Resource
 
 Select the [hosting model](/docs/databases-for-mongodb?topic=databases-for-mongodb-hosting-models&interface=terraform) you want your database to be provisioned on. You can change this later.
 
-### Provisioning isolated compute with Terraform
+### Provisioning Isolated Compute with Terraform
 {: #provisioning-isolated-computer-terraform}
 {: terraform}
 
