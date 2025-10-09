@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2025
-lastupdated: "2025-09-24"
+lastupdated: "2025-10-09"
 
 keywords: mongodb, databases, monitoring, scaling, autoscaling, resources, WiredTiger
 
@@ -15,24 +15,24 @@ subcollection: databases-for-mongodb
 # Performance
 {: #performance}
 
-{{site.data.keyword.databases-for-mongodb_full}} deployments can be both manually [scaled to your usage](/docs/databases-for-mongodb?topic=databases-for-mongodb-resources-scaling), or configured to [autoscale](/docs/databases-for-mongodb?topic=databases-for-mongodb-autoscaling) under certain resource conditions. If you are tuning the performance of your deployment, consider a few factors first.
+{{site.data.keyword.databases-for-mongodb_full}} deployments can be manually [scaled to your usage](/docs/databases-for-mongodb?topic=databases-for-mongodb-resources-scaling). If you are tuning the performance of your deployment, consider a few factors first.
 
 ## Monitoring your deployment
 {: #monitor-deployment}
 
-{{site.data.keyword.databases-for-mongodb}} deployments offer an integration with the [{{site.data.keyword.monitoringfull}} service](/docs/cloud-databases?topic=cloud-databases-monitoring) for basic monitoring of resource usage on your deployment. Many of the available metrics, like disk usage and IOPS, are presented to help you configure [autoscaling](/docs/databases-for-mongodb?topic=databases-for-mongodb-autoscaling) on your deployment. Observing trends in your usage and configuring the autoscaling to respond to them can help alleviate performance problems before your databases become unstable due to resource exhaustion.
+{{site.data.keyword.databases-for-mongodb}} deployments offer an integration with the [{{site.data.keyword.monitoringfull}} service](/docs/cloud-databases?topic=cloud-databases-monitoring) for basic monitoring of resource usage, like disk usage and IOPS of your deployment. Observing trends in your usage can help alleviate performance problems before your databases become unstable due to resource exhaustion.
 
 ## Disk Usage
 {: #disk-usage}
 
-If you are concerned about how much space MongoDB is using to store your data, you can run some native MongoDB [data storage diagnostics](https://docs.mongodb.com/manual/faq/storage/#data-storage-diagnostics){: .external} to find the sizes of things like databases, collections, and indexes. If the approximate size of your data set is known and fixed, you can manually scale your disk to accommodate your data. If your data set grows at predictable rate over time, you can configure autoscaling to increase disk size when your disk usage hits a certain threshold.
+If you are concerned about how much space MongoDB is using to store your data, you can run some native MongoDB [data storage diagnostics](https://docs.mongodb.com/manual/faq/storage/#data-storage-diagnostics){: .external} to find the sizes of things like databases, collections, and indexes. If the approximate size of your data set is known and fixed, you can manually scale your disk to accommodate your data.
 
 ## Disk I/O
 {: #disk-iops}
 
-The number of Input-Output Operations per second (IOPS) on {{site.data.keyword.databases-for-mongodb}} deployments is limited by the type of storage volume. Storage volumes for {{site.data.keyword.databases-for-mongodb}} deployments are [Block Storage Endurance Volumes in the 10 IOPS per GB tier](/docs/BlockStorage?topic=BlockStorage-orderingBlockStorage){: .external}. Hitting I/O utilization limits can cause your databases to respond slowly or appear unresponsive. Things like unoptimized queries, [index building](https://docs.mongodb.com/manual/core/index-creation/){: .external}, and creating new indexes can cause spikes in IOPS, but it's also possible that normal work loads for your applications can exceed the available IOPS for your deployment.
+The number of Input-Output Operations per second (IOPS) on {{site.data.keyword.databases-for-mongodb}} deployments is limited by the type of storage volume. Storage volumes for {{site.data.keyword.databases-for-mongodb}} deployments are (--need updated vpc link) [Block Storage Endurance Volumes in the 10 IOPS per GB tier](/docs/BlockStorage?topic=BlockStorage-orderingBlockStorage){: .external}. Hitting I/O utilization limits can cause your databases to respond slowly or appear unresponsive. Things like unoptimized queries, [index building](https://docs.mongodb.com/manual/core/index-creation/){: .external}, and creating new indexes can cause spikes in IOPS, but it's also possible that normal work loads for your applications can exceed the available IOPS for your deployment.
 
-You can increase the number IOPS available to your deployment by increasing disk space. You can also configure autoscaling to increase disk size automatically if your deployment's I/O utilization hits a certain saturation point for an extended period of time.
+You can increase the number IOPS available to your deployment by increasing disk space. 
 
 For more information, see the [MongoDB documentation](https://docs.mongodb.com/manual/faq/storage/#how-frequently-does-wiredtiger-write-to-disk){: .external}.
 
@@ -71,5 +71,3 @@ Run any of the [documented commands](https://docs.mongodb.com/manual/administrat
 
 Many of the MongoDB utilities and commands need the [Cluster Monitor](https://www.mongodb.com/docs/manual/reference/built-in-roles/#mongodb-authrole-clusterMonitor){: .external} role to execute. It is not part of the `admin` default role set. [Grant the Cluster Monitor role](/docs/databases-for-mongodb?topic=databases-for-mongodb-user-management#the-admin-user) to the `admin` user on your deployment.
 {: .tip}
-
-For more information, see the [Best Practices blog post](https://www.ibm.com/blog/best-practices-for-mongodb-on-the-ibm-cloud/).
