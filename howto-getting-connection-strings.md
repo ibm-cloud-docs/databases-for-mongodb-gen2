@@ -1,12 +1,12 @@
 ---
 
 copyright:
-  years: 2018, 2023
-lastupdated: "2023-06-15"
+  years: 2025
+lastupdated: "2025-10-13"
 
-keywords: mongodb, databases, connection strings
+keywords: mongodb, databases, connection strings, gen 2
 
-subcollection: databases-for-mongodb
+subcollection: databases-for-mongodb-gen2
 
 ---
 
@@ -24,10 +24,10 @@ Connection strings allow you to establish a connection between your application 
 
 Follow these steps to retrieve your {{site.data.keyword.databases-for-mongodb}} instance connection strings:
 
-1. In your deployment's **Overview page**, scroll down to the *Endpoints* section. 
-1. Within the *Endpoints* section, you find a *Quick start tab* with the following sections: 
-   - **Connect using a CLI** - This section contains information for connecting to your deployment through the [{{site.data.keyword.IBM_notm}} CLI](https://www.ibm.com/cloud/cli){: external}.
-   - **Connect using a MongoDB Enterprise Client** - This section allows you to get a TLS certificate and connect to your deployment.
+1. In your deployment's **Overview page**, scroll down to the *Service endpoints* section. 
+1.  The *Service endpoints* section displays tabs for available connection methods:  
+   - **MongoDB** – Shows the connection string, hostnames, ports, database name, authentication source, and replica set for your deployment.  
+   - **CLI** – Provides details for connecting by using the [{{site.data.keyword.IBM_notm}} CLI](https://www.ibm.com/cloud/cli){: external}.  
 
 ## Getting connection strings in the CLI
 {: #connection-strings-cli}
@@ -42,22 +42,23 @@ ibmcloud cdb deployment-connections <INSTANCE_NAME_OR_CRN> -u <NEWUSERNAME> [--e
 ```
 {: pre}
 
-For more information, see [Connections Command options](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#connections-command-options).
+For more information, see [Connections command options](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#connections-command-options).
 
 ### Command options
 {: #connection-strings-cli-command-options}
 {: cli}
 
-- If you don't specify a `user`, the Connections commands return information for the `admin` user, by default. 
-- If you don't specify an `endpoint-type`, the connection string returns the public endpoint by default. 
-- If your deployment has only a private endpoint, specify `--endpoint-type private` or the commands return an error. The user and endpoint type is not enforced. You can use any user on your deployment with either endpoint.
+- If you don't specify a `user`, the Connections commands return information for the `admin` user, by default. (--confirm if it works for manager user)
+- If you don't specify an `endpoint-type`, the connection string returns the public endpoint by default. (--does it return private by default now?)
+- If your deployment has only a private endpoint, specify `--endpoint-type private` or the commands return an error. The user and endpoint type is not enforced. (--still enforced?)
 
 ## Getting connection strings in the API
 {: #connection-strings-api}
 {: api}
 
-To retrieve users' connection strings from the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#introduction){: external}, use the [Connections endpoint](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#getconnection){: external}. To create the connection strings, ensure that the path includes the specific user and endpoint type (public or private) that should be used. The user and endpoint type are not restricted or enforced. You have the flexibility to utilize any user available in your deployment, along with either endpoint (if both are present in your deployment).
+To retrieve users' connection strings from the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#introduction){: external}, use the [Connections endpoint](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#getconnection){: external}. To create the connection strings, ensure that the path includes the specific user and endpoint type that should be used. The `user` is not restricted or enforced. You have the flexibility to utilize any user available in your deployment. 
 
+(--should we swap endpoint type with only private as static type?)
 The API command looks like: 
 
 ```sh
@@ -71,8 +72,13 @@ Remember to replace {region}, {id}, {userid}, and {endpoint_type} with the appro
 ## Additional users and connection strings
 {: #connection-strings-additional-users-strings}
 
-Access to your {{site.data.keyword.databases-for-mongodb}} deployment is not limited to the `admin` user. Create more users and retrieve connection strings specific to them by using the UI, the [{{site.data.keyword.databases-for}} CLI plug-in](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference), or the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#introduction).
+Access to your {{site.data.keyword.databases-for-mongodb}} deployment is not limited to the `manager` user. Create more users and retrieve connection strings specific to them by using the UI, the (--fix with updated links if needed, verify api link) [{{site.data.keyword.databases-for}} CLI plug-in](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference), or the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#introduction).
 
 All users on your deployment can use the connection strings, including connection strings for either public or private endpoints.
 
-For more information, see the [Managing Users and Roles](/docs/databases-for-mongodb?topic=databases-for-mongodb-user-management) page.
+For more information, see the [Managing users and roles](/docs/databases-for-mongodb?topic=databases-for-mongodb-user-management) page. (--user page needs updates/to be created)
+
+Unlike Gen 1, Gen 2 deployments do not include a pre-provisioned database admin password. To connect, you must (--fix with updated link when page created) [create a service credential](/docs/databases-for-mongodb?topic=databases-for-mongodb-service-credentials&interface=ui), which provides the necessary authentication details for your applications.
+
+Gen 2 deployments display only private connection details. Public endpoints are not available.
+{: note}
