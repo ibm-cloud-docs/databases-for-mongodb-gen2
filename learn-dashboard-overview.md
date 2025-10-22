@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-10-09"
+lastupdated: "2025-10-22"
 
 keywords: deployment, crn, task, gui, api endpoint, gen2
 
@@ -12,27 +12,27 @@ subcollection: databases-for-mongodb-gen2
 
 {{site.data.keyword.attribute-definition-list}}
 
-# The Dashboard overview
-{: #dashboard-overview}
+# The console overview
+{: #console-overview}
 
 ## Overview
-{: #dashboard-overview-page}
+{: #console-overview-page}
 
 The _Overview_ page shows you information about your {{site.data.keyword.databases-for-mongodb_full}} deployment. The overview includes essential identifying information.
 
 ### Deployment details
-{: #dashboard-overview-deployment-details}
+{: #console-overview-deployment-details}
 
 - **Type:** The type of database that is offered by the service, and the database version that your service uses.
 - **CRN (deployment ID):** The ID is a [CRN (Cloud Resource Name)](/docs/account?topic=account-crn) that uniquely identifies the database deployment. The CRN is used to refer to the database in the API and can be used with the CLI. The _Overview_ pane shows details of your service.
 
 ### Resources
-{: #dashboard-overview-resources}
+{: #console-overview-resources}
 
 The resources tab contains information and configuration options on the size and resource usage of your deployment. You can [scale disk, memory, and CPU](/docs/databases-for-mongodb?topic=databases-for-mongodb-resources-scaling).
 
 ### Recent tasks
-{: #dashboard-overview-recent-tasks}
+{: #console-overview-recent-tasks}
 
 Every time you make administrative changes to your service (such as scaling, or taking a manual backup), a task starts up. The _Recent tasks_ panel shows only the **latest task**, including its name and progress bar. After completion, the most recent task remains visible for a short period of time.
 
@@ -42,7 +42,7 @@ A historical record of tasks from any time period is available through [{{site.d
 
 
 ### Observability
-{: #dashboard-overview-observability}
+{: #console-overview-observability}
 
 The _Observability_ tab provides access to the {{site.data.keyword.monitoringlong}}, logging, and event tracking integrations available for your deployment.
 
@@ -51,7 +51,7 @@ The _Observability_ tab provides access to the {{site.data.keyword.monitoringlon
 - [{{site.data.keyword.monitoringfull}}](/docs/databases-for-mongodb?topic=databases-for-mongodb-monitoring)
 
 ### Service endpoints
-{: #dashboard-overview-endpoints}
+{: #console-overview-endpoints}
 
 The _Service endpoints_ pane within the _Overview_ pane contains connection strings for your deployment.
 
@@ -72,12 +72,12 @@ For more information on reference tables for the different connection types, see
 You can manage your {{site.data.keyword.databases-for-mongodb}} service through the {{site.data.keyword.databases-for}} API. This panel provides the essential information for using the API. For more information, see the [API reference](https://{DomainName}/apidocs/cloud-databases-api).
 
 ## Backups and restore
-{: #dashboard-overview-backups-and-restore}
+{: #console-overview-backups-and-restore}
 
 The _Backups and restore_ tab is the UI for managing your deployments backups. All of the available backups are listed with their timestamps. Click a backup to copy its ID or to restore it into a new deployment. For more information, see [Managing backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups).
 
 ## Settings
-{: #dashboard-overview-settings}
+{: #console-overview-settings}
 
 The _Settings_ tab contains the UI for many of the tunable settings for your deployment.
 
@@ -90,7 +90,7 @@ The _Settings_ tab contains the UI for many of the tunable settings for your dep
 - **Disconnect all active connections**. You can disconnect all client connections to your database. This action immediately ends all active sessions and can cause service interruptions. Use this option with caution when you need to revoke access or apply configuration changes.
 
 ## Service credentials
-{: #dashboard-overview-service-cred}
+{: #console-overview-service-cred}
 
 Service credentials provide the authentication details that you need to connect your applications to a {{site.data.keyword.databases-for-mongodb}} deployment.  
 
