@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-10-22"
+lastupdated: "2025-10-23"
 
 keywords: deployment, crn, task, gui, api endpoint, gen2
 
@@ -46,7 +46,6 @@ To view more than the latest task, you can configure an [{{site.data.keyword.log
 
 A historical record of tasks from any time period is available through [{{site.data.keyword.atracker_full}}](/docs/databases-for-mongodb?topic=databases-for-mongodb-at_events). Tasks can also be retrieved programmatically from the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#listdeploymenttasks) and [CLI plug-in](https://cloud.ibm.com/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-tasks-list).
 
-
 ### Observability
 {: #console-overview-observability}
 
@@ -76,6 +75,17 @@ For more information on reference tables for the different connection types, see
 **(should we merge the above two and they become one link? need confirmation)**
 
 You can manage your {{site.data.keyword.databases-for-mongodb}} service through the {{site.data.keyword.databases-for}} API. This panel provides the essential information for using the API. For more information, see the [API reference](https://{DomainName}/apidocs/cloud-databases-api).
+
+## Connect page
+{: #console-connect}
+
+In Gen 2 deployments, only private endpoints are used to enhance security. This page provides multiple connection options, accessible via tabs:
+
+- **How-to tab**: Learn how to set up a secure connection to your database from scratch. This guide walks you through connecting via an {{site.data.keyword.cloud}} Virtual Private Cloud (VPC) using a Virtual Server Instance (VSI) with a psql install, and accessing the database through an {{site.data.keyword.cloud}} VPN (Virtual Private Network gateway). You can use any VSI in your account and need to create or use a service credential. You use the service endpoint details from the *Overview* page.
+
+- **Manage connections tab**: Find links to documentation on how to manage or delete existing connections from your {{site.data.keyword.cloud}} database instance.
+
+For detailed ways of connecting, go to the connect docs or open the console's (UI) [Connect page](need link). 
 
 ## Backups and restore
 {: #console-overview-backups-and-restore}
