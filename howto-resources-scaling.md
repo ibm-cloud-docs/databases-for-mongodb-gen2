@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-10-15"
+lastupdated: "2025-10-27"
 
 keywords: mongodb, databases, scaling, memory, disk IOPS, CPU
 
@@ -147,20 +147,9 @@ ibmcloud cdb deployment-groups-set <INSTANCE_NAME_OR_CRN> member --memory 12288
 {: #host-flavor-parameter-cli}
 {: cli}   
 
-Isolated Compute offers six size options across legacy and [newer-generation instance profiles](/docs/vpc?topic=vpc-profiles&interface=ui#next-gen-profiles). Newer-generation profiles are [available only in selected regions](/docs/vpc?topic=vpc-profiles&interface=ui#vhmemory).
+Isolated Compute offers six size options to choose from.
 
 The host_flavor parameter defines your Compute sizing. Input the appropriate value for your desired size.
-
-| Host size | vCPU x RAM           | host_flavor value         |
-|-----------|----------------------|---------------------------|
-| 4x16      | 4 vCPU x 16 GB RAM   | b3c.4x16.encrypted        |
-| 8x32      | 8 vCPU x 32 GB RAM   | b3c.8x32.encrypted        |
-| 8x64      | 8 vCPU x 64 GB RAM   | m3c.8x64.encrypted        |
-| 16x64     | 16 vCPU x 64 GB RAM  | b3c.16x64.encrypted       |
-| 32x128    | 32 vCPU x 128 GB RAM | b3c.32x128.encrypted      |
-| 30x240    | 30 vCPU x 240 GB RAM | m3c.30x240.encrypted      |
-{: caption="Isolated Compute CLI selections" caption-side="bottom"}
-
 
 | Host size | vCPU x RAM           | host_flavor value         |
 |-----------|----------------------|---------------------------|
@@ -206,20 +195,9 @@ For more information, see the [API reference](/apidocs/cloud-databases-api/cloud
 {: #host-flavor-parameter-api}
 {: api}
 
-Isolated compute offers six size options across legacy and [newer-generation instance profiles](/docs/vpc?topic=vpc-profiles&interface=ui#next-gen-profiles). Newer-generation profiles are [available only in selected regions](/docs/vpc?topic=vpc-profiles&interface=ui#vhmemory).
+Isolated Compute offers six size options to choose from.
 
 The host_flavor parameter defines your Compute sizing. Input the appropriate value for your desired size.
-
-| Host size | vCPU x RAM           | host_flavor value         |
-|-----------|----------------------|---------------------------|
-| 4x16      | 4 vCPU x 16 GB RAM   | b3c.4x16.encrypted        |
-| 8x32      | 8 vCPU x 32 GB RAM   | b3c.8x32.encrypted        |
-| 8x64      | 8 vCPU x 64 GB RAM   | m3c.8x64.encrypted        |
-| 16x64     | 16 vCPU x 64 GB RAM  | b3c.16x64.encrypted       |
-| 32x128    | 32 vCPU x 128 GB RAM | b3c.32x128.encrypted      |
-| 30x240    | 30 vCPU x 240 GB RAM | m3c.30x240.encrypted      |
-{: caption="Isolated Compute API selections" caption-side="bottom"}
-
 
 | Host size | vCPU x RAM           | host_flavor value         |
 |-----------|----------------------|---------------------------|
