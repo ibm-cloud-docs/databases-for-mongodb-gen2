@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-10-09"
+lastupdated: "2025-10-27"
 
 keywords: provision cloud databases, terraform, provisioning parameters, cli, resource controller api, provision mongodb, provision mongodb standard, provision mongodb ee
 
@@ -100,10 +100,10 @@ Before provisioning, follow the instructions provided in the documentation to in
    ```
    {: pre}
 
-  Provision a {{site.data.keyword.databases-for-mongodb}} Isolated instance with the same `"members_host_flavor"` -p parameter, setting it to the desired Isolated size. Available hosting sizes and their `members_host_flavor value` parameters are listed in [Table 2](#host-flavor-parameter-cli). For example, `{"members_host_flavor": "b3c.4x16.encrypted"}`. Note that since the host flavor selection includes CPU and RAM sizes (`b3c.4x16.encrypted` is 4 CPU and 16 RAM), this request does not accept both an Isolated size selection, and separate CPU and RAM allocation selections.
+  Provision a {{site.data.keyword.databases-for-mongodb}} Isolated instance with the same `"members_host_flavor"` -p parameter, setting it to the desired Isolated size. Available hosting sizes and their `members_host_flavor value` parameters are listed in [Table 2](#host-flavor-parameter-cli). For example, `{"members_host_flavor": bx3d.4x20.encrypted"}`. Note that since the host flavor selection includes CPU and RAM sizes (`bx3d.4x20.encrypted` is 4 CPU and 20 RAM), this request does not accept both an Isolated size selection, and separate CPU and RAM allocation selections.
 
    ```sh
-   ibmcloud resource service-instance-create test-database databases-for-mongodb standard us-south -p '{"members_host_flavor": "b3c.4x16.encrypted"}' --service-endpoints="private"
+   ibmcloud resource service-instance-create test-database databases-for-mongodb standard us-south -p '{"members_host_flavor": "bx3d.4x20.encrypted"}' --service-endpoints="private"
    ```
    {: pre}
 
@@ -132,14 +132,14 @@ The `members_host_flavor` parameter defines your Compute sizing.
 
 - To provision an Isolated Compute instance, input the appropriate value for your desired CPU and RAM configuration.
 
-    | **Members host flavor** | **members_host_flavor value** |
-    |:-------------------------:|:---------------------:|
-    | 4 CPU x 16 RAM            | `b3c.4x16.encrypted`    |
-    | 8 CPU x 32 RAM            | `b3c.8x32.encrypted`    |
-    | 8 CPU x 64 RAM            | `m3c.8x64.encrypted`    |
-    | 16 CPU x 64 RAM           | `b3c.16x64.encrypted`   |
-    | 32 CPU x 128 RAM          | `b3c.32x128.encrypted`  |
-    | 30 CPU x 240 RAM          | `m3c.30x240.encrypted`  |
+  | Host size | vCPU x RAM           | host_flavor value         |
+  |-----------|----------------------|---------------------------|
+  | 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted        |
+  | 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
+  | 8x80      | 8 vCPU x 80 GB RAM   | mx3d.8x80.encrypted        |
+  | 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted       |
+  | 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
+  | 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
     {: caption="Members host flavor sizing parameter" caption-side="bottom"}
 
    You will see a response like:
@@ -362,12 +362,13 @@ Follow these steps to provision by using the [Resource Controller API](https://c
 
     As shown, the Isolated Compute host flavors available to a {{site.data.keyword.databases-for-mongodb}} instance in the `us-south` region are:
 
-    - `b3c.4x16.encrypted`
-    - `b3c.8x32.encrypted`
-    - `m3c.8x64.encrypted`
-    - `b3c.16x64.encrypted`
-    - `b3c.32x128.encrypted`
-    - `m3c.30x240.encrypted`
+    - `bx3d.4x20.encrypted`
+    - `bx3d.8x40.encrypted`
+    - `mx3d.8x80.encrypted`
+    - `bx3d.16x80.encrypted`
+    - `bx3d.32x160.encrypted`
+    - `bx3d.48x240.encrypted`
+
 
     See below for more information about the `members_host_flavor` parameter.
 
@@ -415,7 +416,7 @@ Follow these steps to provision by using the [Resource Controller API](https://c
     ```
     {: pre}
 
-    Provision a {{site.data.keyword.databases-for-elasticsearch}} Isolated instance with the same `"members_host_flavor"` parameter, setting it to the desired Isolated size. Available hosting sizes and their `members_host_flavor value` parameters are listed in [Table 2](#members_host-flavor-parameter-api). For example, `{"members_host_flavor": "b3c.4x16.encrypted"}`. Note that since the members host flavor selection includes CPU and RAM sizes (`b3c.4x16.encrypted` is 4 CPU and 16 RAM), this request does not accept both, an Isolated size selection and separate CPU and RAM allocation selections.
+    Provision a {{site.data.keyword.databases-for-elasticsearch}} Isolated instance with the same `"members_host_flavor"` parameter, setting it to the desired Isolated size. Available hosting sizes and their `members_host_flavor value` parameters are listed in [Table 2](#members_host-flavor-parameter-api). For example, `{"members_host_flavor": "bx3d.4x20.encrypted"}`. Note that since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.encrypted` is 4 CPU and 20 RAM), this request does not accept both, an Isolated size selection and separate CPU and RAM allocation selections.
     
     To deploy an instance with 16 GB of RAM and 4 CPU cores on Isolated Compute, see the following example. Make sure to replace the `RESOURCE GROUP ID` value with an ID found under Manage > Account > Resource groups.
 
@@ -428,7 +429,7 @@ Follow these steps to provision by using the [Resource Controller API](https://c
             "target": "eu-gb", 
             "resource_group": "<RESOURCE_GROUP_ID>", 
             "resource_plan_id": "databases-for-mongodb-standard", 
-            "parameters": { "members_host_flavor":"b3c.4x16.encrypted"},
+            "parameters": { "members_host_flavor":"bx3d.4x20.encrypted"},
             "service_endpoints":"private"
           } \
       }' \
@@ -454,14 +455,14 @@ Follow these steps to provision by using the [Resource Controller API](https://c
 
 The `members_host_flavor` parameter defines your Compute sizing. To provision an Isolated Compute instance, input the appropriate value for your desired CPU and RAM configuration.
 
-| **Members host flavor** | **members_host_flavor value** |
-|:-------------------------:|:---------------------:|
-| 4 CPU x 16 RAM            | `b3c.4x16.encrypted`    |
-| 8 CPU x 32 RAM            | `b3c.8x32.encrypted`    |
-| 8 CPU x 64 RAM            | `m3c.8x64.encrypted`    |
-| 16 CPU x 64 RAM           | `b3c.16x64.encrypted`   |
-| 32 CPU x 128 RAM          | `b3c.32x128.encrypted`  |
-| 30 CPU x 240 RAM          | `m3c.30x240.encrypted`  |
+| Member Host flavor | vCPU x RAM           | host_flavor value         |
+|-----------|----------------------|---------------------------|
+| 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted        |
+| 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
+| 8x80      | 8 vCPU x 80 GB RAM   | mx3d.8x80.encrypted        |
+| 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted       |
+| 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
+| 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
 {: caption="Members host flavor sizing parameter" caption-side="bottom"}
 
 CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} Isolated Compute. Disk autoscaling is available. If you have provisioned an Isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases?topic=cloud-databases-monitoring), which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
@@ -502,7 +503,7 @@ Select the [hosting model](/docs/databases-for-mongodb?topic=databases-for-mongo
 
 [--get updated command]
 
-Provision a {{site.data.keyword.databases-for-mongodb}} Isolated instance with the same `"host_flavor"` parameter, setting it to the desired Isolated size. Available hosting sizes and their `host_flavor value` parameters are listed in [Table 1](#host-flavor-parameter-terraform). For example, `{"host_flavor": "b3c.4x16.encrypted"}`. Note that since the host flavor selection includes CPU and RAM sizes (`b3c.4x16.encrypted` is 4 CPU and 16 RAM), this request does not accept both, an Isolated size selection and separate CPU and RAM allocation selections.
+Provision a {{site.data.keyword.databases-for-mongodb}} Isolated instance with the same `"host_flavor"` parameter, setting it to the desired Isolated size. Available hosting sizes and their `host_flavor value` parameters are listed in [Table 1](#host-flavor-parameter-terraform). For example, `{"host_flavor": "bx3d.4x20.encrypted"}`. Note that since the host flavor selection includes CPU and RAM sizes (`bx3d.4x20.encrypted` is 4 CPU and 16 RAM), this request does not accept both, an Isolated size selection and separate CPU and RAM allocation selections.
 
 ```terraform
 data "ibm_resource_group" "group" {
@@ -520,7 +521,7 @@ resource "ibm_database" "<your_database>" {
   group {
     group_id = "member"
     host_flavor {
-      id = "b3c.8x32.encrypted"
+      id = "bx3d.4x20.encrypted"
     }
     disk {
       allocation_mb = 256000
@@ -548,14 +549,14 @@ output "ICD MongoDB database connection string" {
 The `host_flavor` parameter defines your Compute sizing.
 To provision an Isolated Compute instance, input the appropriate value for your desired CPU and RAM configuration. See the values in the following table.
 
-| **Host flavor** | **host_flavor value** |
-|:-------------------------:|:---------------------:|
-| 4 CPU x 16 RAM            | `b3c.4x16.encrypted`    |
-| 8 CPU x 32 RAM            | `b3c.8x32.encrypted`    |
-| 8 CPU x 64 RAM            | `m3c.8x64.encrypted`    |
-| 16 CPU x 64 RAM           | `b3c.16x64.encrypted`   |
-| 32 CPU x 128 RAM          | `b3c.32x128.encrypted`  |
-| 30 CPU x 240 RAM          | `m3c.30x240.encrypted`  |
+| Host size | vCPU x RAM           | host_flavor value         |
+|-----------|----------------------|---------------------------|
+| 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted        |
+| 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
+| 8x80      | 8 vCPU x 80 GB RAM   | mx3d.8x80.encrypted        |
+| 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted       |
+| 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
+| 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
 {: caption="Host flavor sizing parameter" caption-side="bottom"}
 
 CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} Isolated Compute. Disk autoscaling is available. If you have provisioned an Isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases?topic=cloud-databases-monitoring){: external}, which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
