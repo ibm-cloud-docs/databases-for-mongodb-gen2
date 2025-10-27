@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-10-13"
+lastupdated: "2025-10-27"
 
 keywords: mongodb, databases, connection strings, gen 2
 
@@ -38,7 +38,7 @@ You can also retrieve connection strings using the [{{site.data.keyword.database
 The command looks like this: 
 
 ```sh
-ibmcloud cdb deployment-connections <INSTANCE_NAME_OR_CRN> -u <NEWUSERNAME> [--endpoint-type <ENDPOINT_TYPE>]
+ibmcloud resource service-instance <INSTANCE_NAME_OR_CRN> 
 ```
 {: pre}
 
@@ -58,11 +58,10 @@ For more information, see [Connections command options](/docs/databases-cli-plug
 
 To retrieve users' connection strings from the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#introduction){: external}, use the [Connections endpoint](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#getconnection){: external}. To create the connection strings, ensure that the path includes the specific user and endpoint type that should be used. The `user` is not restricted or enforced. You have the flexibility to utilize any user available in your deployment. 
 
-(--should we swap endpoint type with only private as static type?)
 The API command looks like: 
 
 ```sh
-curl -X GET -H "Authorization: Bearer <>" 'https://api.{region}.databases.cloud.ibm.com/v5/ibm/deployments/{id}/users/{userid}/connections/{endpoint_type}'
+curl -X GET 'https://resource-controller.cloud.ibm.com/v2/resource_instances/{id}' -H "Authorization: Bearer <IAM token>""
 ```
 {: pre}
 
