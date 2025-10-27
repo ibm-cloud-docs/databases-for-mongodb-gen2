@@ -1,12 +1,12 @@
 ---
 
 copyright:
-  years: 2019, 2025
+  years: 2025
 lastupdated: "2025-10-27"
 
 keywords: mongodb, databases, monitoring, scaling, autoscaling, resources, WiredTiger
 
-subcollection: databases-for-mongodb
+subcollection: databases-for-mongodb-gen2
 
 ---
 
@@ -30,7 +30,7 @@ If you are concerned about how much space MongoDB is using to store your data, y
 ## Disk I/O
 {: #disk-iops}
 
-The number of Input-Output Operations per second (IOPS) on {{site.data.keyword.databases-for-mongodb}} deployments is limited by the type of storage volume. Storage volumes for {{site.data.keyword.databases-for-mongodb}} deployments are [Block Storage Endurance Volumes in the 5 IOPS per GB tier](/docs/vpc?topic=vpc-block-storage-profiles&interface=ui#block-storage-profile-overview){: .external}. Hitting I/O utilization limits can cause your databases to respond slowly or appear unresponsive. Things like unoptimized queries, [index building](https://docs.mongodb.com/manual/core/index-creation/){: .external}, and creating new indexes can cause spikes in IOPS, but it's also possible that normal work loads for your applications can exceed the available IOPS for your deployment.
+The number of Input-Output Operations per second (IOPS) on {{site.data.keyword.databases-for-mongodb}} deployments is limited by the type of storage volume. Storage volumes for {{site.data.keyword.databases-for-mongodb}} deployments are [Block storage endurance volumes in the 5 IOPS per GB tier](/docs/vpc?topic=vpc-block-storage-profiles&interface=ui#block-storage-profile-overview){: .external}. Hitting I/O utilization limits can cause your databases to respond slowly or appear unresponsive. Things like unoptimized queries, [index building](https://docs.mongodb.com/manual/core/index-creation/){: .external}, and creating new indexes can cause spikes in IOPS, but it's also possible that normal work loads for your applications can exceed the available IOPS for your deployment.
 
 You can increase the number IOPS available to your deployment by increasing disk space. 
 
