@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-10-13"
+lastupdated: "2025-11-03"
 
 keywords: mongodb, databases, mongodb compass, mongodbee, mongodb enterprise, mongodb ee provision, mongodb compass, mongodb ops manager, mongodb compass, admin password, logging and monitoring, gen2
 
@@ -129,7 +129,8 @@ You can provision a {{site.data.keyword.databases-for-mongodb}} instance by usin
   ```sh
   ibmcloud resource service-instance-create <INSTANCE_NAME> <SERVICE_NAME> <SERVICE_PLAN_NAME> <LOCATION> <SERVICE_ENDPOINTS_TYPE> <RESOURCE_GROUP>
   ```
-
+  {: pre}
+  
  The fields in the command are described in the following table.
 
  | Field | Description | Flag |
@@ -180,10 +181,12 @@ Follow [these steps](/docs/databases-for-mongodb?topic=databases-for-mongodb-pro
      ibmcloud cdb regions --json
   ```
   {: pre}
+  
 (--check if api req is correct)
+
 3. Once you have all the information,[provision a new resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#create-resource-instance){: external} with the {{site.data.keyword.cloud_notm}} resource controller.
 
-```sh
+  ```sh
    curl -X POST \
      https://resource-controller.cloud.ibm.com/v2/resource_instances \
      -H 'Authorization: Bearer <>' \
@@ -210,7 +213,7 @@ List of additional parameters:
 * `backup_encryption_key_crn` - The CRN of a KMS key (for example, [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-get-started) or [{{site.data.keyword.keymanagementserviceshort}}](/docs/key-protect?topic=key-protect-about)), which is then used for backup encryption. A KMS key CRN is in the format `crn:v1:<...>:key:<id>`.
 
 To use a key for your backups, you must first [enable the service-to-service delegation](/docs/cloud-databases?topic=cloud-databases-key-protect#byok-for-backups).
-   {: note}
+{: note}
 
 * `members_memory_allocation_mb` - otal amount of memory to be shared between the database members within the database. For example, if the value is "6144", and there are three database members, then the deployment gets 6 GB of RAM total, giving 2 GB of RAM per member. If omitted, the default value is used for the database type is used.
 * `members_disk_allocation_mb` - Total amount of disk to be shared between the database members within the database. For example, if the value is "30720", and there are three members, then the deployment gets 30 GB of disk total, giving 10 GB of disk per member. If omitted, the default value for the database type is used.
@@ -218,6 +221,7 @@ To use a key for your backups, you must first [enable the service-to-service del
 * `service_endpoints` - The [Service endpoints](/docs/cloud-databases?topic=cloud-databases-service-endpoints) supported on your deployment: `private`. This is a required parameter.
 
 (--fix needs updates and commands)
+
 ## Step 2: Provision through Terraform
 {: #provision_instance_tf}
 {: terraform}
@@ -244,8 +248,7 @@ You can use IBM Cloud Monitoring to get operational visibility into the performa
 
 For more information about how to use Monitoring with {{site.data.keyword.databases-for-mongodb}}, see [Monitoring integration](/docs/databases-for-postgresql?topic=databases-for-postgresql-monitoring).
 
-
-Note: You cannot connect IBM Cloud Monitoring by using the CLI. Use the console to complete this task. For more information, see Monitoring integration.
+You cannot connect IBM Cloud Monitoring by using the CLI. Use the console to complete this task. For more information, see Monitoring integration.
 {:note }
 
 ## Step 7: Connect IBM Cloud Logs Activity Tracker
