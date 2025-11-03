@@ -77,7 +77,7 @@ toc:
   - navgroup:
       id: reference
       topics:
-      - include: ../cloud-databases/icd-cli.md
+      - include: ../cloud-databases-gen2/cloud-databases-cli.md
       - link:
           label: Cloud Databases API
           href: https://cloud.ibm.com/apidocs/cloud-databases-api
