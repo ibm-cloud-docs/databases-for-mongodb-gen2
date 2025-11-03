@@ -97,13 +97,13 @@ Follow these steps to complete the tutorial: {: terraform}
 1. Log in to the {{site.data.keyword.cloud_notm}} console.
 2. Click the [{{site.data.keyword.databases-for-mongodb}} service](https://cloud.ibm.com/databases/databases-for-mongodb/create){: external} in the **catalog**.
 3. In **Service details**, configure the following:
-  - **Location** - Select a location that supports Gen 2.
-  - **Service name** - The name can be any string and is the name that is used on the web and in the CLI to identify the new deployment.
-  - **Resource group** - If you are organizing your services into [resource groups](/docs/account?topic=account-account_setup), specify the resource group in this field. Otherwise, you can leave it at default. For more information, see [Managing resource groups](docs/account?topic=account-rgs&interface=ui)
+   - **Location** - Select a location that supports Gen 2.
+   - **Service name** - The name can be any string and is the name that is used on the web and in the CLI to identify the new deployment.
+   - **Resource group** - If you are organizing your services into [resource groups](/docs/account?topic=account-account_setup), specify the resource group in this field. Otherwise, you can leave it at default. For more information, see [Managing resource groups](docs/account?topic=account-rgs&interface=ui)
 4. **Resource allocation** - Specify the initial RAM, disk, and cores for your databases. The minimum sizes of memory and disk are selected by default. With dedicated cores, your resource group is given a single-tenant host with a minimum reserve of CPU shares. Your deployments are then allocated the number of cores that you specify. *Once provisioned, disk cannot be scaled down.*
 5. In **Service configuration**, configure the following:
-  - **Database version** [Set only at deployment]{: tag-red} - The deployment version of your database. To ensure optimal performance, run the preferred version. The latest minor version is used automatically and currently the only option for Gen 2 databases. For more information, see [Database versioning policy](/docs/cloud-databases?topic=cloud-databases-versioning-policy)
-  -  **Encryption** - If you use [Key Protect](/docs/cloud-databases?topic=cloud-databases-key-protect&interface=ui), an instance and key can be selected to encrypt the deployment's disk. If you do not use your own key, the deployment automatically creates and manages its own disk encryption key.
+   - **Database version** [Set only at deployment]{: tag-red} - The deployment version of your database. To ensure optimal performance, run the preferred version. The latest minor version is used automatically and currently the only option for Gen 2 databases. For more information, see [Database versioning policy](/docs/cloud-databases?topic=cloud-databases-versioning-policy)
+   - **Encryption** - If you use [Key Protect](/docs/cloud-databases?topic=cloud-databases-key-protect&interface=ui), an instance and key can be selected to encrypt the deployment's disk. If you do not use your own key, the deployment automatically creates and manages its own disk encryption key.
 6. Click **Create**. The {{site.data.keyword.databases-for}} **Resource list** page opens.
 7. When your instance has been provisioned, click the instance name to view more information.
 
@@ -120,29 +120,29 @@ You can provision a {{site.data.keyword.databases-for-mongodb}} instance by usin
     ```
     {: pre}
 
- If you use a federated user ID, it's important that you switch to a one-time passcode (`ibmcloud login --sso`), or use an API key (`ibmcloud --apikey key` or `@key_file`) to authenticate. For more information about how to log in using the CLI, see [General CLI (ibmcloud) commands](/docs/cli?topic=cli-ibmcloud_cli#ibmcloud_login) under `ibmcloud login`.
+   If you use a federated user ID, it's important that you switch to a one-time passcode (`ibmcloud login --sso`), or use an API key (`ibmcloud --apikey key` or `@key_file`) to authenticate. For more information about how to log in using the CLI, see [General CLI (ibmcloud) commands](/docs/cli?topic=cli-ibmcloud_cli#ibmcloud_login) under `ibmcloud login`.
 
 2. Create a {{site.data.keyword.databases-for-mongodb}} instance.
 
- To create an instance from the CLI, run the following command:
+   To create an instance from the CLI, run the following command:
   
-  ```sh
-  ibmcloud resource service-instance-create <INSTANCE_NAME> <SERVICE_NAME> <SERVICE_PLAN_NAME> <LOCATION> <SERVICE_ENDPOINTS_TYPE> <RESOURCE_GROUP>
-  ```
-  {: pre}
-  
- The fields in the command are described in the following table.
+   ```sh
+   ibmcloud resource service-instance-create <INSTANCE_NAME> <SERVICE_NAME> <SERVICE_PLAN_NAME> <LOCATION> <SERVICE_ENDPOINTS_TYPE> <RESOURCE_GROUP>
+   ```
+   {: pre}
 
- | Field | Description | Flag |
- |-------|------------|------------|
- | `INSTANCE_NAME` [Required]{: tag-red} | The instance name can be any string and is the name that is used on the web and in the CLI to identify the new deployment. | |
- | `SERVICE_NAME` [Required]{: tag-red} | Name or ID of the service. For {{site.data.keyword.databases-for-mongodb}}, use `databases-for-mongodb`. | |
- | `SERVICE_PLAN_NAME` [Required]{: tag-red} | Standard plan (`standard`) | |
- | `LOCATION` [Required]{: tag-red} | The location where you want to deploy. To retrieve a list of regions, use the `ibmcloud regions` command. | |
-    | `SERVICE_ENDPOINTS_TYPE` | Configure the [Service endpoints](/docs/cloud-databases?topic=cloud-databases-service-endpoints) of your deployment. Gen 2 platform supports `private` endpoints. |  |
- | `RESOURCE_GROUP` | The Resource group name. The default value is `default`. | -g |
- | `--parameters` | JSON file or JSON string of parameters to create service instance | -p |
- {: caption="Basic command format fields" caption-side="top"}
+   The fields in the command are described in the following table.
+
+   | Field | Description | Flag |
+   |-------|------------|------------|
+   | `INSTANCE_NAME` [Required]{: tag-red} | The instance name can be any string and is the name that is used on the web and in the CLI to identify the new deployment. | |
+   | `SERVICE_NAME` [Required]{: tag-red} | Name or ID of the service. For {{site.data.keyword.databases-for-mongodb}}, use `databases-for-mongodb`. | |
+   | `SERVICE_PLAN_NAME` [Required]{: tag-red} | Standard plan (`standard`) | |
+   | `LOCATION` [Required]{: tag-red} | The location where you want to deploy. To retrieve a list of regions, use the `ibmcloud regions` command. | |
+   | `SERVICE_ENDPOINTS_TYPE` | Configure the [Service endpoints](/docs/cloud-databases?topic=cloud-databases-service-endpoints) of your deployment. Gen 2 platform supports `private` endpoints. |  |
+   | `RESOURCE_GROUP` | The Resource group name. The default value is `default`. | -g |
+   | `--parameters` | JSON file or JSON string of parameters to create service instance | -p |
+   {: caption="Basic command format fields" caption-side="top"}
 
 ## Step 2: Provision through the resource controller API
 {: #provision_instance_api}
@@ -164,39 +164,39 @@ Follow [these steps](/docs/databases-for-mongodb?topic=databases-for-mongodb-pro
 
 1. You need to know the ID of the resource group that you would like to deploy to. This information is available through the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_groups).
 
- Use a command like:
+   Use a command like:
 
    ```sh
      ibmcloud resource groups
    ```
-  {: pre}
+   {: pre}
 
 2. You need to know the region that you would like to deploy into.
 
- To list all of the regions that deployments can be provisioned into from the current region, use the [{{site.data.keyword.databases-for}} CLI plug-in](https://cloud.ibm.com/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference){: external}.
+   To list all of the regions that deployments can be provisioned into from the current region, use the [{{site.data.keyword.databases-for}} CLI plug-in](https://cloud.ibm.com/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference){: external}.
 
- The command looks like:
+   The command looks like:
 
-  ```sh
-     ibmcloud cdb regions --json
-  ```
-  {: pre}
-  
-(--check if api req is correct)
+   ```sh
+      ibmcloud cdb regions --json
+   ```
+   {: pre}
+
+   (--check if api req is correct)
 
 3. Once you have all the information,[provision a new resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#create-resource-instance){: external} with the {{site.data.keyword.cloud_notm}} resource controller.
 
-  ```sh
-   curl -X POST \
-     https://resource-controller.cloud.ibm.com/v2/resource_instances \
-     -H 'Authorization: Bearer <>' \
-     -H 'Content-Type: application/json' \
-       -d '{
-       "name": "my-instance",
-       "target": "blue-us-south",
-       "resource_group": "5g9f447903254bb58972a2f3f5a4c711",
-       "resource_plan_id": "databases-for-mongodb-standard"
-     }'
+   ```sh
+    curl -X POST \
+      https://resource-controller.cloud.ibm.com/v2/resource_instances \
+      -H 'Authorization: Bearer <>' \
+      -H 'Content-Type: application/json' \
+        -d '{
+        "name": "my-instance",
+        "target": "blue-us-south",
+        "resource_group": "5g9f447903254bb58972a2f3f5a4c711",
+        "resource_plan_id": "databases-for-mongodb-standard"
+      }'
    ```
    {: .pre}
 
@@ -212,8 +212,8 @@ List of additional parameters:
 * `disk_encryption_key_crn` - The CRN of a KMS key (for example, [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-get-started) or [{{site.data.keyword.keymanagementserviceshort}}](/docs/key-protect?topic=key-protect-about)), which is then used for disk encryption. A KMS key CRN is in the format `crn:v1:<...>:key:<id>`.
 * `backup_encryption_key_crn` - The CRN of a KMS key (for example, [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-get-started) or [{{site.data.keyword.keymanagementserviceshort}}](/docs/key-protect?topic=key-protect-about)), which is then used for backup encryption. A KMS key CRN is in the format `crn:v1:<...>:key:<id>`.
 
-To use a key for your backups, you must first [enable the service-to-service delegation](/docs/cloud-databases?topic=cloud-databases-key-protect#byok-for-backups).
-{: note}
+    To use a key for your backups, you must first [enable the service-to-service delegation](/docs/cloud-databases?topic=cloud-databases-key-protect#byok-for-backups).
+    {: note}
 
 * `members_memory_allocation_mb` - otal amount of memory to be shared between the database members within the database. For example, if the value is "6144", and there are three database members, then the deployment gets 6 GB of RAM total, giving 2 GB of RAM per member. If omitted, the default value is used for the database type is used.
 * `members_disk_allocation_mb` - Total amount of disk to be shared between the database members within the database. For example, if the value is "30720", and there are three members, then the deployment gets 30 GB of disk total, giving 10 GB of disk per member. If omitted, the default value for the database type is used.
@@ -240,6 +240,8 @@ To set up context-based restrictions for your {{site.data.keyword.databases-for-
 
 ## Step 5: Create a connection
 {: #private_connect_setup}
+
+ADD STEP - INFO MISSING!
 
 ## Step 6: Connect IBM Cloud Monitoring
 {: #mongodb_monitoring}
