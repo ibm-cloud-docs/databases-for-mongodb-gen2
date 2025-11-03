@@ -33,8 +33,8 @@ toc:
       - howto-user-management.md
       - howto-upgrade.md
       - howto-getting-connection-strings.md
-      - include: ../cloud-databases/closures.md
-      - include: ../cloud-databases/ha-dr.md
+      - include: ../cloud-databases-gen2/closures.md
+      - include: ../cloud-databases-gen2/ha-dr.md
       - topicgroup:
           label: Connecting to Databases for MongoDB
           topics:
@@ -47,29 +47,29 @@ toc:
           topics:
           - howto-resources-scaling.md
           - howto-managing-connections.md
-      - include: ../cloud-databases/howto-manage-backups.md
+      - include: ../cloud-databases-gen2/howto-manage-backups.md
       - topicgroup:
           label: Observability
           topics:
-          - include: ../cloud-databases/cdb-logging-monitoring.md
-          - include: ../cloud-databases/logging.md
-          - include: ../cloud-databases/default-alerts.md
-          - include: ../cloud-databases/reference-monitoring.md
-          - include: ../cloud-databases/at-events.md
+          - include: ../cloud-databases-gen2/cdb-logging-monitoring.md
+          - include: ../cloud-databases-gen2/logging.md
+          - include: ../cloud-databases-gen2/default-alerts.md
+          - include: ../cloud-databases-gen2/reference-monitoring.md
+          - include: ../cloud-databases-gen2/at-events.md
       - topicgroup:
           label: Enhancing security
           topics:
-          - include: ../cloud-databases/manage-scc.md
+          - include: ../cloud-databases-gen2/manage-scc.md
           - learn-security-compliance.md
-          - include: ../cloud-databases/howto-cbr.md
-          - include: ../cloud-databases/cbr-tutorial.md
-          - include: ../cloud-databases/howto-allowlists.md
-          - include: ../cloud-databases/reference-service-endpoints.md
-          - include: ../cloud-databases/howto-vpes.md
-          - include: ../cloud-databases/reference-iam.md
-          - include: ../cloud-databases/reference-key-protect.md
-          - include: ../cloud-databases/reference-hpcs.md
-          - include: ../cloud-databases/howto-deprovisioning.md
+          - include: ../cloud-databases-gen2/howto-cbr.md
+          - include: ../cloud-databases-gen2/cbr-tutorial.md
+          - include: ../cloud-databases-gen2/howto-allowlists.md
+          - include: ../cloud-databases-gen2/reference-service-endpoints.md
+          - include: ../cloud-databases-gen2/howto-vpes.md
+          - include: ../cloud-databases-gen2/reference-iam.md
+          - include: ../cloud-databases-gen2/reference-key-protect.md
+          - include: ../cloud-databases-gen2/reference-hpcs.md
+          - include: ../cloud-databases-gen2/howto-deprovisioning.md
   - navgroup:
       id: tutorial
       topics:
@@ -81,9 +81,9 @@ toc:
       - link:
           label: Cloud Databases API
           href: https://cloud.ibm.com/apidocs/cloud-databases-api
-      - include: ../cloud-databases/db-version-policy.md
-      - include: ../cloud-databases/learn-getting-to-production.md
-      - include: ../cloud-databases/reference-responsibilities.md
+      - include: ../cloud-databases-gen2/db-version-policy.md
+      - include: ../cloud-databases-gen2/learn-getting-to-production.md
+      - include: ../cloud-databases-gen2/reference-responsibilities.md
       - topic: ha-dr.md
         navtitle: Understanding high availability and disaster recovery
       - topic: data-portability.md
@@ -96,13 +96,13 @@ toc:
           topics:
           - ts-connect.md
           - ts-workload.md
-          - include: ../cloud-databases/ts-terraform.md
+          - include: ../cloud-databases-gen2/ts-terraform.md
       - topicgroup:
           label: FAQs
           topics:
-          - include: ../cloud-databases/status-page-faq.md
+          - include: ../cloud-databases-gen2/status-page-faq.md
           - service-faq.md
-          - include: ../cloud-databases/resource-config-faq.md
-          - include: ../cloud-databases/availability-zones-faq.md
+          - include: ../cloud-databases-gen2/resource-config-faq.md
+          - include: ../cloud-databases-gen2/availability-zones-faq.md
           - oplog-faq.md
-          - include: ../cloud-databases/cert-faq.md
+          - include: ../cloud-databases-gen2/cert-faq.md
