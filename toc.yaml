@@ -71,10 +71,6 @@ toc:
           - include: ../cloud-databases-gen2/reference-hpcs.md
           - include: ../cloud-databases-gen2/howto-deprovisioning.md
   - navgroup:
-      id: tutorial
-      topics:
-      - include: ../cloud-databases/hello-world-tutorial.md
-  - navgroup:
       id: reference
       topics:
       - include: ../cloud-databases-gen2/cloud-databases-cli.md
