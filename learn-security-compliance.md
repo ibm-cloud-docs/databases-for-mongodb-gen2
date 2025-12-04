@@ -1,22 +1,22 @@
 ---
 copyright:
-  years: 2018, 2024
-lastupdated: "2024-04-09"
+  years: 2025
+lastupdated: "2025-12-04"
 
 keywords: mongodb, databases, soc, fips, encryption, hipaa, gdpr, terms
 
-subcollection: databases-for-mongodb
+subcollection: databases-for-mongodb-gen2
 
 ---
 
-{:external: .external target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:codeblock: .codeblock}
-{:pre: .pre}
+{{site.data.keyword.attribute-definition-list}}
 
 # Security and compliance
 {: #security-compliance}
+[Gen 2]{: tag-purple}
+
+{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
+{: beta}
 
 ## Protection against unauthorized access
 {: #security-compliance-protection}
