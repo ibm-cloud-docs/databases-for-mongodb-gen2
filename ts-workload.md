@@ -1,12 +1,12 @@
 ---
 
 copyright:
-  years: 2023
-lastupdated: "2023-07-13"
+  years: 2025
+lastupdated: "2025-12-04"
 
 keywords: troubleshooting for MongoDB, workload, logging, latency mean, disk latency
 
-subcollection: databases-for-mongodb
+subcollection: databases-for-mongodb-gen2
 
 content-type: troubleshoot
 
@@ -18,6 +18,11 @@ content-type: troubleshoot
 {: #troubleshoot-workload}
 {: troubleshoot}
 {: support}
+
+[Gen 2]{: tag-purple}
+
+{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
+{: beta}
 
 You'd like to upgrade your {{site.data.keyword.databases-for-mongodb}} deployment, but you want to check if it's being used.
 {: shortdesc}
