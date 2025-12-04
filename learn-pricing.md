@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2025
-lastupdated: "2025-09-25"
+lastupdated: "2025-12-04"
 
 keywords: mongodb gen 2, pricing
 
@@ -13,6 +13,11 @@ subcollection: databases-for-mongodb-gen2
 
 # Pricing
 {: #pricing}
+
+[Gen 2]{: tag-purple}
+
+{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
+{: beta}
 
 All instances of {{site.data.keyword.databases-for-mongodb}} deploy as highly available MongoDB clusters with three data members, with your data replicated on all members. Pricing is based on the total amount of disk storage, RAM, virtual CPU cores, and backup storage that is allocated to deployments, prorated hourly. Gen 2 {{site.data.keyword.databases-for-mongodb}} deployments have a minimum of 5 GB of disk and the smallest profile provides 4 vCPU cores.
 
