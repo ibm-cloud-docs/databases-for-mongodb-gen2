@@ -1,11 +1,11 @@
 ---
 copyright:
-  years: 2023, 2025
-lastupdated: "2025-09-24"
+  years: 2025
+lastupdated: "2025-12-04"
 
-subcollection: databases-for-mongodb, oplog, operations log, oplogurl
+subcollection: databases-for-mongodb-gen2
 
-keywords: operation log
+keywords: operation log, oplog, operations log, oplogurl
 
 ---
 
@@ -15,6 +15,11 @@ keywords: operation log
 {: #mongodb-faq-oplog}
 {: faq}
 {: support}
+
+[Gen 2]{: tag-purple}
+
+{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
+{: beta}
 
 The MongoDB oplog (operations log) is a special capped collection that records all operations that modify the data stored in the database. For more information, see [Replica Set Oplog](https://www.mongodb.com/docs/manual/core/replica-set-oplog/){: external}.
 {: shortdesc}
