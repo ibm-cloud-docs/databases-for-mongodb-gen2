@@ -1,12 +1,12 @@
 ---
 
 copyright:
-  years: 2018, 2024
-lastupdated: "2024-09-16"
+  years: 2025
+lastupdated: "2025-12-04"
 
 keywords: mongodb, databases, kubernetes
 
-subcollection: databases-for-mongodb
+subcollection: databases-for-mongodb-gen2
 
 ---
 
@@ -14,6 +14,11 @@ subcollection: databases-for-mongodb
 
 # Connecting an {{site.data.keyword.cloud_notm}} application
 {: #mongodb-connecting-ibmcloud-app}
+
+[Gen 2]{: tag-purple}
+
+{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
+{: beta}
 
 Applications running in {{site.data.keyword.cloud_notm}} can be bound to your {{site.data.keyword.databases-for-mongodb_full}} deployment. 
 
