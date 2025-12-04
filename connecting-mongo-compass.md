@@ -1,16 +1,21 @@
 ---
 copyright:
-  years: 2024, 2025
-lastupdated: "2025-09-24"
+  years: 2025
+lastupdated: "2025-12-04"
 
 keywords: mongodb, databases, mongo compass
 
-subcollection: databases-for-mongodb
+subcollection: databases-for-mongodb-gen2
 
 ---
 
 # Connect with MongoDB Compass
 {: #connecting-mongodb-compass}
+
+[Gen 2]{: tag-purple}
+
+{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
+{: beta}
 
 [MongoDB Compass](https://www.mongodb.com/docs/compass/current/){: external} is a powerful GUI for querying, aggregating, and analyzing your MongoDB data in a visual environment. Compass is free to use and source available, and can be run on macOS, Windows, and Linux.
 
