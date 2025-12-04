@@ -1,11 +1,11 @@
 ---
 copyright:
-  years: 2019, 2025
-lastupdated: "2025-09-24"
+  years: 2025
+lastupdated: "2025-12-04"
 
 keywords: mongodb, databases, mongo shell, mongosh
 
-subcollection: databases-for-mongodb
+subcollection: databases-for-mongodb-gen2
 
 ---
 
@@ -13,6 +13,11 @@ subcollection: databases-for-mongodb
 
 # Connecting with the MongoDB Shell
 {: #connecting-cli-client}
+
+[Gen 2]{: tag-purple}
+
+{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
+{: beta}
 
 You can access your MongoDB database from a command-line client, which allows for direct interaction and monitoring of the data structures that are created within the database. Use it to query and update data, as well to perform administrative operations and monitor performance.
 
