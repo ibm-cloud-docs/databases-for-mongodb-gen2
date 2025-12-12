@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2025
-lastupdated: "2025-12-04"
+lastupdated: "2025-12-12"
 
 keywords: mongodb, databases, connecting, pymongo, java driver, service proprietary certificate, mongodbee, tls, cipher suite
 
@@ -41,8 +41,6 @@ All the information a driver needs to make a connection to your deployment is in
 | `Authentication` | `Method` | How authentication takes place; "direct" authentication is handled by the driver. Mongo 3.6 uses SCRAM SHA 1, whereas Mongo 4.2 uses SHA 256 |
 | `Hosts` | `0...` | A hostname and port to connect to |
 | `Composed` | `0...` | A URI combining Scheme, Authentication, Host, Path, and Replica Set name. |
-| `Certificate` | `Name` | The allocated name for the service proprietary certificate for database deployment |
-| `Certificate` | Base64 | A base64 encoded version of the certificate. |
 {: caption="mongodb/URI connection information" caption-side="top"}
 
 * `0...` indicates that there might be one or more of these entries in an array.
@@ -64,9 +62,6 @@ public class MongodbConnect {
     private static Logger log = LoggerFactory.getLogger(LoggerFactory.class);
 
     public static void main(String[] args) {
-
-        System.setProperty("javax.net.ssl.trustStore", "path/to/keystore");
-        System.setProperty("javax.net.ssl.trustStorePassword", "store_password");
 
         // make sure you append ssl=true to the connection URI
         final String mongoURI = "mongodb://user:password@host:port,host:port/?authSource=admin&replicaSet=replset&ssl=true";
@@ -110,8 +105,6 @@ from pymongo.errors import ConnectionFailure
 
 client = MongoClient(
     "mongodb://admin:$PASSWORD@host.databases.appdomain.cloud:30484/<database name>?authSource=adminreplicaSet=replset",
-    ssl=True,
-    ssl_ca_certs="/path/to/cert/ca-certificate.crt"
 )
 
 try:
@@ -132,8 +125,6 @@ const MongoClient = require("mongodb").MongoClient;
 let connectionString = "mongodb://<username>:<password>@<host>:<port>,<host>:<port>/<database>?authSource=admin&replicaSet=replset";
 
 let options = {
-    tls: true,
-    tlsCAFile: `/path/to/cert`,
     useUnifiedTopology: true 
 };
 
@@ -151,42 +142,6 @@ MongoClient.connect(connectionString, options, function (err, db) {
 });
 ```
 {: codeblock}
-
-## Driver TLS and service proprietary certificate support
-{: #mongodb-tls-certificate-support}
-
-All connections to {{site.data.keyword.databases-for-mongodb}} are TLS 1.2 enabled, so the driver you use to connect needs to be able to support encryption.
-
-The following [cipher suites](https://www.mongodb.com/docs/manual/core/security-transport-encryption/#tls-ssl-ciphers){: external} are supported by {{site.data.keyword.databases-for-mongodb}} Enterprise Edition:
-
-- ECDHE-ECDSA-AES128-GCM-SHA256
-- ECDHE-RSA-AES128-GCM-SHA256
-- ECDHE-ECDSA-AES256-GCM-SHA384
-- ECDHE-RSA-AES256-GCM-SHA384
-- ECDHE-ECDSA-CHACHA20-POLY1305
-- ECDHE-RSA-CHACHA20-POLY1305
-- DHE-RSA-AES128-GCM-SHA256
-- DHE-RSA-AES256-GCM-SHA384
-
-Your deployment also comes with a service proprietary certificate so the driver can verify the server upon connection.
-
-For more information, see [{{site.data.keyword.databases-for}} Certificates FAQ](/docs/databases-for-mongodb?topic=databases-for-mongodb-faq-cert){: external}.
-
-### Using the service proprietary certificate
-{: #mongodb-using-cert}
-
-1. Copy the certificate information from the *Endpoints* panel or the Base64 field of the connection information.
-2. If needed, decode the Base64 string into text.
-3. Save the certificate to a file. (You can use the Name that is provided or your own file name). *
-4. Provide the path to the certificate to the driver or client.
-
- *For MacOS, ensure sure you have the certificate imported into your trust store, and mark the certificate as `trust always`.
-{: .tip}
-
-### CLI plug-in support for the service proprietary certificate
-{: #mongodb-cli-plugin}
-
-You can display the decoded certificate for your deployment with the CLI plug-in with the command `ibmcloud cdb deployment-cacert "your-service-name"`. It decodes the base64 into text. Copy and save the command's output to a file and provide the file's path to the driver.
 
 ## Other Language Drivers
 {: #mongodb-other-lang-drivers}
