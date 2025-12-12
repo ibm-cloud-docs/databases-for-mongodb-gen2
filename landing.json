@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "title": "IBM Cloud\u00ae Databases for MongoDB",
+  "title": "IBM Cloud® Databases for MongoDB",
   "introduction": "MongoDB is a JSON document store with a rich query and aggregation framework.",
   "product_page": "https://www.ibm.com/products/databases-for-mongodb",
   "console_page": "/databases/databases-for-mongodb/create",
