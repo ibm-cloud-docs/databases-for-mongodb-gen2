@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-10"
+lastupdated: "2025-12-12"
 
 keywords: mongodb, databases, mongodb compass, mongodbee, mongodb enterprise, mongodb ee provision, mongodb compass, mongodb ops manager, mongodb compass, admin password, logging and monitoring, gen2
 
@@ -104,11 +104,11 @@ Follow these steps to complete the tutorial: {: terraform}
 3. In **Service details**, configure the following:
    - **Location** - Select a location that supports Gen 2.
    - **Service name** - The name can be any string and is the name that is used on the web and in the CLI to identify the new deployment.
-   - **Resource group** - If you are organizing your services into [resource groups](/docs/account?topic=account-account_setup), specify the resource group in this field. Otherwise, you can leave it at default. For more information, see [Managing resource groups](docs/account?topic=account-rgs&interface=ui)
+   - **Resource group** - If you are organizing your services into [resource groups](/docs/account?topic=account-account_setup){: external}, specify the resource group in this field. Otherwise, you can leave it at default. For more information, see [Managing resource groups](docs/account?topic=account-rgs&interface=ui){: external}.
 4. **Resource allocation** - Specify the initial RAM, disk, and cores for your databases. The minimum sizes of memory and disk are selected by default. With dedicated cores, your resource group is given a single-tenant host with a minimum reserve of CPU shares. Your deployments are then allocated the number of cores that you specify. *Once provisioned, disk cannot be scaled down.*
 5. In **Service configuration**, configure the following:
-   - **Database version** [Set only at deployment]{: tag-red} - The deployment version of your database. To ensure optimal performance, run the preferred version. The latest minor version is used automatically and currently the only option for Gen 2 databases. For more information, see [Database versioning policy](/docs/cloud-databases?topic=cloud-databases-versioning-policy)
-   - **Encryption** - If you use [Key Protect](/docs/cloud-databases?topic=cloud-databases-key-protect&interface=ui), an instance and key can be selected to encrypt the deployment's disk. If you do not use your own key, the deployment automatically creates and manages its own disk encryption key.
+   - **Database version** [Set only at deployment]{: tag-red} - The deployment version of your database. To ensure optimal performance, run the preferred version. The latest minor version is used automatically and currently the only option for Gen 2 databases. 
+   - **Encryption** - If you use [Key Protect](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-key-protect&interface=ui), an instance and key can be selected to encrypt the deployment's disk. If you do not use your own key, the deployment automatically creates and manages its own disk encryption key.
 6. Click **Create**. The {{site.data.keyword.databases-for}} **Resource list** page opens.
 7. When your instance has been provisioned, click the instance name to view more information.
 
@@ -164,9 +164,9 @@ You will need an API key to perform actions via the API. Follow [these steps](/d
 For security reasons, the API key is only available to be copied or downloaded at the time of creation. If the API key is lost, you must create a new API key.
 {: note}
 
-Follow [these steps](/docs/databases-for-mongodb?topic=databases-for-mongodb-provisioning&interface=api) to provision a {{site.data.keyword.databases-for-mongodb}} instance using the Resource Controller API. Obtain an IAM token from your API token.
+Follow [these steps](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-provisioning&interface=api) to provision a {{site.data.keyword.databases-for-mongodb}} instance using the Resource Controller API. Obtain an IAM token from your API token.
 
-1. You need to know the ID of the resource group that you would like to deploy to. This information is available through the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_groups).
+1. You need to know the ID of the resource group that you would like to deploy to. This information is available through the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_groups){: external}.
 
    Use a command like:
 
@@ -216,15 +216,15 @@ List of additional parameters:
 * `disk_encryption_key_crn` - The CRN of a KMS key (for example, [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-get-started) or [{{site.data.keyword.keymanagementserviceshort}}](/docs/key-protect?topic=key-protect-about)), which is then used for disk encryption. A KMS key CRN is in the format `crn:v1:<...>:key:<id>`.
 * `backup_encryption_key_crn` - The CRN of a KMS key (for example, [{{site.data.keyword.hscrypto}}](/docs/hs-crypto?topic=hs-crypto-get-started) or [{{site.data.keyword.keymanagementserviceshort}}](/docs/key-protect?topic=key-protect-about)), which is then used for backup encryption. A KMS key CRN is in the format `crn:v1:<...>:key:<id>`.
 
-    To use a key for your backups, you must first [enable the service-to-service delegation](/docs/cloud-databases?topic=cloud-databases-key-protect#byok-for-backups).
+    To use a key for your backups, you must first [enable the service-to-service delegation](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-key-protect&interface=api#key-byok).
     {: note}
 
 * `members_memory_allocation_mb` - otal amount of memory to be shared between the database members within the database. For example, if the value is "6144", and there are three database members, then the deployment gets 6 GB of RAM total, giving 2 GB of RAM per member. If omitted, the default value is used for the database type is used.
 * `members_disk_allocation_mb` - Total amount of disk to be shared between the database members within the database. For example, if the value is "30720", and there are three members, then the deployment gets 30 GB of disk total, giving 10 GB of disk per member. If omitted, the default value for the database type is used.
 * `members_cpu_allocation_count` - Enables and allocates the number of specified dedicated cores to your deployment. For example, to use two dedicated cores per member, use *`"members_cpu_allocation_count":"2"`*. If omitted, the default value *Shared CPU* uses compute resources on shared hosts.
-* `service_endpoints` - The [Service endpoints](/docs/cloud-databases?topic=cloud-databases-service-endpoints) supported on your deployment: `private`. This is a required parameter.
+* `service_endpoints` - The service endpoints supported on your deployment: `private`. This is a required parameter.
 
-(--fix needs updates and commands)
+NAKUL! (--fix needs updates and commands)
 
 ## Step 2: Provision through Terraform
 {: #provision_instance_tf}
@@ -240,21 +240,21 @@ Use Terraform to manage your infrastructure through the [`ibm_database` Resource
 
 Context-based restrictions give account owners and administrators the ability to define and enforce access restrictions for IBM Cloud® resources based on the context of access requests. Access to Cloud Databases resources can be controlled with context-based restrictions and Identity and Access Management (IAM) policies.
 
-To set up context-based restrictions for your {{site.data.keyword.databases-for-mongodb}} instance, follow the steps at [Protecting {{site.data.keyword.databases-for}} resources with context-based restrictions](/docs/cloud-databases?topic=cloud-databases-cbr){: external}.
+
 
 ## Step 5: Create a connection
 {: #private_connect_setup}
 
-ADD STEP - INFO MISSING!
+NAKUL! ADD STEP - INFO MISSING!
 
-## Step 6: Connect IBM Cloud Monitoring
+## Step 6: Connect {{site.data.keyword.monitoringlong_notm}}
 {: #mongodb_monitoring}
 
-You can use IBM Cloud Monitoring to get operational visibility into the performance and health of your applications, services, and platforms. IBM Cloud Monitoring provides administrators, DevOps teams, and developers full stack telemetry with advanced features to monitor and troubleshoot, define alerts, and design custom dashboards.
+You can use {{site.data.keyword.monitoringlong}} to get operational visibility into the performance and health of your applications, services, and platforms. {{site.data.keyword.monitoringlong_notm}} provides administrators, DevOps teams, and developers full stack telemetry with advanced features to monitor and troubleshoot, define alerts, and design custom dashboards.
 
-For more information about how to use Monitoring with {{site.data.keyword.databases-for-mongodb}}, see [Monitoring integration](/docs/databases-for-postgresql?topic=databases-for-postgresql-monitoring).
+For more information about how to use Monitoring with {{site.data.keyword.databases-for-mongodb}}, see [Monitoring integration](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-monitoring&interface=ui).
 
-You cannot connect IBM Cloud Monitoring by using the CLI. Use the console to complete this task. For more information, see Monitoring integration.
+You cannot connect {{site.data.keyword.monitoringlong_notm}} by using the CLI. Use the console to complete this task.
 {:note }
 
 ## Step 7: Connect IBM Cloud Logs Activity Tracker
@@ -277,9 +277,9 @@ You cannot connect {{site.data.keyword.atracker_short}} by using the CLI. Use th
 
 - For guidance on best practices, see [Best practices for MongoDB on the IBM Cloud](https://www.ibm.com/blog/best-practices-for-mongodb-on-the-ibm-cloud/){: .external}.
 
-- Secure your deployment by adding [context-based restrictions](/docs/cloud-databases?topic=cloud-databases-cbr&interface=ui).
 
-- Connect your deployment to [{{site.data.keyword.logs_full}}](/docs/databases-for-mongodb?topic=databases-for-mongodb-logging) and [{{site.data.keyword.monitoringfull}}](/docs/databases-for-mongodb?topic=databases-for-mongodb-monitoring) for observability and alerting.
+
+- Connect your deployment to [{{site.data.keyword.logs_full}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-logging) and [{{site.data.keyword.monitoringfull}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-monitoring) for observability and alerting.
 
 - Explore the [Ops Manager](/docs/databases-for-mongodb?topic=databases-for-mongodb-ops-manager) functionality offered in the {{site.data.keyword.databases-for-mongodb}} Enterprise Edition.
 
@@ -293,6 +293,6 @@ You cannot connect {{site.data.keyword.atracker_short}} by using the CLI. Use th
 
 - To ensure the stability of your applications and databases, see the following topics:
 
-  - [High-availability](/docs/databases-for-mongodb?topic=databases-for-mongodb-ha-dr)
+  - [High-availability](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-ha-dr)
   
-  - [Performance](/docs/databases-for-mongodb?topic=databases-for-mongodb-performance)
+  - [Performance](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-performance)
