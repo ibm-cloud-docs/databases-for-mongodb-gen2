@@ -17,10 +17,10 @@ subcollection: databases-for-mongodb-gen2
 
 [Gen 2]{: tag-purple}
 
-{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
+{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
 {: beta}
 
-Provision an {{site.data.keyword.databases-for-mongodb_full}} deployment through the [catalog](https://cloud.ibm.com/databases/databases-for-mongodb/create){: external}, the [{{site.data.keyword.databases-for}} CLI plug-in](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference){: external}, the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5){: external}, or through [Terraform](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/database){: external}.
+Provision an {{site.data.keyword.databases-for-mongodb_full}} deployment through the [catalog](https://cloud.ibm.com/databases/databases-for-mongodb/create){: external}, the [{{site.data.keyword.databases-for}} CLI plug-in](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-cdb-reference){: external}, the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5){: external}, or through [Terraform](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/database){: external}.
 
 ## Provisioning through the {{site.data.keyword.cloud_notm}} console
 {: #catalog}
@@ -207,7 +207,7 @@ The `host_flavor` parameter defines your Compute sizing.
   | 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
   {: caption="Members host flavor sizing parameter" caption-side="bottom"}
 
-CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} Isolated Compute. Disk autoscaling is coming soon. If you have provisioned an Isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases?topic=cloud-databases-monitoring){: external}, which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
+CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} Isolated Compute. Disk autoscaling is coming soon. If you have provisioned an Isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-monitoring){: external}, which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
 {: note}
 
 ### The `--parameters` parameter
@@ -252,7 +252,6 @@ Follow these steps to provision by using the [Resource Controller API](https://c
     - `bx3d.16x80.encrypted`
     - `bx3d.32x160.encrypted`
     - `bx3d.48x240.encrypted`
-
 
     See below for more information about the `host_flavor` parameter.
 
@@ -316,7 +315,7 @@ Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.e
    | `target` [Required]{: tag-red} | The location where you want to deploy. To retrieve a list of regions, use the `ibmcloud regions` command. |  |
    | `resource_group`[Required]{: tag-red} | The Resource group name. The default value is `default`. | -g |
    | `--parameters` | JSON file or JSON string of parameters to create service instance. See following information for more details. | -p |
-   | `host_flavor` | To provision an Isolated Compute instance, use `{"host_flavor": "<members_host_flavor value>"}`. For Isolated Compute, select desired CPU and RAM configuration. For more information, see the following table, or [Hosting models](/docs/databases-for-mongodb?topic=databases-for-mongodb-hosting-models&interface=api).| |
+   | `host_flavor` | To provision an Isolated Compute instance, use `{"host_flavor": "<members_host_flavor value>"}`. For Isolated Compute, select desired CPU and RAM configuration. For more information, see the following table.| |
    {: caption="Basic command format fields" caption-side="top"}
 
 ### The `host_flavor` parameter
@@ -335,7 +334,7 @@ The `host_flavor` parameter defines your Compute sizing. To provision an Isolate
 | 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
 {: caption="Members host flavor sizing parameter" caption-side="bottom"}
 
-CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} Isolated Compute. Disk autoscaling is coming soon. If you have provisioned an Isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases?topic=cloud-databases-monitoring), which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
+CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} Isolated Compute. Disk autoscaling is coming soon. If you have provisioned an Isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-monitoring), which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
 {: note}
 
 ### List of additional parameters
