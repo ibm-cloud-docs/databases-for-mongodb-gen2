@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2025
-lastupdated: "2025-12-04"
+lastupdated: "2025-12-12"
 
 keywords: mongodb gen 2, pricing
 
@@ -16,7 +16,7 @@ subcollection: databases-for-mongodb-gen2
 
 [Gen 2]{: tag-purple}
 
-{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
+{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
 {: beta}
 
 All instances of {{site.data.keyword.databases-for-mongodb}} deploy as highly available MongoDB clusters with three data members, with your data replicated on all members. Pricing is based on the total amount of disk storage, RAM, virtual CPU cores, and backup storage that is allocated to deployments, prorated hourly. Gen 2 {{site.data.keyword.databases-for-mongodb}} deployments have a minimum of 5 GB of disk and the smallest profile provides 4 vCPU cores.
@@ -24,7 +24,7 @@ All instances of {{site.data.keyword.databases-for-mongodb}} deploy as highly av
 ## Using the pricing calculator
 {: #pricing-calc}
 
-For pricing estimation, use the **Add to estimate** button on the [{{site.data.keyword.databases-for-mongodb}} catalog page](https://cloud.ibm.com/databases/databases-for-mongodb/create). Input your total consumption across three data members into the calculator. This is roughly triple the size of your data because your data is replicated to all members. For example, 5 GB of disk with a 4 by 20 profile across three data members would be priced at 15 GB of disk and 12 vCPU, 60 GB of RAM respectively. 
+For pricing estimation, use the **Add to estimate** button on the [{{site.data.keyword.databases-for-mongodb}} catalog page](https://cloud.ibm.com/databases/databases-for-mongodb/create){: external}. Input your total consumption across three data members into the calculator. This is roughly triple the size of your data because your data is replicated to all members. For example, 5 GB of disk with a 4 by 20 profile across three data members would be priced at 15 GB of disk and 12 vCPU, 60 GB of RAM respectively. 
 
 ## Gen 2 Backups pricing
 {: #pricing-backup}
@@ -33,8 +33,8 @@ For pricing estimation, use the **Add to estimate** button on the [{{site.data.k
 
 By default, {{site.data.keyword.databases-for-mongodb}} provides a daily backup that is stored for 30 days. These backups, and any on-demand backups you make, all count toward the above allocation.
 
-
 ## Backup storage included
+{: #pricing-backup-storage}
 
 * You receive free backup storage equal to the total provisioned disk size of your deployment. 
 
@@ -67,7 +67,6 @@ This example models a worst-case scenario where the snapshot size equals the ful
 
 * Cross-region copies: If you choose to copy snapshots to another region, {{site.data.keyword.cloud}} charges for the full size of the snapshot in the destination region (not incremental) and continued incremental growth in the original region as new snapshots are taken.
 
-
 ## Scaling per member
 {: #scaling-member}
 
@@ -78,4 +77,4 @@ This example models a worst-case scenario where the snapshot size equals the ful
 | Disk | 5 GB per member | 4 TB per member | 1024 MB per member |
 | RAM | 16 GB | 240 GB | Isolated Compute – Resource scaling via T-shirt sizes |
 | CPU | 4 vCPU | 48 vCPU| Isolated Compute – Resource scaling via T-shirt sizes |
-{: caption="Scaling Limits" caption-side="top"}
+{: caption="Scaling limits" caption-side="top"}
