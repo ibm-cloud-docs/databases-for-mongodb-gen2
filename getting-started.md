@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-12"
+lastupdated: "2025-12-15"
 
 keywords: mongodb, databases, mongodb compass, mongodbee, mongodb enterprise, mongodb ee provision, mongodb compass, mongodb ops manager, mongodb compass, admin password, logging and monitoring, gen2
 
@@ -156,7 +156,6 @@ You can provision a {{site.data.keyword.databases-for-mongodb}} instance by usin
 {: #using_apis}
 {: api}
 
-(--check are these steps/considerations still applicable?)
 Use the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#introduction){: external} to work with your {{site.data.keyword.databases-for-mongodb}} instance. The resource controller API is used to [provision an instance](#provision_instance_api).
 
 You will need an API key to perform actions via the API. Follow [these steps](/docs/account?topic=account-userapikey&interface=ui#create_user_key){: external} to create an IBM Cloud API key that enables you to use the API to provision infrastructure into your account. You can create up to 20 API keys.
@@ -175,20 +174,8 @@ Follow [these steps](/docs/databases-for-mongodb-gen2?topic=databases-for-mongod
    ```
    {: pre}
 
-2. You need to know the region that you would like to deploy into.
 
-   To list all of the regions that deployments can be provisioned into from the current region, use the [{{site.data.keyword.databases-for}} CLI plug-in](https://cloud.ibm.com/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference){: external}.
-
-   The command looks like:
-
-   ```sh
-      ibmcloud cdb regions --json
-   ```
-   {: pre}
-
-   (--check if api req is correct)
-
-3. Once you have all the information,[provision a new resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#create-resource-instance){: external} with the {{site.data.keyword.cloud_notm}} resource controller.
+2. Once you have all the information,[provision a new resource instance](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-api) with the {{site.data.keyword.cloud_notm}} Resource Controller.
 
    ```sh
     curl -X POST \
@@ -196,10 +183,20 @@ Follow [these steps](/docs/databases-for-mongodb-gen2?topic=databases-for-mongod
       -H 'Authorization: Bearer <>' \
       -H 'Content-Type: application/json' \
         -d '{
-        "name": "my-instance",
-        "target": "blue-us-south",
-        "resource_group": "5g9f447903254bb58972a2f3f5a4c711",
-        "resource_plan_id": "databases-for-mongodb-standard"
+         "name":"my-instance",
+         "target":"ca-mon",
+         "resource_group":"5c49eabc-f5e8-5881-a37e-2d100a33b3df",
+         "resource_plan_id":"databases-for-mongodb-gen2-standard",
+         "dataservices":{
+            "mongodb":{
+               "storage_gb":10,
+               "host_flavor":"b3c.8x32.encrypted"
+            },
+            "encryption":{
+               "disk":"crn:v1..."
+            },
+            "version":"8.0"
+         }
       }'
    ```
    {: .pre}
@@ -207,7 +204,7 @@ Follow [these steps](/docs/databases-for-mongodb-gen2?topic=databases-for-mongod
    The parameters `name`, `target`, `resource_group`, and `resource_plan_id` are all required.
    {: required}
 
-List of additional parameters:
+### List of additional parameters:
 {: #provisioning-parameters-api}
 {: api}
 
@@ -219,12 +216,7 @@ List of additional parameters:
     To use a key for your backups, you must first [enable the service-to-service delegation](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-key-protect&interface=api#key-byok).
     {: note}
 
-* `members_memory_allocation_mb` - otal amount of memory to be shared between the database members within the database. For example, if the value is "6144", and there are three database members, then the deployment gets 6 GB of RAM total, giving 2 GB of RAM per member. If omitted, the default value is used for the database type is used.
-* `members_disk_allocation_mb` - Total amount of disk to be shared between the database members within the database. For example, if the value is "30720", and there are three members, then the deployment gets 30 GB of disk total, giving 10 GB of disk per member. If omitted, the default value for the database type is used.
-* `members_cpu_allocation_count` - Enables and allocates the number of specified dedicated cores to your deployment. For example, to use two dedicated cores per member, use *`"members_cpu_allocation_count":"2"`*. If omitted, the default value *Shared CPU* uses compute resources on shared hosts.
-* `service_endpoints` - The service endpoints supported on your deployment: `private`. This is a required parameter.
-
-NAKUL! (--fix needs updates and commands)
+* `storage_gb` - Total amount of disk in Gigabytes to be shared between the database members within the database. For example, if the value is 30, and there are three members, then the deployment gets 30 GB of disk total, giving 10 GB of disk per member. If omitted, the default value for the database type is used.
 
 ## Step 2: Provision through Terraform
 {: #provision_instance_tf}
@@ -232,20 +224,85 @@ NAKUL! (--fix needs updates and commands)
 
 Use Terraform to manage your infrastructure through the [`ibm_database` Resource for Terraform](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/database){: external}.
 
-## Step 3: Place holder for Service Credential
+## Step 3: Create the `Manager` user and generate credentials
 {: #admin_pw}
+
+### The `Manager` user
+{: #admin_like_manager_user}
+
+As part of provisioning a new instance in {{site.data.keyword.cloud}}, you can use the service credential console page to create a user with different roles (Manager and Writer).
+
+{{site.data.keyword.databases-for-mongodb}} instances no longer include a default admin user. Instead, you create a user with the `Manager` or `Writer` role using the {{site.data.keyword.cloud}} service credential interface — via UI or CLI. These users come with necessary credentials to connect to and manage the instance.
+
+The Manager user functions as an admin-like user and is automatically granted the below priviliges:
+
+```sh
+   "dbAdminAnyDatabase",
+	"readWriteAnyDatabase",
+	"readAnyDatabase",
+	"clusterMonitor",
+	"clusterManager",
+	"backup",
+   "restore"
+```
+{: pre}
+
+### Change the user password in the UI
+{: #user-management-set-manager-password-ui}
+{: ui}
+
+Changing the user password is not supported via the {{site.data.keyword.cloud_notm}} console on Gen 2. 
+
+### Create the manager user in the CLI
+{: #manager_user_set_cli}
+{: cli}
+
+Use one of the following commands from the {{site.data.keyword.cloud_notm}} CLI {{site.data.keyword.databases-for}} plug-in to create the `Manager` user.
+
+```sh
+ibmcloud resource service-key-create <service_key_name> Manager --instance-name <instance_name>
+```
+{: pre}
+
+```sh
+ibmcloud resource service-key-create <service_key_name> Manager --instance-id <guid>
+```
+{: pre}
+
+### Delete the user in the CLI
+{: #manager_user_del_cli}
+{: cli}
+
+Use the following command from the {{site.data.keyword.cloud_notm}} CLI {{site.data.keyword.databases-for}} plug-in to delete the created user.
+
+```sh
+ibmcloud resource service-key-delete <service_key_name>
+```
+{: pre}
+
+### Change the manager password in the CLI
+{: #manager_pw_set_cli}
+{: cli}
+
+Changing a user password is not supported via the CLI on Gen 2.
 
 ## Step 4: Set up context-based restrictions
 {: #mongodb_cbr}
 
-Context-based restrictions give account owners and administrators the ability to define and enforce access restrictions for IBM Cloud® resources based on the context of access requests. Access to Cloud Databases resources can be controlled with context-based restrictions and Identity and Access Management (IAM) policies.
+Context-based restrictions give account owners and administrators the ability to define and enforce access restrictions for {{site.data.keyword.cloud_notm}} resources based on the context of access requests. Access to {{site.data.keyword.databases-for}} resources can be controlled with context-based restrictions and Identity and Access Management (IAM) policies.
 
 
 
 ## Step 5: Create a connection
 {: #private_connect_setup}
 
-NAKUL! ADD STEP - INFO MISSING!
+
+The **Connect** tab in Gen 2 provides guided instructions for creating a secure connection to your {{site.data.keyword.databases-for-mongodb}} deployment.
+
+Because Gen 2 supports **private endpoints only**, all connections are established through the {{site.data.keyword.cloud}} private network. The _Create a connection_ view walks you through the required setup to connect securely from your infrastructure, such as a Virtual Server Instance (VSI), by using Virtual Private Endpoint (VPE) gateway.
+
+This guided experience is designed to help you configure a production-ready, secure connection without exposing your database to the public internet.
+
 
 ## Step 6: Connect {{site.data.keyword.monitoringlong_notm}}
 {: #mongodb_monitoring}
