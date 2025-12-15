@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-04"
+lastupdated: "2025-12-15"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, mongodb
 
@@ -58,7 +58,7 @@ The general strategy for disaster recovery is to create a new database, such as 
 
 | Feature | Description | Consideration |
 | -------------- | -------------- | -------------- |
-| Backup restore | Create database from previously created backup; see [Managing Cloud Databases backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups). | New connection strings for the restored database must be referenced throughout the workload. |
+| Backup restore | Create database from previously created backup; see [Managing Cloud Databases backups](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-dashboard-backups). | New connection strings for the restored database must be referenced throughout the workload. |
 | Point-in-time restore | Create database from the live production using [point-in-time recovery](/docs/databases-for-mongodb?topic=databases-for-mongodb-pitr). | This is only possible for the Enterprse plan and if the active database is available and the RPO (disaster) falls within the supported window. It is not useful if the production cluster is unavailable. New connection strings for the restored database must be referenced throughout the workload. |
 {: caption="Disaster recovery features" caption-side="top"}
 
@@ -105,8 +105,8 @@ It is not possible to copy backups off the {{site.data.keyword.cloud_notm}}, so 
 The following checklist associated with each feature can help you to create and practice your plan.
 
 - Backup restore
-   - Verify that backups are available at the desired frequency to meet RPO requirements. [Managing Cloud Databases backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups) documents backup frequency. Consider a script using [IBM Cloud® Code Engine - Working with the Periodic timer (cron) event producer](/docs/codeengine?topic=codeengine-subscribe-cron) to create additional on-demand backups to improve RPO if the criticality and size of the database allow.
-   - There are some restrictions on database restore regions - verify that your restore goals can be achieved by reading [managing Cloud Databases backups](/docs/cloud-databases?topic=cloud-databases-dashboard-backups).
+   - Verify that backups are available at the desired frequency to meet RPO requirements. [Managing Cloud Databases backups](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-dashboard-backups) documents backup frequency. Consider a script using [IBM Cloud® Code Engine - Working with the Periodic timer (cron) event producer](/docs/codeengine?topic=codeengine-subscribe-cron) to create additional on-demand backups to improve RPO if the criticality and size of the database allow.
+   - There are some restrictions on database restore regions - verify that your restore goals can be achieved by reading [managing Cloud Databases backups](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-dashboard-backups).
    - Verify that the retention period of the backups meet your requirements.
    - Schedule test restores regularly to verify that the actual restored times meet the defined RTO. Remember that database size significantly impacts restore time. Consider strategies to minimize restore times, such as breaking down large databases into smaller, more manageable units and purging unused data.
    - Verify the Key Protect service.
@@ -114,7 +114,7 @@ The following checklist associated with each feature can help you to create and 
    - Verify the procedures covered earlier.
    - Verify desired backup is in the window.
 
-For more information on responsibility ownership between the customer and {{site.data.keyword.cloud_notm}} for using {{site.data.keyword.databases-for-mongodb}}, see [Shared responsibilities for {{site.data.keyword.databases-for}}](/docs/cloud-databases?topic=cloud-databases-responsibilities-cloud-databases).
+For more information on responsibility ownership between the customer and {{site.data.keyword.cloud_notm}} for using {{site.data.keyword.databases-for-mongodb}}, see [Shared responsibilities for {{site.data.keyword.databases-for}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-responsibilities-cloud-databases).
 
 ## Stay informed: {{site.data.keyword.IBM_notm}} notifications
 {: #ibm-service-notifications}
@@ -126,4 +126,4 @@ Updates affecting customer workloads are communicated through {{site.data.keywor
 
 - [Understanding high availability for Cloud Databases](/docs/cloud-databases?topic=cloud-databases-ha-dr)
 - [Understanding business continuity and disaster recovery for Cloud Databases](/docs/cloud-databases?topic=cloud-databases-bc-dr)
-- [Managing connections - Databases for {{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb?topic=databases-for-mongodb-managing-connections)
+- [Managing connections - Databases for {{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-managing-connections)

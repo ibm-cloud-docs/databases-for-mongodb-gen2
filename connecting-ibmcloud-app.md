@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-04"
+lastupdated: "2025-12-15"
 
 keywords: mongodb, databases, kubernetes
 
@@ -20,7 +20,7 @@ subcollection: databases-for-mongodb-gen2
 {{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
 {: beta}
 
-Applications running in {{site.data.keyword.cloud_notm}} can be bound to your {{site.data.keyword.databases-for-mongodb_full}} deployment. 
+Applications running in {{site.data.keyword.cloud_notm}} can be bound to your {{site.data.keyword.databases-for-mongodb_full}} deployment.
 
 ## Connecting a Kubernetes Service application
 {: #mongodb-connecting-kubernetes-app}
@@ -45,7 +45,7 @@ Before connecting your Kubernetes Service application to a deployment, make sure
   - **Private endpoints** - If you want to use a private endpoint (if one is enabled on your deployment), then first you need to create a service key for your database. Kubernetes uses it when binding to the database.
 
     ```sh
-    ibmcloud resource service-key-create <YOUR-PRIVATE-KEY> --instance-name <INSTANCE_NAME_OR_CRN> --service-endpoint private  
+    ibmcloud resource service-key-create <YOUR-PRIVATE-KEY> --instance-name <INSTANCE_NAME_OR_CRN> --service-endpoint private
     ```
     The private service endpoint is selected with `--service-endpoint private`. After that, you bind the database to the Kubernetes cluster through the private endpoint with the `cluster service bind` command.
 
@@ -60,11 +60,11 @@ Before connecting your Kubernetes Service application to a deployment, make sure
     ```
     More information on binding services is found in the [Kubernetes Service documentation](/docs/containers?topic=containers-service-binding#bind-services).
 
-### Configuring in your Kubernetes app 
+### Configuring in your Kubernetes app
 {: #mongodb-configuring-kubernetes-app}
 
-When you bind your application to Kubernetes Service, it creates an environment variable from the cluster's secrets. Your deployment's connection information lives in `BINDING` as a JSON object. Load and parse the JSON object into your application to retrieve the information your application's driver needs to make a connection to the database. 
+When you bind your application to Kubernetes Service, it creates an environment variable from the cluster's secrets. Your deployment's connection information lives in `BINDING` as a JSON object. Load and parse the JSON object into your application to retrieve the information your application's driver needs to make a connection to the database.
 
-The [Getting connection strings](/docs/databases-for-mongodb?topic=databases-for-mongodb-connection-strings#connection-string-breakdown) page contains a reference of the JSON fields.
+The [Getting connection strings](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-connection-strings) page contains a reference of the JSON fields.
 
 For more information, see the [Kubernetes Service documentation](https://cloud.ibm.com/docs/containers?topic=containers-service-binding#reference_secret).

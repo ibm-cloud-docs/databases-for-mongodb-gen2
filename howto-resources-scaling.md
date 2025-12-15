@@ -9,7 +9,7 @@ keywords: mongodb, databases, scaling, memory, disk IOPS, CPU
 subcollection: databases-for-mongodb-gen2
 
 ---
- 
+
 {{site.data.keyword.attribute-definition-list}}
 
 # Scaling disk, memory, and CPU
@@ -44,12 +44,12 @@ When you provision a deployment, you can select the initial resource allocation 
 ### Disk usage
 {: #resources-scaling-disk-usage}
 
-Your disk allocation must be enough to store all of your data. Your data is replicated to both data members so the total amount of disk that you use is at least twice the size of your data set. 
+Your disk allocation must be enough to store all of your data. Your data is replicated to both data members so the total amount of disk that you use is at least twice the size of your data set.
 
 Disk allocation also affects the performance of the disk, with larger disks having higher performance. Baseline Input-Output Operations per second (IOPS) performance for disk is 5 IOPS for each GB. Scale disk to increase the IOPS that your deployment can handle.
- 
+
 You cannot scale down storage. If your data set size has decreased, you can recover space by backing up and restoring to a new deployment.
-{: tip} 
+{: tip}
 
 ## Scaling considerations
 {: #resources-scaling-scale-consider}
@@ -62,36 +62,36 @@ You cannot scale down storage. If your data set size has decreased, you can reco
 
 - Drastically increasing disk can take longer than smaller increases to account for provisioning more underlying hardware resources.
 
-- Scaling operations are logged in [{{site.data.keyword.atracker_full}}](/docs/databases-for-mongodb?topic=databases-for-mongodb-at_events).
+- Scaling operations are logged in [{{site.data.keyword.atracker_full}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-at_events).
 
 ## Review current resources and hosting model
 {: #review-resources-ui}
 {: ui}
 
-In the **Resources** tab, you find both **Hosting model** and **Resource allocations** tiles. These tiles reflect your current resources and hosting model. Select *Configure* to adjust the settings in the *Resource allocations* tile. 
+In the **Resources** tab, you find both **Hosting model** and **Resource allocations** tiles. These tiles reflect your current resources and hosting model. Select *Configure* to adjust the settings in the *Resource allocations* tile.
 
 ## Scaling in the UI
 {: #resources-scaling-scale-ui}
 {: ui}
 
-In the **Resources** tab of the UI, select **Configure** on the **Resource allocations** tile. This opens up a panel where you can adjust your resources. 
+In the **Resources** tab of the UI, select **Configure** on the **Resource allocations** tile. This opens up a panel where you can adjust your resources.
 
-If your database is on the Isolated Compute hosting model, you then see a "Host sizes" table, where you can select the vCPU and RAM configuration per member for your database. 
+If your database is on the Isolated Compute hosting model, you then see a "Host sizes" table, where you can select the vCPU and RAM configuration per member for your database.
 
-The "Disk (GB/member)" slider is your disk selection per member. Drag the slider or adjust the number in the input box to change the number of GB disk. Note that disk is tied to IOPS at 1 GB = 5 IOPS. 
+The "Disk (GB/member)" slider is your disk selection per member. Drag the slider or adjust the number in the input box to change the number of GB disk. Note that disk is tied to IOPS at 1 GB = 5 IOPS.
 
-Members is the number of members of your database. For MongoDB, members are set to 3. 
+Members is the number of members of your database. For MongoDB, members are set to 3.
 
 Review your total estimated cost in the calculator on the bottom.
 
-After you are done, click **Apply changes** to trigger the scaling operation.  
+After you are done, click **Apply changes** to trigger the scaling operation.
 
-## Review current resources and hosting model 
+## Review current resources and hosting model
 {: #review-resources-cli}
 {: cli}
 
 To interact with {{site.data.keyword.databases-for}} on Gen 2 via the CLI you must utilize the IBM Cloud Resource Controller's CLI. For more information, see the [General IBM Cloud CLI (ibmcloud) commands](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_cli).
-To get information about a particular instance, use the following command: 
+To get information about a particular instance, use the following command:
 
 ```sh
 ibmcloud resource service-instance <INSTANCE_NAME> -o JSON
@@ -103,7 +103,7 @@ ibmcloud resource service-instance <INSTANCE_NAME> -o JSON
 {: #resources-scaling-cli}
 {: cli}
 
-To update your instance (this includes operations, such as scaling and modifying other parts of your service), use the `ibmcloud resource service-instance-update` command. 
+To update your instance (this includes operations, such as scaling and modifying other parts of your service), use the `ibmcloud resource service-instance-update` command.
 
 ```sh
 ibmcloud resource service-instance-update <INSTANCE_NAME> -p '<{FIELDS_TO_UPDATE}>'
@@ -120,7 +120,7 @@ ibmcloud resource service-instance-update test-database databases-for-mongodb st
 
 ### The `host_flavor` parameter
 {: #host-flavor-parameter-cli}
-{: cli}   
+{: cli}
 
 Isolated Compute offers six size options to choose from.
 
@@ -157,8 +157,8 @@ To scale the `host_flavor` of a deployment to `mx3d.8x80.encrypted` for each mem
 
 ```sh
 curl -X POST https://resource-controller.cloud.ibm.com/v2/resource_instances
--H 'Authorization: Bearer <>' 
--H 'Content-Type: application/json' 
+-H 'Authorization: Bearer <>'
+-H 'Content-Type: application/json'
 -d '{
    "name": "my-instance",
     "target": "ca-mon",
@@ -209,7 +209,7 @@ Review resource allocations to your database by checking your Terraform scripts 
 Before executing a Terraform script on an existing instance, use the `terraform plan` command to compare the current infrastructure state with the desired state defined in your Terraform files. Any alteration to the `resource_group_id`, `service plan`, `version`, `key_protect_instance`, `key_protect_key`, `backup_encryption_key_crn` attributes recreates your instance. For a list of current argument references with the `Forces new resource` specification, see the [ibm_database Terraform Registry](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/database){: external}.
 {: important}
 
-Scale your instance by adjusting your Terraform script for the resource you're interested in. In the following example, `host_flavor` and `disk` allocations are specified. 
+Scale your instance by adjusting your Terraform script for the resource you're interested in. In the following example, `host_flavor` and `disk` allocations are specified.
 
 To implement your change, run `terraform apply`.
 

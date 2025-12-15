@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-04"
+lastupdated: "2025-12-15"
 
 keywords:
 
@@ -36,7 +36,7 @@ This can involve:
 - The planning and execution for the porting of the required application code on the alternate infrastructure, including the adaptation of customer's application code, deployment automation, and so on.
 - The conversion of the exported data and configuration to format required by the alternate infrastructure and adapted applications.
 
-For more information about your responsibilities when using {{site.data.keyword.databases-for-mongodb}}, see [Shared responsibilities for {{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb?topic=databases-for-mongodb-responsibilities-cloud-databases).
+For more information about your responsibilities when using {{site.data.keyword.databases-for-mongodb}}, see [Shared responsibilities for {{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-responsibilities-cloud-databases).
 
 ## Data export procedures
 {: #data-portability-procedures}
