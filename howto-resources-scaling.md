@@ -9,7 +9,7 @@ keywords: mongodb, databases, scaling, memory, disk IOPS, CPU
 subcollection: databases-for-mongodb-gen2
 
 ---
-
+ 
 {{site.data.keyword.attribute-definition-list}}
 
 # Scaling disk, memory, and CPU
@@ -74,7 +74,7 @@ In the **Resources** tab, you find both **Hosting model** and **Resource allocat
 {: #resources-scaling-scale-ui}
 {: ui}
 
-In the **Resources** tab of the UI, select *Configure* on the **Resource allocations** tile. This opens up a panel where you can adjust your resources. 
+In the **Resources** tab of the UI, select **Configure** on the **Resource allocations** tile. This opens up a panel where you can adjust your resources. 
 
 If your database is on the Isolated Compute hosting model, you then see a "Host sizes" table, where you can select the vCPU and RAM configuration per member for your database. 
 
@@ -84,19 +84,18 @@ Members is the number of members of your database. For MongoDB, members are set 
 
 Review your total estimated cost in the calculator on the bottom.
 
-After you are done, click *Apply changes* to trigger the scaling operation.  
+After you are done, click **Apply changes** to trigger the scaling operation.  
 
 ## Review current resources and hosting model 
 {: #review-resources-cli}
 {: cli}
 
-To interact with {{site.data.keyword.databases-for}} on Gen 2 via the CLI you must utilize the IBM Cloud Resource Controller's CLI. For more info please see [General IBM Cloud CLI (ibmcloud) commands](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_cli).
+To interact with {{site.data.keyword.databases-for}} on Gen 2 via the CLI you must utilize the IBM Cloud Resource Controller's CLI. For more information, see the [General IBM Cloud CLI (ibmcloud) commands](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_cli).
 To get information about a particular instance, use the following command: 
 
 ```sh
 ibmcloud resource service-instance <INSTANCE_NAME> -o JSON
 ```
-{: .pre}
 {: pre}
 
 
@@ -104,18 +103,19 @@ ibmcloud resource service-instance <INSTANCE_NAME> -o JSON
 {: #resources-scaling-cli}
 {: cli}
 
-To update your instance (this includes operations like scaling and modifying other parts of your service), use `ibmcloud resource service-instance-update` command. 
+To update your instance (this includes operations, such as scaling and modifying other parts of your service), use the `ibmcloud resource service-instance-update` command. 
 
 ```sh
 ibmcloud resource service-instance-update <INSTANCE_NAME> -p '<{FIELDS_TO_UPDATE}>'
 ```
+{: pre}
 
 For example, to update the `host_flavor` of a {{site.data.keyword.databases-for-mongodb}} instance, use a command like:
 
-   ```sh
-      ibmcloud resource service-instance-update test-database databases-for-mongodb standard us-south -p '{"host_flavor": "mx3d.8x80.encrypted", "storage_gb": 10 }'
-   ```
-   {: pre}
+```sh
+ibmcloud resource service-instance-update test-database databases-for-mongodb standard us-south -p '{"host_flavor": "mx3d.8x80.encrypted", "storage_gb": 10 }'
+```
+{: pre}
 
 
 ### The `host_flavor` parameter
@@ -139,10 +139,10 @@ The host_flavor parameter defines your Compute sizing. Input the appropriate val
 ## Review current resources and hosting model
 {: #review-resources-api}
 {: api}
-(--needs confirmations)
+
 The _Foundation endpoint_ that is shown on the _Overview_ panel of your service provides the base URL to access this deployment through the API. Use it with the `/groups` endpoint if you need to manage or automate scaling programmatically.
 
-To view the current and scalable resources on a deployment, use the [/deployments/{id}/groups](https://cloud.ibm.com/apidocs/cloud-databases-api#get-currently-available-scaling-groups-from-a-depl) endpoint. (-- API doc link needs to be updated once the new page is ready)
+To view the current and scalable resources on a deployment, use the [/deployments/{id}/groups]((/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-api)) endpoint.
 
 ```sh
 curl -X GET https://api.{region}.databases.cloud.ibm.com/v5/ibm/deployments/{id}/groups -H 'Authorization: Bearer <>' \
@@ -152,6 +152,7 @@ curl -X GET https://api.{region}.databases.cloud.ibm.com/v5/ibm/deployments/{id}
 ## Scaling with the API
 {: #resources-scaling-api}
 {: api}
+
 To scale the `host_flavor` of a deployment to `mx3d.8x80.encrypted` for each memory member, use the following command:
 
 ```sh
@@ -174,7 +175,7 @@ curl -X POST https://resource-controller.cloud.ibm.com/v2/resource_instances
 ```
 {: pre}
 
-For more information, see the [API reference](/apidocs/cloud-databases-api/cloud-databases-api-v5#listdeploymentscalinggroups).
+For more information, see the [API reference](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-api).
 
 
 ### The `host_flavor` parameter
@@ -198,7 +199,8 @@ The host_flavor parameter defines your Compute sizing. Input the appropriate val
 ## Review current resources and hosting model
 {: #review-resources-terraform}
 {: terraform}
-Review resource allocations to your database by checking your terraform scripts for `cpu { allocation_count = }`, `memory {allocation_mb = }`, and `disk { allocation_mb = }`.
+
+Review resource allocations to your database by checking your Terraform scripts for `cpu { allocation_count = }`, `memory {allocation_mb = }`, and `disk { allocation_mb = }`.
 
 ## Scaling with Terraform
 {: #resources-scaling-terraform}
@@ -206,10 +208,11 @@ Review resource allocations to your database by checking your terraform scripts 
 
 Before executing a Terraform script on an existing instance, use the `terraform plan` command to compare the current infrastructure state with the desired state defined in your Terraform files. Any alteration to the `resource_group_id`, `service plan`, `version`, `key_protect_instance`, `key_protect_key`, `backup_encryption_key_crn` attributes recreates your instance. For a list of current argument references with the `Forces new resource` specification, see the [ibm_database Terraform Registry](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/database){: external}.
 {: important}
-(--swap with host-flavor)
+
 Scale your instance by adjusting your Terraform script for the resource you're interested in. In the following example, `host_flavor` and `disk` allocations are specified. 
 
 To implement your change, run `terraform apply`.
+
 ```terraform
 data "ibm_resource_group" "group" {
   name = "<your_group>"
