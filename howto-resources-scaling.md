@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-04"
+lastupdated: "2025-12-15"
 
 keywords: mongodb, databases, scaling, memory, disk IOPS, CPU
 
@@ -90,65 +90,35 @@ After you are done, click *Apply changes* to trigger the scaling operation.
 {: #review-resources-cli}
 {: cli}
 
-(--confirm if these are still applicable or needs modifications)
-[{{site.data.keyword.cloud_notm}} CLI cloud databases plug-in](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference) supports viewing and scaling the resources on your deployment. Use the command `cdb deployment-groups` to see current resource information for your service, including which resource groups are adjustable. To scale any of the available resource groups, use `cdb deployment-groups-set` command. 
+To interact with {{site.data.keyword.databases-for}} on Gen 2 via the CLI you must utilize the IBM Cloud Resource Controller's CLI. For more info please see [General IBM Cloud CLI (ibmcloud) commands](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_cli).
+To get information about a particular instance, use the following command: 
 
 ```sh
-ibmcloud cdb deployment-groups <INSTANCE_NAME_OR_CRN>
+ibmcloud resource service-instance <INSTANCE_NAME> -o JSON
 ```
+{: .pre}
 {: pre}
-(--need updated output)
-This command produces the output:
 
-```sh
-Group   member
-Count   3
-|
-+   Memory
-|   Allocation                      6144mb
-|   Allocation per member           2048mb
-|   Minimum                         6144mb
-|   Step Size                       256mb
-|   Adjustable                      true
-|   Cpu Enforcement Ratio Ceiling   49152mb
-|   Cpu Enforcement Ratio           8192mb
-
-|
-+   CPU
-|   Allocation              0
-|   Allocation per member   0
-|   Minimum                 6
-|   Step Size               2
-|   Adjustable              true
-|                           
-+   HostFlavor    
-|   ID            multitenant
-|   Name          
-|   HostingSize   
-|
-+   Disk
-|   Allocation              30720mb
-|   Allocation per member   10240mb
-|   Minimum                 30720mb
-|   Step Size               2048mb
-|   Adjustable              true
-```
-{: pre}
-(--update)
-The deployment has three members, with 6144 MB of RAM and 30720 MB of disk allocated in total. The "per member" allocation is 2048 MB of RAM and 10240 MB of disk. The minimum value is the lowest the total allocation that can be set. The step size is the smallest amount by which the total allocation can be adjusted.
 
 ## Resources and scaling in the CLI
 {: #resources-scaling-cli}
 {: cli}
-(--update can the same work for isolated boxes?)
-The `cdb deployment-groups-set` command allows either the total RAM or total disk allocation to be set in MB. For example, to scale the memory of the "example-deployment" to 4096 MB of RAM for each memory member (for a total memory of 12288 MB), you use the command:
+
+To update your instance (this includes operations like scaling and modifying other parts of your service), use `ibmcloud resource service-instance-update` command. 
 
 ```sh
-ibmcloud cdb deployment-groups-set <INSTANCE_NAME_OR_CRN> member --memory 12288
+ibmcloud resource service-instance-update <INSTANCE_NAME> -p '<{FIELDS_TO_UPDATE}>'
 ```
-{: pre}
 
-### The `hostflavor` parameter
+For example, to update the `host_flavor` of a {{site.data.keyword.databases-for-mongodb}} instance, use a command like:
+
+   ```sh
+      ibmcloud resource service-instance-update test-database databases-for-mongodb standard us-south -p '{"host_flavor": "mx3d.8x80.encrypted", "storage_gb": 10 }'
+   ```
+   {: pre}
+
+
+### The `host_flavor` parameter
 {: #host-flavor-parameter-cli}
 {: cli}   
 
@@ -182,21 +152,32 @@ curl -X GET https://api.{region}.databases.cloud.ibm.com/v5/ibm/deployments/{id}
 ## Scaling with the API
 {: #resources-scaling-api}
 {: api}
-(--same or needs changes?)
-To scale the memory of a deployment to 4096 MB of RAM for each memory member (for a total memory of 12288 MB), use the following command:
+To scale the `host_flavor` of a deployment to `mx3d.8x80.encrypted` for each memory member, use the following command:
 
 ```sh
-curl -X PATCH https://api.{region}.databases.cloud.ibm.com/v5/ibm/deployments/{id}/groups/member 
+curl -X POST https://resource-controller.cloud.ibm.com/v2/resource_instances
 -H 'Authorization: Bearer <>' 
 -H 'Content-Type: application/json' 
--d '{"memory": {"allocation_mb": 12288}}' \
+-d '{
+   "name": "my-instance",
+    "target": "ca-mon",
+    "resource_group": "5c49eabc-f5e8-5881-a37e-2d100a33b3df",
+    "resource_plan_id": "databases-for-postgresql-standard",
+    "dataservices": {
+      "resources": {
+        "database": {
+          "host_flavor": "mx3d.8x80.encrypted"
+        }
+      }
+     }
+   }'
 ```
 {: pre}
 
 For more information, see the [API reference](/apidocs/cloud-databases-api/cloud-databases-api-v5#listdeploymentscalinggroups).
 
 
-### The `host flavor` parameter
+### The `host_flavor` parameter
 {: #host-flavor-parameter-api}
 {: api}
 
@@ -217,7 +198,6 @@ The host_flavor parameter defines your Compute sizing. Input the appropriate val
 ## Review current resources and hosting model
 {: #review-resources-terraform}
 {: terraform}
-(--swap with host flavor?)
 Review resource allocations to your database by checking your terraform scripts for `cpu { allocation_count = }`, `memory {allocation_mb = }`, and `disk { allocation_mb = }`.
 
 ## Scaling with Terraform
@@ -230,14 +210,13 @@ Before executing a Terraform script on an existing instance, use the `terraform 
 Scale your instance by adjusting your Terraform script for the resource you're interested in. In the following example, `host_flavor` and `disk` allocations are specified. 
 
 To implement your change, run `terraform apply`.
-(--update)
 ```terraform
 data "ibm_resource_group" "group" {
   name = "<your_group>"
 }
 resource "ibm_database" "<your_database>" {
   name              = "<your_database_name>"
-  plan              = "standard"
+  plan              = "databases-for-mongodb-gen2-standard"
   location          = "eu-gb"
   service           = "databases-for-mongodb"
   resource_group_id = data.ibm_resource_group.group.id
