@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-04"
+lastupdated: "2025-12-15"
 
 keywords: mongodb, databases, connection strings, gen 2
 
@@ -29,21 +29,21 @@ Connection strings allow you to establish a connection between your application 
 
 Follow these steps to retrieve your {{site.data.keyword.databases-for-mongodb}} instance connection strings:
 
-1. In your deployment's **Overview page**, scroll down to the *Service endpoints* section. 
-1.  The *Service endpoints* section displays tabs for available connection methods:  
-   - **MongoDB** – Shows the connection string, hostnames, ports, database name, authentication source, and replica set for your deployment.  
-   - **CLI** – Provides details for connecting by using the [{{site.data.keyword.IBM_notm}} CLI](https://www.ibm.com/cloud/cli){: external}.  
+1. In your deployment's **Overview page**, scroll down to the *Service endpoints* section.
+1.  The *Service endpoints* section displays tabs for available connection methods:
+   - **MongoDB** – Shows the connection string, hostnames, ports, database name, authentication source, and replica set for your deployment.
+   - **CLI** – Provides details for connecting by using the [{{site.data.keyword.IBM_notm}} CLI](https://www.ibm.com/cloud/cli){: external}.
 
 ## Getting connection strings in the CLI
 {: #connection-strings-cli}
 {: cli}
 
-You can also retrieve connection strings using the [{{site.data.keyword.databases-for}} CLI plug-in](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-connections) Connection command.
+You can also retrieve connection strings using the [{{site.data.keyword.databases-for}} CLI plug-in](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-cdb-reference) Connection command.
 
-The command looks like this: 
+The command looks like this:
 
 ```sh
-ibmcloud resource service-instance <INSTANCE_NAME_OR_CRN> 
+ibmcloud resource service-instance <INSTANCE_NAME_OR_CRN>
 ```
 {: pre}
 
@@ -61,9 +61,9 @@ For more information, see [Connections command options](/docs/databases-cli-plug
 {: #connection-strings-api}
 {: api}
 
-To retrieve users' connection strings from the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#introduction){: external}, use the [Connections endpoint](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#getconnection){: external}. To create the connection strings, ensure that the path includes the specific user and endpoint type that should be used. The `user` is not restricted or enforced. You have the flexibility to utilize any user available in your deployment. 
+To retrieve users' connection strings from the [{{site.data.keyword.databases-for}} API](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-api){: external}, use the [Connections endpoint](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-api){: external}. To create the connection strings, ensure that the path includes the specific user and endpoint type that should be used. The `user` is not restricted or enforced. You have the flexibility to utilize any user available in your deployment.
 
-The API command looks like: 
+The API command looks like:
 
 ```sh
 curl -X GET 'https://resource-controller.cloud.ibm.com/v2/resource_instances/{id}' -H "Authorization: Bearer <IAM token>""
@@ -76,11 +76,11 @@ Remember to replace {region}, {id}, {userid}, and {endpoint_type} with the appro
 ## Additional users and connection strings
 {: #connection-strings-additional-users-strings}
 
-Access to your {{site.data.keyword.databases-for-mongodb}} deployment is not limited to the `manager` user. Create more users and retrieve connection strings specific to them by using the UI, the (--fix with updated links if needed, verify api link) [{{site.data.keyword.databases-for}} CLI plug-in](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference), or the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#introduction).
+Access to your {{site.data.keyword.databases-for-mongodb}} deployment is not limited to the `manager` user. Create more users and retrieve connection strings specific to them by using the UI, the (--fix with updated links if needed, verify api link) [{{site.data.keyword.databases-for}} CLI plug-in](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-cdb-reference), or the [{{site.data.keyword.databases-for}} API](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-api).
 
 All users on your deployment can use the connection strings, including connection strings for either public or private endpoints.
 
-For more information, see the [Managing users and roles](/docs/databases-for-mongodb?topic=databases-for-mongodb-user-management) page. (--user page needs updates/to be created)
+For more information, see the [Managing users and roles](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-user-management) page. (--user page needs updates/to be created)
 
 Unlike Gen 1, Gen 2 deployments do not include a pre-provisioned database admin password. To connect, you must (--fix with updated link when page created) [create a service credential](/docs/databases-for-mongodb?topic=databases-for-mongodb-service-credentials&interface=ui), which provides the necessary authentication details for your applications.
 
