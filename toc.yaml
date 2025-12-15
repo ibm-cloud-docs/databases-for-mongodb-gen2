@@ -25,14 +25,13 @@ toc:
       - include: ../cloud-databases-gen2/isolated-compute.md
       - learn-dashboard-overview.md
       - learn-performance.md
-      - learn-pricing.md
+      - include: ../cloud-databases-gen2/pricing.md
       - release-notes.md
   - navgroup:
       id: howto
       topics:
       - howto-provisioning.md
       - howto-user-management.md
-      - howto-upgrade.md
       - howto-getting-connection-strings.md
       - include: ../cloud-databases-gen2/closures.md
       - include: ../cloud-databases-gen2/ha-dr.md
@@ -42,7 +41,6 @@ toc:
           - connecting-external.md
           - connecting-ibmcloud-app.md
           - connecting-mongo-cli.md
-          - connecting-mongo-compass.md
       - topicgroup:
           label: Managing resources
           topics:
