@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-15"
+lastupdated: "2025-12-16"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, mongodb
 
@@ -23,7 +23,7 @@ subcollection: databases-for-mongodb-gen2
 [High availability](#x2284708){: term} (HA) is the ability for a service to remain operational and accessible in the presence of unexpected failures. [Disaster recovery](#x2113280){: term} is the process of recovering the service instance to a working state.
 {: shortdesc}
 
-{{site.data.keyword.databases-for-mongodb}} is a regional service that fulfills the defined [Service Level Objectives (SLO)](/docs/resiliency?topic=resiliency-slo) with the Standard and Enterprise plans. For more information, see [Service Level Agreement (SLA)](https://www.ibm.com/support/customer/csol/terms/?id=i126-9268&lc=en). For more information about the available {{site.data.keyword.cloud_notm}} regions and data centers for {{site.data.keyword.databases-for-mongodb}}, see [Service and infrastructure availability by location](/docs/overview?topic=overview-services_region).
+{{site.data.keyword.databases-for-mongodb}} is a regional service that fulfills the defined [Service Level Objectives (SLO)](/docs/resiliency?topic=resiliency-slo) with the Standard plan. For more information, see [Service Level Agreement (SLA)](https://www.ibm.com/support/customer/csol/terms/?id=i126-9268&lc=en). For more information about the available {{site.data.keyword.cloud_notm}} regions and data centers for {{site.data.keyword.databases-for-mongodb}}, see [Service and infrastructure availability by location](/docs/overview?topic=overview-services_region).
 
 ## High availability architecture
 {: #ha-architecture}
@@ -47,7 +47,7 @@ subcollection: databases-for-mongodb-gen2
 ## Disaster recovery architecture
 {: #disaster-recovery-intro}
 
-The general strategy for disaster recovery is to create a new database, such as the following `MongoDB Restore` database. The contents of the new database can be a backup of the source database created before the disaster. A new database can be created using the point-in-time feature for the Enterprise plan, if the production database is available.
+The general strategy for disaster recovery is to create a new database, such as the following `MongoDB Restore` database. The contents of the new database can be a backup of the source database created before the disaster.
 
 ![Architecture](images/mongodb-restore.svg){: caption="MongoDB restore architecture" caption-side="bottom"}
 
@@ -59,7 +59,6 @@ The general strategy for disaster recovery is to create a new database, such as 
 | Feature | Description | Consideration |
 | -------------- | -------------- | -------------- |
 | Backup restore | Create database from previously created backup; see [Managing Cloud Databases backups](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-dashboard-backups). | New connection strings for the restored database must be referenced throughout the workload. |
-| Point-in-time restore | Create database from the live production using [point-in-time recovery](/docs/databases-for-mongodb?topic=databases-for-mongodb-pitr). | This is only possible for the Enterprse plan and if the active database is available and the RPO (disaster) falls within the supported window. It is not useful if the production cluster is unavailable. New connection strings for the restored database must be referenced throughout the workload. |
 {: caption="Disaster recovery features" caption-side="top"}
 
 ### Planning for disaster recovery
@@ -71,7 +70,7 @@ The disaster recovery steps must be practiced regularly. As you build your plan,
 | -------------- | -------------- |
 | Hardware failure (single point) | IBM provides a database that is resilient from a single point of hardware failure within a zone - no configuration is required. |
 | Zone failure | Automatic failover. The database members are distributed between zones. Configuring three members will provide additional resiliency to multiple zone failures.|
-| Data corruption | Backup restore. Use the restored database in production or for source data to correct the corruption in the restored database. \n \nPoint-in-time restore. Use the restored database in production or for source data to correct the corruption in the restored database. |
+| Data corruption | Backup restore. Use the restored database in production or for source data to correct the corruption in the restored database. |
 | Regional failure | Backup restore. Use the restored database in production. |
 {: caption="Failure scenarios and resolutions" caption-side="top"}
 
@@ -91,7 +90,7 @@ The following information can help you create and continuously practice your pla
 
 
 
-When restoring a database from backups or using point-in-time restore, a new database is created with new connection strings. Existing workloads and processes must be adjusted to consume the new connection strings. Promoting a read replica to a cluster will have a similar impact, although existing read-only portions of the workload will not be impacted.
+When restoring a database from backups, a new database is created with new connection strings. Existing workloads and processes must be adjusted to consume the new connection strings. Promoting a read replica to a cluster will have a similar impact, although existing read-only portions of the workload will not be impacted.
 
 A recovered database may also need the same customer-created dependencies of the disaster database - make sure the following and other services exist in the recovered region:
 
@@ -110,9 +109,6 @@ The following checklist associated with each feature can help you to create and 
    - Verify that the retention period of the backups meet your requirements.
    - Schedule test restores regularly to verify that the actual restored times meet the defined RTO. Remember that database size significantly impacts restore time. Consider strategies to minimize restore times, such as breaking down large databases into smaller, more manageable units and purging unused data.
    - Verify the Key Protect service.
-- Point-in-time restore
-   - Verify the procedures covered earlier.
-   - Verify desired backup is in the window.
 
 For more information on responsibility ownership between the customer and {{site.data.keyword.cloud_notm}} for using {{site.data.keyword.databases-for-mongodb}}, see [Shared responsibilities for {{site.data.keyword.databases-for}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-responsibilities-cloud-databases).
 
