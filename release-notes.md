@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-15"
+lastupdated: "2025-12-16"
 
 keywords: databases-for-mongodb release notes
 
@@ -29,6 +29,6 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 {: #databases-for-mongodb-15dec2025}
 {: release-note}
 
-Introducing the Beta of {{site.data.keyword.databases-for-mongodb} Gen2
+Introducing the Beta of {{site.data.keyword.databases-for-mongodb}} Gen2
 : Support for Mongo v8: Built on VPC architecture with software-defined networking, delivering enhanced security and flexibility. 
 : Now available in the Montreal region, giving developers early access to next-generation database innovation.
