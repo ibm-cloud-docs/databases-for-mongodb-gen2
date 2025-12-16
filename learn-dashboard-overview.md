@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-12"
+lastupdated: "2025-12-16"
 
 keywords: deployment, crn, task, gui, api endpoint, gen2
 
@@ -86,11 +86,11 @@ You can manage your {{site.data.keyword.databases-for-mongodb}} service through 
 
 In Gen 2 deployments, only private endpoints are used to enhance security. This page provides multiple connection options, accessible via tabs:
 
-- **How-to tab**: Learn how to set up a secure connection to your database from scratch. This guide walks you through connecting via an {{site.data.keyword.cloud}} Virtual Private Cloud (VPC) using a Virtual Server Instance (VSI) with a psql install, and accessing the database through an {{site.data.keyword.cloud}} VPN (Virtual Private Network gateway). You can use any VSI in your account and need to create or use a service credential. You use the service endpoint details from the *Overview* page.
+- **How-to tab**: Learn how to set up a secure connection to your database from scratch. This guide walks you through connecting via an {{site.data.keyword.cloud}} Virtual Private Cloud (VPC) using a Virtual Server Instance (VSI) with a `mongosh` install, and accessing the database through an {{site.data.keyword.cloud}} VPN (Virtual Private Network gateway). You can use any VSI in your account and need to create or use a service credential. You use the service endpoint details from the *Overview* page.
 
 - **Manage connections tab**: Find links to documentation on how to manage or delete existing connections from your {{site.data.keyword.cloud}} database instance.
 
-For detailed ways of connecting, go to the connect docs or open the console's (UI) [Connect page](need link). 
+For detailed ways of connecting, go to the connect docs or open the console's (UI) Connect page. 
 
 ## Backups and restore
 {: #console-overview-backups-and-restore}
