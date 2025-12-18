@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-16"
+lastupdated: "2025-12-18"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, mongodb
 
@@ -28,7 +28,7 @@ subcollection: databases-for-mongodb-gen2
 ## High availability architecture
 {: #ha-architecture}
 
-![Architecture](images/mongodb-base.svg){: caption="MongoDB architecture" caption-side="bottom"}
+![Architecture](images/MongoDB_high_availability.svg){: caption="MongoDB architecture" caption-side="bottom"}
 
 {{site.data.keyword.databases-for-mongodb}} provides replication, failover, and high-availability features to protect your databases and data from infrastructure maintenance, upgrades, and some failures. Deployments contain a cluster with three data members - one primary and two secondary members. The two member replica set is kept up to date using asynchronous replication. A distributed consensus mechanism is used to maintain cluster state and handle failovers. If the primary is unavailable, the replica set elects a secondary to be primary and continues normal operation. The old primary rejoins the set when available. The primary and secondary members will always be in different zones of an MZR. If a zone failure results in a member failing, the new replica will be created in a surviving zone.
 
@@ -49,7 +49,7 @@ subcollection: databases-for-mongodb-gen2
 
 The general strategy for disaster recovery is to create a new database, such as the following `MongoDB Restore` database. The contents of the new database can be a backup of the source database created before the disaster.
 
-![Architecture](images/mongodb-restore.svg){: caption="MongoDB restore architecture" caption-side="bottom"}
+![Architecture](images/MongoDB_disaster_recovery.svg){: caption="MongoDB restore architecture" caption-side="bottom"}
 
 ### Disaster recovery features
 {: #dr-features}
