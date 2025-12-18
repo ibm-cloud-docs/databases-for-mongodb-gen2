@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2025
-lastupdated: "2025-12-15"
+lastupdated: "2025-12-18"
 
 keywords: mongodb, databases, connecting, pymongo, java driver, service proprietary certificate, mongodbee, tls, cipher suite
 
@@ -146,4 +146,4 @@ MongoClient.connect(connectionString, options, function (err, db) {
 ## Other Language Drivers
 {: #mongodb-other-lang-drivers}
 
-MongoDB has a vast array of language drivers. The table covers a few of the most common. If you're looking for more languages, try the [MongoDB.org Driver List](http://www.mongodb.org/display/DOCS/Drivers){: .external}.
+MongoDB has a vast array of language drivers. The table covers a few of the most common. If you're looking for more languages, try the [MongoDB.org Driver List](https://www.mongodb.com/docs/drivers/){: .external}.

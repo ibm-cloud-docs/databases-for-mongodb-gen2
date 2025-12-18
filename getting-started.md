@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-15"
+lastupdated: "2025-12-18"
 
 keywords: mongodb, databases, mongodb compass, mongodbee, mongodb enterprise, mongodb ee provision, mongodb compass, mongodb ops manager, mongodb compass, admin password, logging and monitoring, gen2
 
@@ -104,7 +104,7 @@ Follow these steps to complete the tutorial: {: terraform}
 3. In **Service details**, configure the following:
    - **Location** - Select a location that supports Gen 2.
    - **Service name** - The name can be any string and is the name that is used on the web and in the CLI to identify the new deployment.
-   - **Resource group** - If you are organizing your services into [resource groups](/docs/account?topic=account-account_setup){: external}, specify the resource group in this field. Otherwise, you can leave it at default. For more information, see [Managing resource groups](docs/account?topic=account-rgs&interface=ui){: external}.
+   - **Resource group** - If you are organizing your services into [resource groups](/docs/account?topic=account-account_setup){: external}, specify the resource group in this field. Otherwise, you can leave it at default. For more information, see [Managing resource groups](/docs/account?topic=account-rgs&interface=ui){: external}.
 4. **Resource allocation** - Specify the initial RAM, disk, and cores for your databases. The minimum sizes of memory and disk are selected by default. With dedicated cores, your resource group is given a single-tenant host with a minimum reserve of CPU shares. Your deployments are then allocated the number of cores that you specify. *Once provisioned, disk cannot be scaled down.*
 5. In **Service configuration**, configure the following:
    - **Database version** [Set only at deployment]{: tag-red} - The deployment version of your database. To ensure optimal performance, run the preferred version. The latest minor version is used automatically and currently the only option for Gen 2 databases. 
@@ -130,7 +130,7 @@ You can provision a {{site.data.keyword.databases-for-mongodb}} instance by usin
 2. Create a {{site.data.keyword.databases-for-mongodb}} instance.
 
    To create an instance from the CLI, run the following command:
-  
+
    ```sh
    ibmcloud resource service-instance-create <INSTANCE_NAME> <SERVICE_NAME> <SERVICE_PLAN_NAME> <LOCATION> -g <RESOURCE_GROUP>
    ```
@@ -251,7 +251,7 @@ The Manager user functions as an admin-like user and is automatically granted th
 {: #user-management-set-manager-password-ui}
 {: ui}
 
-Changing the user password is not supported via the {{site.data.keyword.cloud_notm}} console on Gen 2. 
+Changing the user password is not supported via the {{site.data.keyword.cloud_notm}} console on Gen 2.
 
 ### Create the manager user in the CLI
 {: #manager_user_set_cli}
@@ -321,10 +321,10 @@ You cannot connect {{site.data.keyword.monitoringlong_notm}} by using the CLI. U
 
 To get up and running with Activity Tracker Event Routing, see [Getting Started with Activity Tracker Event Routing]/docs/atracker?topic=atracker-getting-started){: external}.
 
-{{site.data.keyword.atracker_short}} can have only one instance per location. To view events, you must access the web UI of the {{site.data.keyword.atracker_short}} service in the same location where your service instance is available. For more information, see [Launch the web UI](/docs/activity-tracker?topic=activity-tracker-getting-started#gs_step4){: external}.
+{{site.data.keyword.atracker_short}} can have only one instance per location. To view events, you must access the web UI of the {{site.data.keyword.atracker_short}} service in the same location where your service instance is available. For more information, see [Launch the web UI](/docs/cloud-logs?topic=cloud-logs-getting-started){: external}.
 Events are formatted according to the Cloud Auditing Data Federation (CADF) standard. For further details of the information they include, see [CADF standard](/docs/atracker?topic=atracker-event){: external}.
 
-You cannot connect {{site.data.keyword.atracker_short}} by using the CLI. Use the console to complete this task. 
+You cannot connect {{site.data.keyword.atracker_short}} by using the CLI. Use the console to complete this task.
 {: note}
 
 ## Next steps
@@ -343,13 +343,13 @@ You cannot connect {{site.data.keyword.atracker_short}} by using the CLI. Use th
 - Looking for more tools on managing your databases? Connect to your instance with the following tools:
 
   - [{{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-install-ibmcloud-cli){: external}
-  
+
   - [{{site.data.keyword.databases-for}} CLI plug-in](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference){: external}
-  
+
   - [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api){: external}
 
 - To ensure the stability of your applications and databases, see the following topics:
 
   - [High-availability](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-ha-dr)
-  
+
   - [Performance](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-performance)

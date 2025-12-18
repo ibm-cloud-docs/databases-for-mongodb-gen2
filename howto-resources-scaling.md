@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-15"
+lastupdated: "2025-12-18"
 
 keywords: mongodb, databases, scaling, memory, disk IOPS, CPU
 
@@ -142,7 +142,7 @@ The host_flavor parameter defines your Compute sizing. Input the appropriate val
 
 The _Foundation endpoint_ that is shown on the _Overview_ panel of your service provides the base URL to access this deployment through the API. Use it with the `/groups` endpoint if you need to manage or automate scaling programmatically.
 
-To view the current and scalable resources on a deployment, use the [/deployments/{id}/groups]((/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-api)) endpoint.
+To view the current and scalable resources on a deployment, use the [/deployments/{id}/groups](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-api) endpoint.
 
 ```sh
 curl -X GET https://api.{region}.databases.cloud.ibm.com/v5/ibm/deployments/{id}/groups -H 'Authorization: Bearer <>' \

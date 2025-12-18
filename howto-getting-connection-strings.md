@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-15"
+lastupdated: "2025-12-18"
 
 keywords: mongodb, databases, connection strings, gen 2
 
@@ -82,7 +82,7 @@ All users on your deployment can use the connection strings, including connectio
 
 For more information, see the [Managing users and roles](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-user-management) page. (--user page needs updates/to be created)
 
-Unlike Gen 1, Gen 2 deployments do not include a pre-provisioned database admin password. To connect, you must (--fix with updated link when page created) [create a service credential](/docs/databases-for-mongodb?topic=databases-for-mongodb-service-credentials&interface=ui), which provides the necessary authentication details for your applications.
+Unlike Gen 1, Gen 2 deployments do not include a pre-provisioned database admin password. To connect, you must [create a service credential](/docs/databases-for-mongodb?topic=databases-for-mongodb-user-management&interface=ui#user-management-ui), which provides the necessary authentication details for your applications.
 
 Gen 2 deployments display only private connection details. Public endpoints are not available.
 {: note}
