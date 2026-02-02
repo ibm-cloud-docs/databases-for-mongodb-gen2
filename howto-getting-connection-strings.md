@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025
-lastupdated: "2025-12-18"
+  years: 2026
+lastupdated: "2026-02-02"
 
 keywords: mongodb, databases, connection strings, gen 2
 
@@ -47,7 +47,7 @@ ibmcloud resource service-instance <INSTANCE_NAME_OR_CRN>
 ```
 {: pre}
 
-For more information, see [Connections command options](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#connections-command-options).
+For more information, see [Connections command options](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-cdb-reference).
 
 ### Command options
 {: #connection-strings-cli-command-options}
