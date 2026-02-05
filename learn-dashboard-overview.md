@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025
-lastupdated: "2025-12-18"
+  years: 2026
+lastupdated: "2026-02-05"
 
 keywords: deployment, crn, task, gui, api endpoint, gen2
 
@@ -49,7 +49,7 @@ Every time you make administrative changes to your service (such as scaling, or 
 
 To view more than the latest task, you can configure an [{{site.data.keyword.logs_full}}](/docs/cloud-logs?topic=cloud-logs-getting-started){: external} instance to capture and retain logs from your deployment.
 
-A historical record of tasks from any time period is available through [{{site.data.keyword.atracker_full}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-at_events). Tasks can also be retrieved programmatically from the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#listdeploymenttasks){: external} and [CLI plug-in](https://cloud.ibm.com/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-tasks-list){: external}.
+A historical record of tasks from any time period is available through [{{site.data.keyword.atracker_full}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-at_events). Tasks can also be retrieved programmatically from the [{{site.data.keyword.databases-for}} API](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-api){: external} and [CLI plug-in](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-cdb-reference){: external}.
 
 ### Observability
 {: #console-overview-observability}
