@@ -60,11 +60,8 @@ toc:
           label: Enhancing security
           topics:
           - include: ../cloud-databases-gen2/manage-scc.md
-          - include: ../cloud-databases-gen2/howto-cbr.md
-          - include: ../cloud-databases-gen2/cbr-tutorial.md
           - include: ../cloud-databases-gen2/howto-allowlists.md
           - include: ../cloud-databases-gen2/reference-service-endpoints.md
-          - include: ../cloud-databases-gen2/howto-vpes.md
           - include: ../cloud-databases-gen2/reference-iam.md
           - include: ../cloud-databases-gen2/reference-key-protect.md
           - include: ../cloud-databases-gen2/reference-hpcs.md
@@ -89,12 +86,5 @@ toc:
           - ts-connect.md
           - ts-workload.md
           - include: ../cloud-databases-gen2/ts-terraform.md
-      - topicgroup:
-          label: FAQs
-          topics:
-          - include: ../cloud-databases-gen2/status-page-faq.md
           - service-faq.md
-          - include: ../cloud-databases-gen2/resource-config-faq.md
-          - include: ../cloud-databases-gen2/availability-zones-faq.md
           - oplog-faq.md
-          - include: ../cloud-databases-gen2/cert-faq.md
