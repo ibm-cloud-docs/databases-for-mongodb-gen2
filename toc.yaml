@@ -86,5 +86,10 @@ toc:
           - ts-connect.md
           - ts-workload.md
           - include: ../cloud-databases-gen2/ts-terraform.md
+      - topicgroup:
+          label: FAQs
+          topics:
+          - include: ../cloud-databases-gen2/status-page-faq.md
           - service-faq.md
-          - oplog-faq.md
+          - include: ../cloud-databases-gen2/resource-config-faq.md
+          - include: ../cloud-databases-gen2/availability-zones-faq.md
