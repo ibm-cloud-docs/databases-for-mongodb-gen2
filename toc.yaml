@@ -89,6 +89,7 @@ toc:
       - topicgroup:
           label: FAQs
           topics:
+          - include: ../cloud-databases-gen2/faq.md
           - include: ../cloud-databases-gen2/status-page-faq.md
           - service-faq.md
           - include: ../cloud-databases-gen2/resource-config-faq.md
