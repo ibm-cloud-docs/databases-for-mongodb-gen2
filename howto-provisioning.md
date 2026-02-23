@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025
-lastupdated: "2025-12-12"
+  years: 2026
+lastupdated: "2026-02-23"
 
 keywords: provision cloud databases, terraform, provisioning parameters, cli, resource controller api, provision mongodb, provision mongodb standard, provision mongodb ee
 
@@ -101,7 +101,7 @@ Before provisioning, follow the instructions provided in the documentation to in
   For example, to provision a {{site.data.keyword.databases-for-mongodb}} instance, use a command like:
 
    ```sh
-   ibmcloud resource service-instance-create test-database databases-for-mongodb standard us-south -p '{"host_flavor": "bx3d.4x20.encrypted", "storage_gb": 10 }'
+   ibmcloud resource service-instance-create test-database databases-for-mongodb standard-gen2 us-south -p '{"host_flavor": "bx3d.4x20.encrypted", "storage_gb": 10 }'
    ```
    {: pre}
 
@@ -116,7 +116,7 @@ Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.e
    |-------|------------|------------|
    | `INSTANCE_NAME` [Required]{: tag-red} | The instance name can be any string and is the name that is used on the web and in the CLI to identify the new deployment. |  |
    | `SERVICE_NAME` [Required]{: tag-red} | Name or ID of the service. For {{site.data.keyword.databases-for-mongodb}}, use `databases-for-mongodb`. |  |
-   | `SERVICE_PLAN_NAME` [Required]{: tag-red} | `standard` |  |
+   | `SERVICE_PLAN_NAME` [Required]{: tag-red} | `standard-gen2` |  |
    | `LOCATION` [Required]{: tag-red} | The location where you want to deploy. To retrieve a list of regions, use the `ibmcloud regions` command. |  |
    | `RESOURCE_GROUP` | The Resource group name. The default value is `default`. | -g |
    | `--parameters` | JSON file or JSON string of parameters to create service instance | -p |
@@ -166,7 +166,7 @@ Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.e
    GUID:                  dd13152c-fe15-4bb6-af94-fde5654765
    Location:              <LOCATION>
    Service Name:          databases-for-mongodb
-   Service Plan Name:     standard
+   Service Plan Name:     standard-gen2
    Resource Group Name:   default
    State:                 active
    Type:                  service_instance
@@ -219,7 +219,7 @@ The `service-instance-create` command supports a `-p` flag, which allows JSON-fo
 For example, if a database is being provisioned from a particular backup and the new database deployment needs a bigger host of size 16x80, the command looks like:
 
 ```sh
-ibmcloud resource service-instance-create databases-for-mongodb <SERVICE_NAME> standard us-south \
+ibmcloud resource service-instance-create databases-for-mongodb <SERVICE_NAME> standard-gen2 us-south \
 -p \ '{
   "backup_id": "crn:v1:blue:public:databases-for-mongodb:us-south:a/54e8ffe85dcedf470db5b5ee6ac4a8d8:1b8f53db-fc2d-4e24-8470-f82b15c71717:backup:06392e97-df90-46d8-98e8-cb67e9e0a8e6",
   "host_flavor": "bx3d.16x80.encrypted"
