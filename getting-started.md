@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-02-02"
+lastupdated: "2026-02-23"
 
 keywords: mongodb, databases, mongodb compass, mongodbee, mongodb enterprise, mongodb ee provision, mongodb compass, mongodb ops manager, mongodb compass, admin password, logging and monitoring, gen2
 
@@ -141,7 +141,7 @@ You can provision a {{site.data.keyword.databases-for-mongodb}} instance by usin
    | Field | Description | Flag |
    |-------|------------|------------|
    | `INSTANCE_NAME` [Required]{: tag-red} | The instance name can be any string and is the name that is used on the web and in the CLI to identify the new deployment. | |
-   | `SERVICE_NAME` [Required]{: tag-red} | Name or ID of the service. For {{site.data.keyword.databases-for-mongodb}}, use `databases-for-mongodb`. | |
+   | `SERVICE_NAME` [Required]{: tag-red} | Name or ID of the service. For {{site.data.keyword.databases-for-mongodb}}, use `databases-for-mongodb-gen2`. | |
    | `SERVICE_PLAN_NAME` [Required]{: tag-red} | Standard plan (`standard`) | |
    | `LOCATION` [Required]{: tag-red} | The location where you want to deploy. To retrieve a list of regions, use the `ibmcloud regions` command. | |
    | `RESOURCE_GROUP` | The Resource group name. The default value is `default`. | -g |
@@ -232,7 +232,7 @@ Use Terraform to manage your infrastructure through the [`ibm_database` Resource
 
 As part of provisioning a new instance in {{site.data.keyword.cloud}}, you can use the service credential console page to create a user with different roles (Manager and Writer).
 
-{{site.data.keyword.databases-for-mongodb}} instances no longer include a default admin user. Instead, you create a user with the `Manager` or `Writer` role using the {{site.data.keyword.cloud}} service credential interface — via UI or CLI. These users come with necessary credentials to connect to and manage the instance.
+{{site.data.keyword.databases-for-mongodb}} instances no longer include a default `admin` user. Instead, you create a user with the `Manager` or `Writer` role using the {{site.data.keyword.cloud}} service credential interface — via UI or CLI. These users come with necessary credentials to connect to and manage the instance.
 
 The Manager user functions as an admin-like user and is automatically granted the below priviliges:
 
@@ -243,7 +243,7 @@ The Manager user functions as an admin-like user and is automatically granted th
 	"clusterMonitor",
 	"clusterManager",
 	"backup",
-   "restore"
+	"restore"
 ```
 {: pre}
 
