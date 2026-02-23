@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-02-05"
+lastupdated: "2026-02-23"
 
 keywords: deployment, crn, task, gui, api endpoint, gen2
 
@@ -136,4 +136,4 @@ In Gen 2 deployments, **service credentials are required as the first step to co
 - The credentials can be used directly in your application, or integrated with {{site.data.keyword.secrets-manager_full}} for centralized key management.
 - If you delete a credential, you must create a new one to continue connecting.
 
-For more information, see [Managing service credentials](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-user-management&interface=ui s).
+For more information, see [Managing service credentials](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-user-management&interface=ui).
