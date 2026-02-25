@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025
-lastupdated: "2025-12-18"
+  years: 2026
+lastupdated: "2026-02-25"
 
 keywords: mongodb, databases, scaling, memory, disk IOPS, CPU
 
@@ -16,9 +16,6 @@ subcollection: databases-for-mongodb-gen2
 {: #resources-scaling}
 
 [Gen 2]{: tag-purple}
-
-{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
-{: beta}
 
 To scale an [Isolated Compute](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-isolated-compute&interface=cli) host flavor instance, set the relevant `hostflavor` parameter to the Isolated Compute size you're targeting, such as "bx3d.4x20.encrypted". The selected host flavor automatically defines the CPU and RAM configuration for the instance, so no separate CPU or RAM selection is required.
 {: cli}
