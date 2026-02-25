@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-02-02"
+lastupdated: "2026-02-25"
 
 keywords: mongodb, databases, connection strings, gen 2
 
@@ -17,9 +17,6 @@ subcollection: databases-for-mongodb-gen2
 {: #connection-strings}
 
 [Gen 2]{: tag-purple}
-
-{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
-{: beta}
 
 Connection strings allow you to establish a connection between your application and your {{site.data.keyword.databases-for-mongodb}} instance.
 
