@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025
-lastupdated: "2025-12-04"
+  years: 2026
+lastupdated: "2026-02-25"
 
 keywords: mongodb, connection limits, terminating connections, mongodb connection pooling, mongodb managing connections
 
@@ -16,9 +16,6 @@ subcollection: databases-for-mongodb-gen2
 {: #managing-connections}
 
 [Gen 2]{: tag-purple}
-
-{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
-{: beta}
 
 Connections to your {{site.data.keyword.databases-for-mongodb}} deployment use resources, so it is important to consider how many connections you need when tuning your deployment's performance. Use the following command in the MongoDB shell or a MongoDB client to show the maximum number of allowed connections and the current usage.
 
