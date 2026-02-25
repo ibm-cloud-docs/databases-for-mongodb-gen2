@@ -7,32 +7,28 @@
   "section_topics": {
     "links": [
       {
-        "title": "Connecting with the MongoDB Shell",
-        "href": "/docs/databases-for-mongodb?topic=databases-for-mongodb-connecting-cli-client"
+        "title": "Getting started",
+        "href": "/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-getting-started-gen2"
       },
       {
-        "title": "Upgrading to a new major version",
-        "href": "/docs/databases-for-mongodb?topic=databases-for-mongodb-upgrading&interface=ui"
-      },
-      {
-        "title": "Release notes",
-        "href": "/docs/databases-for-mongodb?topic=databases-for-mongodb-mongodb-relnotes"
+        "title": "Gen 2 overview",
+        "href": "/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2"
       },
       {
         "title": "Provisioning",
-        "href": "/docs/databases-for-mongodb?topic=databases-for-mongodb-provisioning&interface=ui"
+        "href": "/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-provisioning"
       },
       {
-        "title": "Plan overview",
-        "href": "/docs/databases-for-mongodb?topic=databases-for-mongodb-mongodb-plans"
+        "title": "Comparison of Gen 1 and Gen 2 backups",
+        "href": "/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-comparison-backups"
       },
       {
-        "title": "Service endpoint integration",
-        "href": "/docs/databases-for-mongodb?topic=databases-for-mongodb-service-endpoints&interface=ui"
+        "title": "Connecting an external application",
+        "href": "/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-mongodb-external-app"
       },
       {
-        "title": "Managing Cloud Database backups",
-        "href": "/docs/databases-for-mongodb?topic=databases-for-mongodb-dashboard-backups&interface=ui"
+        "title": "Gen 1 docs",
+        "href": "/docs/databases-for-mongodb"
       }
     ]
   },
