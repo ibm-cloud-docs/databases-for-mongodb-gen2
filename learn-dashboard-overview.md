@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-02-23"
+lastupdated: "2026-02-25"
 
 keywords: deployment, crn, task, gui, api endpoint, gen2
 
@@ -16,9 +16,6 @@ subcollection: databases-for-mongodb-gen2
 {: #console-overview}
 
 [Gen 2]{: tag-purple}
-
-{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
-{: beta}
 
 ## Overview
 {: #console-overview-page}

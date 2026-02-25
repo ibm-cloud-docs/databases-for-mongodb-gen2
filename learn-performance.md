@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025
-lastupdated: "2025-12-12"
+  years: 2026
+lastupdated: "2026-02-25"
 
 keywords: mongodb, databases, monitoring, scaling, autoscaling, resources, WiredTiger
 
@@ -16,9 +16,6 @@ subcollection: databases-for-mongodb-gen2
 {: #performance}
 
 [Gen 2]{: tag-purple}
-
-{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
-{: beta}
 
 {{site.data.keyword.databases-for-mongodb_full}} deployments can be manually scaled to your usage. If you are tuning the performance of your deployment, consider a few factors first.
 
