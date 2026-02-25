@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025
-lastupdated: "2025-12-04"
+  years: 2026
+lastupdated: "2026-02-25"
 
 keywords: mongodb-gen2
 
@@ -18,9 +18,6 @@ subcollection: databases-for-mongodb, platform, operating system
 {: support}
 
 [Gen 2]{: tag-purple}
-
-{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
-{: beta}
 
 ## What operating system does {{site.data.keyword.databases-for-mongodb}} run on?
 {: #faq-mongodb-service-platform}
