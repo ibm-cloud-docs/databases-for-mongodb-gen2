@@ -8,7 +8,7 @@ toc:
     console-page: /catalog/services/databases-for-mongodb
     product-page: https://www.ibm.com/cloud/databases-for-mongodb
     path: databases-for-mongodb-gen2
-    label: Databases for MongoDB
+    label: Databases for MongoDB Gen 2
   entries:
   - navgroup:
       id: learn
@@ -19,7 +19,6 @@ toc:
       - link:
           label: What is MongoDB?
           href: https://www.ibm.com/cloud/learn/mongodb
-      - include: ../cloud-databases-gen2/gen2-beta.md
       - getting-started.md
       - include: ../cloud-databases-gen2/overview.md
       - include: ../cloud-databases-gen2/isolated-compute.md
@@ -69,6 +68,9 @@ toc:
   - navgroup:
       id: reference
       topics:
+      - link:
+          label: Gen 1 docs
+          href: https://cloud.ibm.com/docs/databases-for-mongodb-gen2
       - include: ../cloud-databases-gen2/cli.md
       - include: ../cloud-databases-gen2/api.md
       - include: ../cloud-databases-gen2/learn-getting-to-production.md
