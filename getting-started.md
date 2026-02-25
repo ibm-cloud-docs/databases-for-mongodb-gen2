@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-02-23"
+lastupdated: "2026-02-25"
 
 keywords: mongodb, databases, mongodb compass, mongodbee, mongodb enterprise, mongodb ee provision, mongodb compass, mongodb ops manager, mongodb compass, admin password, logging and monitoring, gen2
 
@@ -25,9 +25,6 @@ completion-time: 30m
 {: toc-completion-time="30m"}
 
 [Gen 2]{: tag-purple}
-
-{{site.data.keyword.databases-for}} Gen 2 is currently in Beta. The Beta plan is provided exclusively for evaluation and testing purposes. It is not covered by warranties, SLAs, or support, and is not intended for production use. For more information, see the  [Beta reference](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-icd-gen2-beta).
-{: beta}
 
 This tutorial guides you through the steps to quickly start using {{site.data.keyword.databases-for-mongodb}} on the Gen 2 platform by provisioning an instance, setting up a secure connection through a VSI and VPE, and enabling logging and monitoring.
 {: shortdesc}
