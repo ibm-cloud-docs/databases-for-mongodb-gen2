@@ -1,38 +1,34 @@
 {
   "version": 2,
-  "title": "IBM Cloud® Databases for PostgreSQL",
-  "introduction": "PostgreSQL is a powerful, open source object-relational database that is highly customizable.",
-  "product_page": "https://www.ibm.com/products/databases-for-postgresql",
-  "console_page": "/databases/databases-for-postgresql/create",
-   "section_topics": {
+  "title": "IBM Cloud® Databases for MongoDB Gen 2",
+  "introduction": "MongoDB is a JSON document store with a rich query and aggregation framework.",
+  "product_page": "https://www.ibm.com/products/databases-for-mongodb",
+  "console_page": "/databases/databases-for-mongodb/create",
+  "section_topics": {
     "links": [
       {
         "title": "Getting started",
-        "href": "/docs/databases-for-postgresql?topic=databases-for-postgresql-getting-started&interface=ui"
+        "href": "/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-getting-started-gen2"
       },
       {
-        "title": "Upgrading to a new major version",
-        "href": "/docs/databases-for-postgresql?topic=databases-for-postgresql-upgrading&interface=ui"
+        "title": "Gen 2 overview",
+        "href": "/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2"
       },
       {
-        "title": "The read-only replica",
-        "href": "/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas&interface=ui"
+        "title": "Provisioning",
+        "href": "/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-provisioning"
       },
       {
-        "title": "Scaling and switching hosting models",
-        "href": "/docs/databases-for-postgresql?topic=databases-for-postgresql-resources-scaling&interface=ui"
+        "title": "Comparison of Gen 1 and Gen 2 backups",
+        "href": "/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-comparison-backups"
       },
       {
-        "title": "Changing your Databases for PostgreSQL configuration",
-        "href": "/docs/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration&interface=cli"
+        "title": "Connecting an external application",
+        "href": "/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-mongodb-external-app"
       },
       {
-        "title": "Connecting an external application to your PostgreSQL deployment",
-        "href": "/docs/databases-for-postgresql?topic=databases-for-postgresql-external-app"
-      },
-      {
-        "title": "Connecting with psql",
-        "href": "/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql"
+        "title": "Gen 1 docs",
+        "href": "/docs/databases-for-mongodb"
       }
     ]
   },
@@ -51,28 +47,28 @@
     }
   ],
   "section_devtools": {
-    "api": "/apidocs/cloud-databases-api/cloud-databases-api-v5#introduction", 
-    "cli": "/docs/databases-cli-plugin", 
+    "api": "/apidocs/cloud-databases-api/cloud-databases-api-v5#introduction",
+    "cli": "/docs/databases-cli-plugin",
     "terraform": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/database"
-    },
+  },
   "section_updates": {
-    "view_more": "/docs/databases-for-postgresql?topic=databases-for-postgresql-postgresql-relnotes",
+    "view_more": "/docs/databases-for-mongodb?topic=databases-for-mongodb-mongodb-relnotes",
     "tiles": [
-      {
-        "date": "22 October 2024",
-        "title": "Databases for PostgreSQL end-of-life procedure change"
-      },
-      {
-        "date": "27 September 2024",
-        "title": "Databases for PostgreSQL version 13 End of life on October 22, 2025"
-      },
       {
         "date": "16 September 2024",
         "title": "Private endpoints as new default"
       },
       {
+        "date": "10 July 2024",
+        "title": "Point In Time Recovery (PITR) speed enhancements for the Enterprise plan"
+      },
+      {
         "date": "1 May 2024",
         "title": "New hosting models"
+      },
+      {
+        "date": "18 January 2024",
+        "title": "Databases for MongoDB End of life announcement: Version 5 reaches end of life on September 25, 2024"
       }
     ]
   }

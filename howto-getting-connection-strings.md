@@ -1,11 +1,12 @@
 ---
+
 copyright:
-  years: 2017, 2025
-lastupdated: "2025-09-15"
+  years: 2026
+lastupdated: "2026-02-25"
 
-keywords: postgresql, databases, postgres connections string, postgresql connection string
+keywords: mongodb, databases, connection strings, gen 2
 
-subcollection: databases-for-postgresql
+subcollection: databases-for-mongodb-gen2
 
 ---
 
@@ -15,88 +16,70 @@ subcollection: databases-for-postgresql
 # Getting connection strings
 {: #connection-strings}
 
+[Gen 2]{: tag-purple}
+
+Connection strings allow you to establish a connection between your application and your {{site.data.keyword.databases-for-mongodb}} instance.
+
 ## Getting connection strings in the UI
 {: #connection-strings-ui}
 {: ui}
 
-To connect to {{site.data.keyword.databases-for-postgresql_full}}, you need some users and connection strings. Connection Strings for your deployment are displayed on the _Overview_ page, in the _Endpoints_ panel. 
+Follow these steps to retrieve your {{site.data.keyword.databases-for-mongodb}} instance connection strings:
 
-![Endpoints panel on the Dashboard Overview](images/getting-started-endpoints-panel.png){: caption="Endpoints panel on the Dashboard Overview" caption-side="bottom"}
-
-A {{site.data.keyword.databases-for-postgresql}} deployment is provisioned with an admin user, and after [setting the admin password](/docs/databases-for-postgresql?topic=databases-for-postgresql-user-management&interface=ui#user-management-set-admin-password-ui), you can use its connection strings to connect to your deployment.
-{: .tip}
+1. In your deployment's **Overview page**, scroll down to the *Service endpoints* section.
+1.  The *Service endpoints* section displays tabs for available connection methods:
+   - **MongoDB** – Shows the connection string, hostnames, ports, database name, authentication source, and replica set for your deployment.
+   - **CLI** – Provides details for connecting by using the [{{site.data.keyword.IBM_notm}} CLI](https://www.ibm.com/cloud/cli){: external}.
 
 ## Getting connection strings in the CLI
 {: #connection-strings-cli}
 {: cli}
 
-Grab connection strings from the [CLI](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-connections).
+You can also retrieve connection strings using the [{{site.data.keyword.databases-for}} CLI plug-in](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-cdb-reference) Connection command.
+
+The command looks like this:
+
 ```sh
-ibmcloud cdb deployment-connections example-deployment -u <NEW_USERNAME> [--endpoint-type <ENDPOINT_TYPE>]
+ibmcloud resource service-instance <INSTANCE_NAME_OR_CRN>
 ```
 {: pre}
 
-Full connection information is returned by the `ibmcloud cdb deployment-connections` command with the `--all` flag. To retrieve all the connection information for a deployment named "example-deployment", use the following command.
-```sh
-ibmcloud cdb deployment-connections example-deployment -u <NEW_USERNAME> --all [--endpoint-type <ENDPOINT_TYPE>]
-```
-{: pre}
+For more information, see [Connections command options](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-cdb-reference).
 
-If you don't specify a user, the `deployment-connections` commands return information for the admin user by default. If you don't specify an endpoint type, the connection string returns the public endpoint by default. If your deployment has only a private endpoint, you must specify `--endpoint-type private` or the commands return an error. The user and endpoint type is not enforced. You can use any user on your deployment with either endpoint (if both exist on your deployment).
+### Command options
+{: #connection-strings-cli-command-options}
+{: cli}
 
-To use the `ibmcloud cdb` CLI commands, you must [install the {{site.data.keyword.databases-for}} plug-in](/docs/cloud-databases?topic=cloud-databases-icd-cli).
-{: .tip}
+- If you don't specify a `user`, the Connections commands return information for the `admin` user, by default. (--confirm if it works for manager user)
+- If you don't specify an `endpoint-type`, the connection string returns the public endpoint by default. (--does it return private by default now?)
+- If your deployment has only a private endpoint, specify `--endpoint-type private` or the commands return an error. The user and endpoint type is not enforced. (--still enforced?)
 
 ## Getting connection strings in the API
 {: #connection-strings-api}
 {: api}
 
-To retrieve user's connection strings from the API, use the [`/users/{userid}/connections`](/apidocs/cloud-databases-api/cloud-databases-api-v5#getconnection) endpoint. You must specify in the path which user and which type of endpoint (public or private) is to be used in the returned connection strings. The user and endpoint type is not enforced. You can use any user on your deployment with either endpoint (if both exist on your deployment).
+To retrieve users' connection strings from the [{{site.data.keyword.databases-for}} API](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-api){: external}, use the [Connections endpoint](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-api){: external}. To create the connection strings, ensure that the path includes the specific user and endpoint type that should be used. The `user` is not restricted or enforced. You have the flexibility to utilize any user available in your deployment.
+
+The API command looks like:
+
 ```sh
-curl -X GET -H "Authorization: Bearer $APIKEY" 'https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/users/{userid}/connections/{endpoint_type}'
+curl -X GET 'https://resource-controller.cloud.ibm.com/v2/resource_instances/{id}' -H "Authorization: Bearer <IAM token>""
 ```
 {: pre}
 
-## Connection string breakdown
-{: #connection-string-breakdown}
+Remember to replace {region}, {id}, {userid}, and {endpoint_type} with the appropriate values.
+{: note}
 
-### The PostgreSQL section
-{: #postgres-section}
+## Additional users and connection strings
+{: #connection-strings-additional-users-strings}
 
-The "PostgreSQL" tab contains information that is suited to applications that make connections to PostgreSQL.
+Access to your {{site.data.keyword.databases-for-mongodb}} deployment is not limited to the `manager` user. Create more users and retrieve connection strings specific to them by using the UI, the (--fix with updated links if needed, verify api link) [{{site.data.keyword.databases-for}} CLI plug-in](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-cdb-reference), or the [{{site.data.keyword.databases-for}} API](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-api).
 
-| Field Name | Index | Description |
-| ---------- | ----- | ----------- |
-| `Type` | | Type of connection - for PostgreSQL, it is "URI" |
-| `Scheme` | | Scheme for a URI - for PostgreSQL, it is "postgresql" |
-| `Path` | | Path for a URI - for PostgreSQL, it is the database name. The default is `ibmclouddb`. |
-| `Authentication` | `Username` | The username that you use to connect. |
-| `Authentication` | `Password` | A password for the user - might be shown as `$PASSWORD` |
-| `Authentication` | `Method`|How authentication takes place; "direct" authentication is handled by the driver. |
-| `Hosts` | `0...` | A hostname and port to connect to |
-| `Composed` | `0...` | A URI combining Scheme, Authentication, Host, and Path |
-| `Certificate` | `Name` | The allocated name for the service proprietary certificate for database deployment |
-| `Certificate` | Base64 | A base64 encoded version of the certificate. |
-{: caption="postgresql/URI connection information" caption-side="top"}
+All users on your deployment can use the connection strings, including connection strings for either public or private endpoints.
 
-* `0...` indicates one or more of these entries in an array.
+For more information, see the [Managing users and roles](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-user-management) page. (--user page needs updates/to be created)
 
-### The CLI section
-{: #cli-section}
-{: cli}
+Unlike Gen 1, Gen 2 deployments do not include a pre-provisioned database admin password. To connect, you must [create a service credential](/docs/databases-for-mongodb?topic=databases-for-mongodb-user-management&interface=ui#user-management-ui), which provides the necessary authentication details for your applications.
 
-The "CLI" section contains information that is suited for connecting with `psql`.
-
-| Field Name | Index | Description |
-| ---------- | ----- | ----------- |
-| `Bin` | | The binary to create a connection; in this case it is `psql`. |
-| `Composed` | | A formatted command to establish a connection to your deployment. The command combines the `Bin` executable, `Environment` variable settings, and uses `Arguments` as command line parameters. |
-| `Environment` | | A list of key/values you set as environment variables. |
-| `Arguments` | 0... | The information that is passed as arguments to the command shown in the Bin field. |
-| `Certificate` | Base64 | A service proprietary certificate that is used to confirm that an application is connecting to the appropriate server. It is base64 encoded. |
-| `Certificate` | Name | The allocated name for the service proprietary certificate. |
-| `Type` | | The type of package that uses this connection information; in this case `cli`.  |
-{: caption="psql/cli connection information" caption-side="top"}
-
-* `0...` indicates that there might be one or more of these entries in an array.
-
+Gen 2 deployments display only private connection details. Public endpoints are not available.
+{: note}

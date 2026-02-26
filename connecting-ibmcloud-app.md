@@ -1,79 +1,67 @@
 ---
 
 copyright:
-  years: 2018, 2025
-lastupdated: "2025-09-15"
+  years: 2026
+lastupdated: "2026-02-25"
 
-keywords: postgresql, databases, postgresql connection strings, postgresql connection ibm application
+keywords: mongodb, databases, kubernetes
 
-subcollection: databases-for-postgresql
+subcollection: databases-for-mongodb-gen2
 
 ---
 
-{:external: .external target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:tip: .tip}
-{:deprecated: .deprecated}
 {{site.data.keyword.attribute-definition-list}}
 
-
 # Connecting an {{site.data.keyword.cloud_notm}} application
-{: #ibmcloud-app}
+{: #mongodb-connecting-ibmcloud-app}
 
-Applications running in {{site.data.keyword.cloud_notm}} can be bound to your {{site.data.keyword.databases-for-postgresql_full}} deployment. 
+[Gen 2]{: tag-purple}
+
+Applications running in {{site.data.keyword.cloud_notm}} can be bound to your {{site.data.keyword.databases-for-mongodb_full}} deployment.
 
 ## Connecting a Kubernetes Service application
-{: #connect-kubernetes}
+{: #mongodb-connecting-kubernetes-app}
 
-There are two steps to connecting a Cloud databases deployment to a Kubernetes Service application. First, your deployment needs to be bound to your cluster and its connection strings that are stored in a secret. The second step is configuring your application to use the connection strings.
+There are two steps to connecting a Cloud databases deployment to a Kubernetes Service application. First, your deployment needs a to be bound to your cluster and its connection strings stored in a secret. The second step is configuring your application to use the connection strings.
 
-The sample app in the [Connecting a Kubernetes Service Tutorial](/docs/cloud-databases?topic=cloud-databases-tutorial-k8s-app) provides a sample application that uses Node.js and demonstrates how to bind the sample application to a {{site.data.keyword.databases-for}} deployment.
+The sample app in the [Connecting a Kubernetes Service Tutorial](/docs/databases-for-mongodb?topic=databases-for-mongodb-tutorial-k8s-app) provides a sample application that uses Node.js and demonstrates how to bind the sample application to a {{site.data.keyword.databases-for}} deployment.
 {: .tip}
 
 Before connecting your Kubernetes Service application to a deployment, make sure that the deployment and cluster are both in the same region and resource group.
 
 ### Binding your deployment
-{: #bind-deployment}
+{: #mongodb-binding-deployment}
 
-**Public endpoints** -  If you are using the default public service endpoint to connect to your deployment, you can run the `cluster service bind` command with your cluster name, the resource group, and your deployment name.
+1. **Public or private endpoints**
 
-```sh
-ibmcloud ks cluster service bind <CLUSTER_NAME> <RESOURCE_GROUP> <DEPLOYMENT_NAME_OR_CRN>
-```
-{: pre}
+  - **Public endpoints** - If you are using the default public service endpoint to connect to your deployment, you can run the `cluster service bind` command with your cluster name, the resource group, and your instance name or CRN.
 
-OR
-**Private endpoints** - If you want to use a private endpoint (if one is enabled on your deployment), then create a service key for Kubernetes to use when binding to the database.
+    ```sh
+    ibmcloud ks cluster service bind <YOUR_CLUSTER_NAME> <RESOURCE_GROUP> <INSTANCE_NAME_OR_CRN>
+    ```
+  - **Private endpoints** - If you want to use a private endpoint (if one is enabled on your deployment), then first you need to create a service key for your database. Kubernetes uses it when binding to the database.
 
-```sh
-ibmcloud resource service-key-create <PRIVATE_KEY> --instance-name <DEPLOYMENT_NAME_OR_CRN> --service-endpoint private  
-```
-{: pre}
+    ```sh
+    ibmcloud resource service-key-create <YOUR-PRIVATE-KEY> --instance-name <INSTANCE_NAME_OR_CRN> --service-endpoint private
+    ```
+    The private service endpoint is selected with `--service-endpoint private`. After that, you bind the database to the Kubernetes cluster through the private endpoint with the `cluster service bind` command.
 
-The private service endpoint is selected with `--service-endpoint private`. After that, you bind the database to the Kubernetes cluster through the private endpoint with the `cluster service bind` command.
+    ```sh
+    ibmcloud ks cluster service bind <YOUR_CLUSTER_NAME> <RESOURCE_GROUP> <INSTANCE_NAME_OR_CRN> --key <YOUR-PRIVATE-KEY>
+    ```
 
-```sh
-ibmcloud ks cluster service bind <CLUSTER_NAME> <RESOURCE_GROUP> <DEPLOYMENT_NAME_OR_CRN> --key <PRIVATE_KEY>
-```
-{: pre}
+2. **Verify** - Verify that the Kubernetes secret was created in your cluster namespace. Running the following command, you get the API key for accessing the instance of your deployment in your account.
 
-**Verify** - Verify that the Kubernetes secret was created in your cluster namespace. Running the following command, you get the API key for accessing the instance of your deployment that is provisioned in your account.
-
-```sh
-kubectl get secrets --namespace=default
-```
-{: pre}
-
-More information on binding services is found in the [Kubernetes Service documentation](/docs/containers?topic=containers-service-binding#bind-services).
+    ```sh
+    kubectl get secrets --namespace=default
+    ```
+    More information on binding services is found in the [Kubernetes Service documentation](/docs/containers?topic=containers-service-binding#bind-services).
 
 ### Configuring in your Kubernetes app
-{: #configure-kubernetes}
+{: #mongodb-configuring-kubernetes-app}
 
-When you bind your application to Kubernetes Service, it creates an environment variable from the cluster's secrets. Your deployment's connection information lives in `BINDING` as a JSON object. Load and parse the JSON object into your application to retrieve the information your application's driver needs to make a connection to the database. 
+When you bind your application to Kubernetes Service, it creates an environment variable from the cluster's secrets. Your deployment's connection information lives in `BINDING` as a JSON object. Load and parse the JSON object into your application to retrieve the information your application's driver needs to make a connection to the database.
 
-The [Connection strings](/docs/databases-for-postgresql?topic=databases-for-postgresql-connection-strings#connection-string-breakdown) page contains a reference of the JSON fields.
+The [Getting connection strings](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-connection-strings) page contains a reference of the JSON fields.
 
 For more information, see the [Kubernetes Service documentation](https://cloud.ibm.com/docs/containers?topic=containers-service-binding#reference_secret).

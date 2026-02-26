@@ -1,12 +1,12 @@
 ---
 
 copyright:
-  years: 2020, 2025
-lastupdated: "2025-09-15"
+  years: 2026
+lastupdated: "2026-02-25"
 
-keywords: postgresql, databases, monitoring, scaling, autoscaling, resources, postgresql connection limits
+keywords: mongodb, databases, monitoring, scaling, autoscaling, resources, WiredTiger
 
-subcollection: databases-for-postgresql
+subcollection: databases-for-mongodb-gen2
 
 ---
 
@@ -15,31 +15,61 @@ subcollection: databases-for-postgresql
 # Performance
 {: #performance}
 
-{{site.data.keyword.databases-for-postgresql_full}} deployments can be both manually [scaled to your usage](/docs/databases-for-postgresql?topic=databases-for-postgresql-resources-scaling), or configured to [autoscale](/docs/databases-for-postgresql?topic=databases-for-postgresql-autoscaling) under certain resource conditions. There are a few factors to consider when you are tuning the performance of your deployment.
+[Gen 2]{: tag-purple}
+
+{{site.data.keyword.databases-for-mongodb_full}} deployments can be manually scaled to your usage. If you are tuning the performance of your deployment, consider a few factors first.
 
 ## Monitoring your deployment
-{: #monitoring-deployment}
+{: #monitor-deployment}
 
-{{site.data.keyword.databases-for-postgresql}} deployments offer an integration with the [{{site.data.keyword.monitoringfull}} service](/docs/cloud-databases?topic=cloud-databases-monitoring) for basic monitoring of resource usage on your deployment. Many of the available metrics, like disk usage and IOPS, are presented to help you configure [autoscaling](/docs/databases-for-postgresql?topic=databases-for-postgresql-autoscaling) on your deployment. Observing trends in your usage and configuring the autoscaling to respond to them can help alleviate performance problems before your databases become unstable due to resource exhaustion.
+{{site.data.keyword.databases-for-mongodb}} deployments offer an integration with the [{{site.data.keyword.monitoringfull}} service](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-monitoring) for basic monitoring of resource usage, like disk usage and IOPS of your deployment. Observing trends in your usage can help alleviate performance problems before your databases become unstable due to resource exhaustion.
 
-## Disk IOPS
+## Disk Usage
+{: #disk-usage}
+
+If you are concerned about how much space MongoDB is using to store your data, you can run some native MongoDB [data storage diagnostics](https://docs.mongodb.com/manual/faq/storage/#data-storage-diagnostics){: .external} to find the sizes of things like databases, collections, and indexes. If the approximate size of your data set is known and fixed, you can manually scale your disk to accommodate your data.
+
+## Disk I/O
 {: #disk-iops}
 
-The number of input/output operations per second (IOPS) is limited by the type of storage volume. Storage volumes for {{site.data.keyword.databases-for-postgresql}} deployments are provisioned on [Block Storage Endurance Volumes in the 10 IOPS per GB tier](/docs/BlockStorage?topic=BlockStorage-orderingBlockStorage&interface=ui). If your operational load saturates or exceeds the IOPS limit, database requests and operations are delayed until the disk can catch up. Extended periods of heavy-load can cause your deployment to be unable to process queries and become effectively unavailable. If you experience delayed responses and failing operations, you might be exceeding the disk's IOPS limit. You can increase the number IOPS available to your deployment by increasing disk space.
+The number of Input-Output Operations per second (IOPS) on {{site.data.keyword.databases-for-mongodb}} deployments is limited by the type of storage volume. Storage volumes for {{site.data.keyword.databases-for-mongodb}} deployments are [Block storage endurance volumes in the 5 IOPS per GB tier](/docs/vpc?topic=vpc-block-storage-profiles&interface=ui#block-storage-profile-overview){: .external}. Hitting I/O utilization limits can cause your databases to respond slowly or appear unresponsive. Things like unoptimized queries, [index building](https://docs.mongodb.com/manual/core/index-creation/){: .external}, and creating new indexes can cause spikes in IOPS, but it's also possible that normal work loads for your applications can exceed the available IOPS for your deployment.
 
-We recommend at least 100 GB disk (1,000 IOPS) for production environments.
+You can increase the number IOPS available to your deployment by increasing disk space. 
+
+For more information, see the [MongoDB documentation](https://docs.mongodb.com/manual/faq/storage/#how-frequently-does-wiredtiger-write-to-disk){: .external}.
+
+## WiredTiger Cache and Memory
+{: #wiredtiger-cache-memory}
+
+{{site.data.keyword.databases-for-mongodb}} uses the [WiredTiger storage engine](https://docs.mongodb.com/manual/core/wiredtiger/#memory-use){: .external}, which uses both the file system memory cache and an internal memory cache. MongoDB is most performant when it serves your data from its internal cache, a little less performant when the data is in the file system cache, and least performant when it has to grab your data from disk.
+
+The default size of the internal cache is `50% of (total RAM per member - 1 GB)` or `256 MB`, whichever is larger. For example, the minimum memory size of a {{site.data.keyword.databases-for-mongodb}} deployment is 4096 MB per data member, so the internal cache is 1536 MB (because `0.5 * (4096 MB -  1024 MB) = 1536 MB`.
+
+The internal/file system cache ratio is not user-configurable on your deployment, but you can scale the total amount of memory to adjust the internal cache to make your database more performant. For example, if you scale the memory to 5120 MB per member the internal cache size becomes 2048 MB. `0.5 * (5120 MB - 1024 MB) = 2048 MB.`
+
+Another way to use autoscaling is to set memory to scale when disk I/O utilization hits a certain threshold. Increasing memory decreases the amount that MongoDB reads or writes to disk, so additional memory might alleviate pressure on disk I/O by supporting more caching.
+
+More information about the WiredTiger cache is in the [MongoDB documentation](https://docs.mongodb.com/manual/faq/storage/#to-what-size-should-i-set-the-wiredtiger-internal-cache){: .external}.
+
+## Query Performance
+{: #query-performance}
+
+The MongoDB documentation has multiple resources on query performance, including a how-to on [analyzing query performance](https://docs.mongodb.com/manual/tutorial/analyze-query-plan/){: .external}. Once you have a general idea on how your queries perform, they also have tips on [optimizing your queries](https://docs.mongodb.com/manual/core/query-optimization/){: .external}.
+
+As a more advanced topic, you can learn how MongoDB [manages query plans](https://docs.mongodb.com/manual/core/query-plans/){: .external}.
+
+## Other MongoDB Monitoring Tools
+{: #other-monitor}
+
+You can also take advantage of some of the native MongoDB monitoring functions. For example, you can use both [`mongotop`](https://docs.mongodb.com/manual/reference/program/mongotop/#bin.mongotop){: .external} and [`mongostat`](https://docs.mongodb.com/manual/reference/program/mongostat/#bin.mongostat){: .external}.
+
+```sh
+mongotop 30 --username admin --password $PASSWORD --tls --tlsCAFile $CERTFILE --authenticationDatabase admin --host host1.databases.appdomain.cloud:31712, host2.databases.appdomain.cloud:31712
+
+mongostat -n 20 1 --username admin --password $PASSWORD --tls --tlsCAFile $CERTFILE --authenticationDatabase admin --host host1.databases.appdomain.cloud:31712,host2.databases.appdomain.cloud:31712 --json
+```
+
+Run any of the [documented commands](https://docs.mongodb.com/manual/administration/monitoring/#commands){: .external} that report on the status of your MongoDB database.
+
+Many of the MongoDB utilities and commands need the [Cluster Monitor](https://www.mongodb.com/docs/manual/reference/built-in-roles/#mongodb-authrole-clusterMonitor){: .external} role to execute. It is not part of the `admin` default role set. [Grant the Cluster Monitor role](/docs/databases-for-mongodb?topic=databases-for-mongodb-user-management#the-admin-user) to the `admin` user on your deployment.
 {: .tip}
-
-## Memory Usage
-{: #mem-usage}
-
-{{site.data.keyword.databases-for-postgresql}} deployment's memory settings are auto-tuned based on the deployment's total memory. Specifically, [`work_mem`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-WORK-MEM), [`maintenance_work_mem`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-MAINTENANCE-WORK-MEM), and [`effective_cache_size`](https://www.postgresql.org/docs/current/runtime-config-query.html#GUC-EFFECTIVE-CACHE-SIZE){: .external} are set on provision, restore, or scale. 
-
-You can set the amount of memory that is dedicated to the database's shared buffer pool by adjusting the [`shared_buffers`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-SHARED-BUFFERS){: .external} in your [PostgreSQL configuration](/docs/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration){: .external}. The recommended value is 25% of the deployment's total memory. Allocating too much memory to the shared buffer pool can starve the system of memory for other purposes and hinders performance, or possibly even disable the database.
-
-Allocating larger amounts of memory (outside of the shared buffer pool) to your deployment still benefits performance. For example, PostgreSQL fills memory with cached disk pages for performance. It is not necessary to allocate memory to PostgreSQL directly for PostgreSQL to use it.
-
-## Connection limits 
-{: #connection-limits-performance}
-
-{{site.data.keyword.databases-for-postgresql}} sets the maximum number of connections to your PostgreSQL database to **115**. 15 connections are reserved for the superuser to maintain the state and integrity of your database, and 100 connections are available for you and your applications. After the connection limit is reached, any attempts at starting a new connection results in an error. To prevent overwhelming your deployment with connections, use connection pooling, or scale your deployment and increase its connection limit. For more information, see the [Managing PostgreSQL connections](/docs/databases-for-postgresql?topic=databases-for-postgresql-managing-connections) page.

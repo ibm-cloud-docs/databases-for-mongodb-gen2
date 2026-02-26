@@ -1,21 +1,22 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2025-09-15"
+  years: 2026
+lastupdated: "2026-02-25"
 
-keywords: export data, portability, pgdump, pgadmin
+keywords:
 
-subcollection: databases-for-postgresql
+subcollection: databases-for-mongodb-gen2
 
 ---
 
 {{site.data.keyword.attribute-definition-list}}
 
 
-
-# Understanding data portability for {{site.data.keyword.databases-for-postgresql}}
+# Understanding data portability for {{site.data.keyword.databases-for-mongodb}}
 {: #data-portability}
+
+[Gen 2]{: tag-purple}
 
 [Data portability](#x2113280){: term} involves a set of tools, and procedures that enable customers to export the digital artifacts that would be needed to implement similar workload and data processing on different service providers or on-prem software. It includes procedures for copying and storing the service customer's content, including the related configuration used by the service to store and process the data, on customer's own location.
 {: shortdesc}
@@ -25,73 +26,92 @@ subcollection: databases-for-postgresql
 
 {{site.data.keyword.cloud}} services provide interfaces and instructions to guide the customer to copy and store the service customer content, including the related configuration, on their own selected location.
 
-The customer then is responsible for the use of the exported data and configuration for the purpose of data portability to other infrastructures. This can involve the following:
+The customer then is responsible for the use of the exported data and configuration for the purpose of data portability to other infrastructures.
+This can involve:
 
-- Planning and execution for setting up alternate infrastructure on on different cloud providers or on-prem software that provide similar capabilities to the IBM services.
-- Planning and execution for the porting of the required application code on the alternate infrastructure, including the adaptation of customer's application code, and deployment automation.
-- Conversion of the exported data and configuration to format required by the alternate infrastructure and adapted applications.
+- The planning and execution for setting up alternate infrastructure on on different cloud providers or on-prem software that provide similar capabilities to the IBM services.
+- The planning and execution for the porting of the required application code on the alternate infrastructure, including the adaptation of customer's application code, deployment automation, and so on.
+- The conversion of the exported data and configuration to format required by the alternate infrastructure and adapted applications.
 
-
-To find out more about responsibility ownership for using {{site.data.keyword.cloud_notm}} products between {{site.data.keyword.IBM_notm}} and customer see [Shared responsibilities for {{site.data.keyword.cloud_notm}} products](/docs/overview?topic=overview-shared-responsibilities).
-
-
+For more information about your responsibilities when using {{site.data.keyword.databases-for-mongodb}}, see [Shared responsibilities for {{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-responsibilities-cloud-databases).
 
 ## Data export procedures
 {: #data-portability-procedures}
 
-{{site.data.keyword.databases-for-postgresql}} provides mechanisms to export your content that has been uploaded, stored, and processed using the service.
+### Exporting data
+{: #data-portability-exporting-data}
 
-## Migrating data from {{site.data.keyword.databases-for-postgresql}}
-{: #data-portability-migrating-data-postgresql}
+{{site.data.keyword.databases-for-mongodb}} provides mechanisms to export your content that has been uploaded, stored, and processed using the service.
 
-You can use the following methods to export data from {{site.data.keyword.databases-for-postgresql}}.
+To export your MongoDB data, use Mongo's [mongodump](https://www.mongodb.com/try/download/database-tools){: external} facility, which comes bundled with the command line tools in the download.
 
-Connect to your {{site.data.keyword.cloud}} deployment: 
+You can export entire databases or collections within databases by following the steps in the [MongoDB documentation](https://www.mongodb.com/docs/database-tools/mongodump/#mongodb-binary-bin.mongodump){: external}.
 
-To access your {{site.data.keyword.databases-for-postgresql}} deployment and its tools, follow the connection instructions provided in our documentation. Once connected, you'll have access to the `psql` and `pg_dump` commands. You can also use PGadmin to export data. For more information, see the [Getting started page](/docs/databases-for-postgresql?topic=databases-for-postgresql-getting-started&interface=ui).
+### Config file
+{: #data-portability-config-file}
 
-Ensure that you are connected to the deployment containing the database you want to export. Replace `<<CRN>>` with your actual Cloud Resource Name.
+MongoDB stores its configuration in a file called `mongod.conf`. The {{site.data.keyword.databases-for-mongodb}} file has the following parameters when a database instance is provisioned:
 
-```sh
-ibmcloud cdb cxn <<CRN>> -s
+```text
+# mongod.conf
+
+# for documentation of all options, see:
+#   http://docs.mongodb.org/manual/reference/configuration-options/
+
+# Where and how to store data.
+storage:
+  dbPath: <data path>
+  journal:
+    enabled: true
+#  engine:
+#  mmapv1:
+  wiredTiger:
+    engineConfig:
+      cacheSizeGB: <this is set as (memory-1)/2>
+
+
+# network interfaces
+net:
+  port: <port>
+  maxIncomingConnections: 65536
+  bindIp:<MEMBER_IP>
+  tls:
+    mode: requireTLS
+    certificateKeyFile: tls.pem
+    CAFile: trusted_ca_bundle.crt
+    # only enable TLS1_2
+    disabledProtocols: TLS1_0,TLS1_1,TLS1_3
+    allowConnectionsWithoutCertificates: true
+    allowInvalidHostnames: false
+security:
+  clusterAuthMode: sendX509
+  authorization: enabled
+  keyFile: repl.key
+  javascriptEnabled: true
+
+#operationProfiling:
+
+replication:
+  replSetName: replset
+  oplogSizeMB: 2048
+  enableMajorityReadConcern: true
+
+
+setParameter:
+  opensslCipherConfig: ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
+
 ```
-{: pre}
-
-## Using `pg_dump`
-{: #ata-portability-pg_dump}
-
-On your database run `pg_dump` to create an SQL file, which can be used to re-create the database. At a minimum, `pg_dump` takes a hostname (`-h` flag), port number (`-p` flag), database name (`-d` flag), username (`-U` flag), and a file (or directory name) to write the dump to (`-f` flag). 
-
-For example, the following command dumps the {{site.data.keyword.databases-for-postgresql}} "compose" database that is hosted on sl-eu-lon-2-portal.4.dblayer.com, port 17980, using the admin user and save the results in `dump.sql`.
-
-```sh
-pg_dump -h sl-eu-lon-2-portal.4.dblayer.com -p 17980 -d compose -U admin -f dump.sql
-```
-{: pre}
-
-Further options:
-
-The `pg_dump` command offers more capabilities. For a complete list of capabilites and a detailed explanation, see the [pg_dump documentation](https://www.postgresql.org/docs/current/backup-dump.html) and [command reference](https://www.postgresql.org/docs/current/app-pgdump.html). You can export specific parts of your database instead of the entire structure using the documented options.
-  
-Dumps can be generated as either script or archive files (use `t` option). Script dumps are plain-text SQL commands intended to be read with `psql`, while archive file dumps require `pg_restore` for reconstruction. Archive formats offer greater flexibility, allowing for selective restoration.
-{: .note}
-
- ### Additional migration option by using `pg_restore`
-{: #pg_restore}
-  
- For TAR files containing separate SQL and data files, the `pg_restore` command provides a more flexible approach to database migration. An example of the `pg_restore` command is:
-
-```sh
- PGPASSWORD=yourpasswordhere PGSSLROOTCERT=cert.crt pg_restore -h c7798cf6-e5d2-4513-b17f-3d3fa67d8291.8f7bfd8f3faa4218aec56e069eb46187.databases.appdomain.cloud -p 32484 -U admin -F t -d ibmclouddb tarfile.tar
-```
-{: .pre}
 
 ## Exported data formats
 {: #data-portability-data-formats}
 
-The exported data can be in plain text (`sql`) or archive files (`tar`), and based on the file formats, data can be migrated to any other Postgresql instance using either `psql` or `pg_restore` commands. To restore data from a TAR file, see the [pg_restore documentation](https://www.postgresql.org/docs/current/app-pgrestore.html).
-  
+
+
+The data exported will be in Mongo's [BSON format](https://www.mongodb.com/resources/languages/bson){: external}.
+
+The exported data can be uploaded to any other MongoDB instance using the [mongorestore](https://www.mongodb.com/docs/database-tools/mongorestore/) facility, which also comes bundled in the above tools download.
+
 ## Data ownership
 {: #data-ownership}
 
-All exported data are classified as Customer content and therefore apply to them the full customer ownership and licensing rights, as stated in [{{site.data.keyword.cloud}} Service Agreement](https://www.ibm.com/terms/?id=Z126-6304_WS).
+All exported data are classified as Customer content and therefore apply to them the full customer ownership and licensing rights, as stated in [{{site.data.keyword.cloud_notm}} Service Agreement](https://www.ibm.com/terms/?id=Z126-6304_WS).
