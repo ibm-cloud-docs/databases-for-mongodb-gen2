@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-02-25"
+lastupdated: "2026-03-02"
 
 keywords: provision cloud databases, terraform, provisioning parameters, cli, resource controller api, provision mongodb, provision mongodb standard, provision mongodb ee
 
@@ -31,12 +31,12 @@ Provision from the console by specifying the following parameters.
 
 - **Service name:** The name can be any string and is the name that is used on the web and in the CLI to identify the new deployment.
 - **Resource group:** If you are organizing your services into [resource groups](/docs/account?topic=account-account_setup){: external}, specify the resource group in this field. Otherwise, you can leave it at default. For more information, see [Managing resource groups](/docs/account?topic=account-rgs){: external}.
-- **Location:** The deployment's cloud region. On Gen 2, {{site.data.keyword.databases-for-mongodb}} is currently available only in the **Montreal (ca-mon)** region.
+- **Location:** The deployment's cloud region. On Gen 2, {{site.data.keyword.databases-for-mongodb}} is currently available only in the **Montreal (ca-mon)** and **Chennai - Airtel (in-che)** regions.
 
 Select the platform for your deployment.  
 
 - **Gen 1:** {{site.data.keyword.cloud}}’s original platform, available across all IBM Cloud data centers.  
-- **Gen 2:** {{site.data.keyword.cloud}}'s latest platform, based on a highly secure software-defined networking architecture. Gen 2 is optimized for cloud-native applications and currently available only in Montreal.
+- **Gen 2:** {{site.data.keyword.cloud}}'s latest platform, based on a highly secure software-defined networking architecture. Gen 2 is optimized for cloud-native applications and currently available only in Montreal and Chennai.
 
 For more details, see [Overview of Gen 1 (Classic) and Gen 2 (VPC)](/docs-draft/cloud-databases-gen2?topic=cloud-databases-gen2-overview-gen1-gen2&interface=ui). 
 
