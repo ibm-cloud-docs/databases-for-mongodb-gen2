@@ -47,28 +47,19 @@
     }
   ],
   "section_devtools": {
-    "api": "/apidocs/cloud-databases-api/cloud-databases-api-v5#introduction",
-    "cli": "/docs/databases-cli-plugin",
+    "cli": "/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-cdb-reference",
     "terraform": "https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/database"
   },
   "section_updates": {
-    "view_more": "/docs/databases-for-mongodb?topic=databases-for-mongodb-mongodb-relnotes",
+    "view_more": "/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-mongodb-relnotes",
     "tiles": [
       {
-        "date": "16 September 2024",
-        "title": "Private endpoints as new default"
+        "date": "February 2026",
+        "title": "GA of Databases for MongoDB Gen 2"
       },
       {
-        "date": "10 July 2024",
-        "title": "Point In Time Recovery (PITR) speed enhancements for the Enterprise plan"
-      },
-      {
-        "date": "1 May 2024",
-        "title": "New hosting models"
-      },
-      {
-        "date": "18 January 2024",
-        "title": "Databases for MongoDB End of life announcement: Version 5 reaches end of life on September 25, 2024"
+        "date": "December 2025",
+        "title": "Introducing the Beta of Databases for MongoDB Gen 2"
       }
     ]
   }
