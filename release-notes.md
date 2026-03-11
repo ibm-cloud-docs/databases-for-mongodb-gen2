@@ -26,7 +26,7 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 {: #databases-for-mongodb-02mar2026}
 {: release-note}
 
-{{site.data.keyword.databases-for-mongodb}} Gen 2 now availabe in Chennai
+{{site.data.keyword.databases-for-mongodb}} Gen 2 is now availabe in Chennai
 : {{site.data.keyword.databases-for-mongodb}} Gen 2 is now also available in Chennai - Airtel (in-che), in addition to Montreal (ca-mon). For more information, see [Overview of Gen 1 and Gen 2{{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
 
 ## 26 February 2026
