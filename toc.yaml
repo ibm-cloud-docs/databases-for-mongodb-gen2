@@ -26,6 +26,7 @@ toc:
       - learn-dashboard-overview.md
       - learn-performance.md
       - include: ../cloud-databases-gen2/pricing.md
+        navtitle: Pricing
       - release-notes.md
       - link:
           label: Gen 1 docs
@@ -38,6 +39,7 @@ toc:
       - howto-getting-connection-strings.md
       - include: ../cloud-databases-gen2/closures.md
       - include: ../cloud-databases-gen2/ha-dr.md
+        navtitle: Understanding high availability
       - topicgroup:
           label: Connecting to Databases for MongoDB
           topics:
@@ -50,23 +52,28 @@ toc:
           - howto-resources-scaling.md
           - howto-managing-connections.md
       - include: ../cloud-databases-gen2/howto-manage-backups.md
+        navtitle: Managing backups
       - include: ../cloud-databases-gen2/backup-restore.md
       - topicgroup:
           label: Observability
           topics:
-          - include: ../cloud-databases-gen2/cdb-logging-monitoring.md
+          - include: ../cloud-databases-gen2/set-up-logging-monitoring.md
           - include: ../cloud-databases-gen2/logging.md
-          - include: ../cloud-databases-gen2/default-alerts.md
+            navtitle: Logging
           - include: ../cloud-databases-gen2/reference-monitoring.md
+            navtitle: Monitoring
           - include: ../cloud-databases-gen2/at-events.md
+            navtitle: Activity tracking events
       - topicgroup:
           label: Enhancing security
           topics:
+          - include: ../cloud-databases-gen2/secure.md
           - include: ../cloud-databases-gen2/manage-scc.md
+            navtitle: Managing security and compliance
           - include: ../cloud-databases-gen2/howto-allowlists.md
-          - include: ../cloud-databases-gen2/reference-service-endpoints.md
           - include: ../cloud-databases-gen2/reference-iam.md
           - include: ../cloud-databases-gen2/reference-key-protect.md
+          - include: ../cloud-databases-gen2/reference-service-endpoints.md
           - include: ../cloud-databases-gen2/reference-hpcs.md
           - include: ../cloud-databases-gen2/howto-deprovisioning.md
   - navgroup:
@@ -88,11 +95,11 @@ toc:
           topics:
           - ts-connect.md
           - ts-workload.md
-          - include: ../cloud-databases-gen2/ts-terraform.md
       - topicgroup:
           label: FAQs
           topics:
           - include: ../cloud-databases-gen2/faq.md
+            navtitle: Gen 2 FAQ
           - include: ../cloud-databases-gen2/status-page-faq.md
           - topic: service-faq.md
             navtitle: Service FAQ
