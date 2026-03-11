@@ -94,6 +94,7 @@ toc:
           topics:
           - include: ../cloud-databases-gen2/faq.md
           - include: ../cloud-databases-gen2/status-page-faq.md
-          - service-faq.md
+          - topic: service-faq.md
+            navtitle: Service FAQ
           - include: ../cloud-databases-gen2/resource-config-faq.md
           - include: ../cloud-databases-gen2/availability-zones-faq.md
