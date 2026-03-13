@@ -1,3 +1,4 @@
-# Databases for MongoDB documentation
+# Databases for mongodb-gen2 documentation
 
-This repo contains documentation for the Databases for MongoDB services.
+
+Documentation source repository for content published at https://cloud.ibm.com/docs/services/databases-for-mongodb-gen2.
