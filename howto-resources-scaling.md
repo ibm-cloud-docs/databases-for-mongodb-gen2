@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-02-25"
+lastupdated: "2026-04-27"
 
 keywords: mongodb, databases, scaling, memory, disk IOPS, CPU
 
@@ -160,7 +160,7 @@ curl -X POST https://resource-controller.cloud.ibm.com/v2/resource_instances
    "name": "my-instance",
     "target": "ca-mon",
     "resource_group": "5c49eabc-f5e8-5881-a37e-2d100a33b3df",
-    "resource_plan_id": "databases-for-postgresql-standard",
+    "resource_plan_id": "databases-for-mongodb-standard",
     "dataservices": {
       "resources": {
         "database": {

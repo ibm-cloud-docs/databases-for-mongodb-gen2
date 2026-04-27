@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-03-11"
+lastupdated: "2026-04-27"
 
 keywords: databases-for-mongodb release notes
 
@@ -34,7 +34,7 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 {: release-note}
 
 {{site.data.keyword.databases-for-mongodb}} Gen 2 is now generally available (GA)
-: {{site.data.keyword.databases-for-mongodb}} Gen 2 is now available, offering the same fully managed {{site.data.keyword.databases-for-mongodb}} engine on newer VPC‑based infrastructure with improved security, networking, and more performant snapshot‑based backups. [Try {{site.data.keyword.databases-for-mongodb}} Gen 2 now](/docs/databases-for-postgresql-gen2?topic=databases-for-postgresql-gen2-provisioning).
+: {{site.data.keyword.databases-for-mongodb}} Gen 2 is now available, offering the same fully managed {{site.data.keyword.databases-for-mongodb}} engine on newer VPC‑based infrastructure with improved security, networking, and more performant snapshot‑based backups. [Try {{site.data.keyword.databases-for-mongodb}} Gen 2 now](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-provisioning).
 
 ## 15 December 2025
 {: #databases-for-mongodb-15dec2025}
