@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-03-18"
+lastupdated: "2026-06-16"
 
 keywords: provision cloud databases, terraform, provisioning parameters, cli, resource controller api, provision mongodb, provision mongodb standard, provision mongodb ee
 
@@ -198,7 +198,6 @@ The `host_flavor` parameter defines your Compute sizing.
   |-----------|----------------------|---------------------------|
   | 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted        |
   | 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
-  | 8x80      | 8 vCPU x 80 GB RAM   | mx3d.8x80.encrypted        |
   | 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted       |
   | 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
   | 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
@@ -245,7 +244,6 @@ Follow these steps to provision by using the [Resource Controller API](https://c
 
     - `bx3d.4x20.encrypted`
     - `bx3d.8x40.encrypted`
-    - `mx3d.8x80.encrypted`
     - `bx3d.16x80.encrypted`
     - `bx3d.32x160.encrypted`
     - `bx3d.48x240.encrypted`
@@ -325,7 +323,6 @@ The `host_flavor` parameter defines your Compute sizing. To provision an Isolate
 |-----------|----------------------|---------------------------|
 | 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted        |
 | 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
-| 8x80      | 8 vCPU x 80 GB RAM   | mx3d.8x80.encrypted        |
 | 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted       |
 | 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
 | 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
@@ -415,7 +412,6 @@ To provision an Isolated Compute instance, input the appropriate value for your 
 |-----------|----------------------|---------------------------|
 | 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted        |
 | 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
-| 8x80      | 8 vCPU x 80 GB RAM   | mx3d.8x80.encrypted        |
 | 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted       |
 | 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
 | 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |

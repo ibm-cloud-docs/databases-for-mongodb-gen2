@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-04-27"
+lastupdated: "2026-06-16"
 
 keywords: databases-for-mongodb release notes
 
@@ -21,6 +21,13 @@ content-type: release-note
 
 Use these release notes to learn about the latest updates to {{site.data.keyword.databases-for-mongodb_full_notm}} that are grouped by _date_ or _build number_.
 {: shortdesc}
+
+## 01 June 2026
+{: #databases-for-mongodb-01june2026}
+{: release-note}
+
+{{site.data.keyword.databases-for-mongodb}} Gen 2 is now availabe in Mumbai
+: {{site.data.keyword.databases-for-mongodb}} Gen 2 is now also available in Mumbai, in addition to Montreal (ca-mon) and Chennai-Airtel (in-che). For more information, see [Overview of Gen 1 and Gen 2{{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
 
 ## 02 March 2026
 {: #databases-for-mongodb-02mar2026}
