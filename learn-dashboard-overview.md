@@ -68,13 +68,12 @@ The information displayed includes:
 - Endpoint string for connection.
 - The _hostname_ and _port_ values for direct connections to the database members.
 - The default database for your service.
-- SSL mode parameters. Gen 2 uses certificates from *Let’s Encrypt* instead of proprietary TLS certificates. The recommended setting is **verify-full for secure connections**.
+- SSL mode parameters. Gen 2 uses certificates from *Let’s Encrypt* instead of proprietary TLS certificates.
 
 Gen 2 deployments do not include a pre-provisioned database admin password. To begin working with your instance, you must [create a service credential](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-user-management), which provides the authentication details and connection strings required for your applications.
-For more information on reference tables for the different connection types, see [Getting credentials and connection strings](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-connection-strings).
 {: note}
 
-NAKUL! **(should we merge the above two and they become one link? need confirmation)**
+For more information on reference tables for the different connection types, see [Getting credentials and connection strings](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-connection-strings).
 
 You can manage your {{site.data.keyword.databases-for-mongodb}} service through the [{{site.data.keyword.databases-for}} API](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-api).
 
@@ -102,7 +101,6 @@ The _Settings_ tab contains the UI for many of the tunable settings for your dep
 - **View encryption details:** All {{site.data.keyword.databases-for-mongodb}} deployments are automatically encrypted at rest. Disks and backups are encrypted, and the encryption keys are managed automatically by {{site.data.keyword.cloud}}. If you brought your own encryption key from [{{site.data.keyword.keymanagementserviceshort}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-key-protect&interface=ui), the panel provides a link to your {{site.data.keyword.keymanagementserviceshort}} instance and displays the key name in the _Encryption key_ field.
 - **Service endpoints:** View and manage network access to your deployment. By default, only private endpoints are enabled to restrict access. For more information, see [Private endpoints on Gen 2](/docs/databases-for-mongodb?topic=databases-for-mongodb-service-endpoints&interface=ui).
 
-- **Disconnect all active connections:** You can disconnect all client connections to your database. This action immediately ends all active sessions and can cause service interruptions. Use this option with caution when you need to revoke access or apply configuration changes.
 
 ## Service credentials
 {: #console-overview-service-cred}
