@@ -34,7 +34,7 @@ The _Overview_ page shows you information about your {{site.data.keyword.databas
 - **Resource group:** Shows the resource group selected during deployment.
 - **CRN (deployment ID):** The ID is a [CRN (Cloud Resource Name)](/docs/account?topic=account-crn){: external} that uniquely identifies the database deployment. The CRN is used to refer to the database in the API and can be used with the CLI. The _Overview_ panel shows details of your service.
 
-### Resources
+## Resources
 {: #console-overview-resources}
 
 The resources tab contains information and configuration options on the size and resource usage of your deployment. You can [scale disk, memory, and CPU](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-resources-scaling).
@@ -78,7 +78,7 @@ NAKUL! **(should we merge the above two and they become one link? need confirmat
 
 You can manage your {{site.data.keyword.databases-for-mongodb}} service through the [{{site.data.keyword.databases-for}} API](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-api).
 
-## Connect page
+## Connect
 {: #console-connect}
 
 In Gen 2 deployments, only private endpoints are used to enhance security. This page provides multiple connection options, accessible via tabs:
