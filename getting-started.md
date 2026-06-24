@@ -34,7 +34,7 @@ Follow these steps to complete the tutorial: {: ui}
 * [Before you begin](#prereqs)
 * [Step 1: Choose your plan](#choose_plan)
 * [Step 2: Provision through the console](#provision_instance_ui)
-* [Step 3: Place holder for Service Credential-Replace-Set your admin password through the console](#admin_pw)
+* [Step 3: Create the Manager user and generate credentials](#admin_pw)
 
 * [Step 4: Create a connection](#private_connect_setup)
 * [Step 5: Connect {{site.data.keyword.mon_full_notm}}](#connect_monitoring_ui)
@@ -72,7 +72,7 @@ Follow these steps to complete the tutorial: {: terraform}
 
 * [Before you begin](#prereqs)
 * [Step 1: Choose your plan](#choose_plan)
-* [Step 2: Provision through the API](#provision_instance_tf)
+* [Step 2: Provision through Terraform](#provision_instance_tf)
 * [Step 3: Place holder for Service Credential-Replace-Set your admin password through the console](#admin_pw)
 
 * [Step 4: Create a connection](#private_connect_setup)
