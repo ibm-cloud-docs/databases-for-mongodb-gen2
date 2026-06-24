@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-02-25"
+lastupdated: "2026-06-24"
 
 keywords: mongodb, connection limits, terminating connections, mongodb connection pooling, mongodb managing connections
 
@@ -88,10 +88,10 @@ Once you find the `opid` of the operation (for example, `opid`: `12345`), kill i
     db.killOp(12345)
 ```
 
-* Admin privileges are required to run `currentOp` and `killOp`.
+**Manager** privileges are required to run `currentOp` and `killOp`.
 {: note}
 
-## MongoDB connection pooling
+## MongoDB client-side connection pooling
 {: #connection-pooling}
 
 A connection pool in MongoDB is a cache of reusable connections between your application and the MongoDB server. Rather than opening and closing a new connection for every request (which is expensive), the application maintains a pool of connections and reuses them for multiple operations. One way to prevent exceeding the connection limit and ensure that connections from your applications are being handled efficiently is through connection pooling. The driver manages the creation, reuse, and closing of connections based on demand and configuration.
@@ -131,3 +131,6 @@ MongoClientSettings settings = MongoClientSettings.builder()
 | **minPoolSize**                              | The minimum number of connections maintained in the pool.                        |
 | **waitQueueTimeoutMS**                       | How long the application waits for a connection from the pool when all are busy. |
 | **maxIdleTimeMS**                            | How long a connection can remain idle before it is closed.                       |
+
+Connection-pooling is configured and managed at the client side, not on the server. For more information, see the documentation for your chosen connection pool for configuration and troubleshooting details.
+{: note}

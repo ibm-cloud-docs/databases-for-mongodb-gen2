@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2026
-lastupdated: "2026-02-25"
+lastupdated: "2026-06-24"
 
 keywords: mongodb, databases, mongo shell, mongosh
 
@@ -71,20 +71,3 @@ The command prompts for the user's password and then runs the MongoDB command-li
 
 The option `--start` must come before the parameters, otherwise connection information is returned and the MongoDB Shell is not started.
 {: .tip}
-
-## Using the service proprietary certificate
-{: #connecting-cli-client-cert}
-
-1. Copy the certificate information from the _Endpoints_ panel or the Base64 field of the connection information.
-2. If needed, decode the Base64 string into text.
-3. Save the certificate to a file. (You can use the Name that is provided or your own file name).
-4. Provide the path to the certificate to the `--tlsCAFile` parameter.
-
-You can display the decoded certificate for your deployment with the CLI plug-in with the command:
-
-```sh
-ibmcloud cdb deployment-cacert <INSTANCE_NAME_OR_CRN>
-```
-{: pre}
-
-It decodes the base64 into text. Copy and save the command's output to a file and provide the file's path to the `--tlsCAFile` parameter.
