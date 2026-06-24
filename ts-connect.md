@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-02-25"
+lastupdated: "2026-06-24"
 
 keywords: troubleshooting, mongodb
 
@@ -28,6 +28,5 @@ You receive an error message or fail to connect to a {{site.data.keyword.databas
 {: tsSymptoms}
 
 * An unsecured connection is a common cause of connectivity errors.  All {{site.data.keyword.databases-for-mongodb}} connections use TLS/SSL encryption; {{site.data.keyword.databases-for-mongodb}} rejects unsecured connections.  To avoid errors, make sure you configured a secure connection. Refer to [Getting Started](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-getting-to-production) for an example of a secure connection.
-* If you are using a private endpoint, make sure that you specify connection strings that contain the private endpoint (see [Credentials for Private Endpoints](/docs/cloud-databases?topic=cloud-databases-service-endpoints&interface=ui#private-endpoints-credentials)) and that you follow the steps in [Connecting through Private Endpoints](/docs/cloud-databases?topic=cloud-databases-service-endpoints#private-endpoint-connections).
 * If your application log captures a short connection interruption, that behavior is expected as a normal part of operations for this managed service. You want to design your applications to retry connections when errors are caused by a temporary loss in connectivity to your deployment or to {{site.data.keyword.cloud}}. However, if you experience several minutes of connection interruption check the Cloud Status for the service. For more information, see [Application-level high availability](/docs/databases-for-elasticsearch?topic=databases-for-elasticsearch-elasticsearch-ha-dr#application-level-ha).
 {: #tsResolve}
