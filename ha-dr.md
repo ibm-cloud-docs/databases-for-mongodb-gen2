@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-03-18"
+lastupdated: "2026-06-24"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, mongodb
 
@@ -116,6 +116,6 @@ Updates affecting customer workloads are communicated through {{site.data.keywor
 ## Additional guidance
 {: #ha_dr-guidance}
 
-- [Understanding high availability for Cloud Databases](/docs/cloud-databases?topic=cloud-databases-ha-dr)
-- [Understanding business continuity and disaster recovery for Cloud Databases](/docs/cloud-databases?topic=cloud-databases-bc-dr)
-- [Managing connections - Databases for {{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-managing-connections)
+- [Understanding high availability for {{site.data.keyword.databases-for}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-mongodb-ha-dr)
+- [Understanding business continuity and disaster recovery for {{site.data.keyword.databases-for}}](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-bc-dr)
+- [Managing connections {{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-managing-connections)
