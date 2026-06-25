@@ -61,7 +61,6 @@ toc:
           topics:
           - connecting-external.md
           - connecting-ibmcloud-app.md
-          - connecting-mongo-cli.md
       - topicgroup:
           label: Managing resources
           topics:
