@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-02-25"
+lastupdated: "2026-06-25"
 
 keywords: mongodb, databases, monitoring, scaling, autoscaling, resources, WiredTiger
 
@@ -24,7 +24,7 @@ subcollection: databases-for-mongodb-gen2
 
 {{site.data.keyword.databases-for-mongodb}} deployments offer an integration with the [{{site.data.keyword.monitoringfull}} service](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-monitoring) for basic monitoring of resource usage, like disk usage and IOPS of your deployment. Observing trends in your usage can help alleviate performance problems before your databases become unstable due to resource exhaustion.
 
-## Disk Usage
+## Disk usage
 {: #disk-usage}
 
 If you are concerned about how much space MongoDB is using to store your data, you can run some native MongoDB [data storage diagnostics](https://docs.mongodb.com/manual/faq/storage/#data-storage-diagnostics){: .external} to find the sizes of things like databases, collections, and indexes. If the approximate size of your data set is known and fixed, you can manually scale your disk to accommodate your data.
@@ -38,7 +38,7 @@ You can increase the number IOPS available to your deployment by increasing disk
 
 For more information, see the [MongoDB documentation](https://docs.mongodb.com/manual/faq/storage/#how-frequently-does-wiredtiger-write-to-disk){: .external}.
 
-## WiredTiger Cache and Memory
+## WiredTiger cache and memory
 {: #wiredtiger-cache-memory}
 
 {{site.data.keyword.databases-for-mongodb}} uses the [WiredTiger storage engine](https://docs.mongodb.com/manual/core/wiredtiger/#memory-use){: .external}, which uses both the file system memory cache and an internal memory cache. MongoDB is most performant when it serves your data from its internal cache, a little less performant when the data is in the file system cache, and least performant when it has to grab your data from disk.
@@ -51,14 +51,14 @@ Another way to use autoscaling is to set memory to scale when disk I/O utilizati
 
 More information about the WiredTiger cache is in the [MongoDB documentation](https://docs.mongodb.com/manual/faq/storage/#to-what-size-should-i-set-the-wiredtiger-internal-cache){: .external}.
 
-## Query Performance
+## Query performance
 {: #query-performance}
 
 The MongoDB documentation has multiple resources on query performance, including a how-to on [analyzing query performance](https://docs.mongodb.com/manual/tutorial/analyze-query-plan/){: .external}. Once you have a general idea on how your queries perform, they also have tips on [optimizing your queries](https://docs.mongodb.com/manual/core/query-optimization/){: .external}.
 
 As a more advanced topic, you can learn how MongoDB [manages query plans](https://docs.mongodb.com/manual/core/query-plans/){: .external}.
 
-## Other MongoDB Monitoring Tools
+## Other MongoDB monitoring tools
 {: #other-monitor}
 
 You can also take advantage of some of the native MongoDB monitoring functions. For example, you can use both [`mongotop`](https://docs.mongodb.com/manual/reference/program/mongotop/#bin.mongotop){: .external} and [`mongostat`](https://docs.mongodb.com/manual/reference/program/mongostat/#bin.mongostat){: .external}.
