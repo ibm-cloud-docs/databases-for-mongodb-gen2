@@ -63,12 +63,6 @@ As a more advanced topic, you can learn how MongoDB [manages query plans](https:
 
 You can also take advantage of some of the native MongoDB monitoring functions. For example, you can use both [`mongotop`](https://docs.mongodb.com/manual/reference/program/mongotop/#bin.mongotop){: .external} and [`mongostat`](https://docs.mongodb.com/manual/reference/program/mongostat/#bin.mongostat){: .external}.
 
-```sh
-mongotop 30 --username admin --password $PASSWORD --tls --tlsCAFile $CERTFILE --authenticationDatabase admin --host host1.databases.appdomain.cloud:31712, host2.databases.appdomain.cloud:31712
-
-mongostat -n 20 1 --username admin --password $PASSWORD --tls --tlsCAFile $CERTFILE --authenticationDatabase admin --host host1.databases.appdomain.cloud:31712,host2.databases.appdomain.cloud:31712 --json
-```
-
 Run any of the [documented commands](https://docs.mongodb.com/manual/administration/monitoring/#commands){: .external} that report on the status of your MongoDB database.
 
 Many of the MongoDB utilities and commands need the [Cluster Monitor](https://www.mongodb.com/docs/manual/reference/built-in-roles/#mongodb-authrole-clusterMonitor){: .external} role to execute. It is not part of the `admin` default role set. [Grant the Cluster Monitor role](/docs/databases-for-mongodb?topic=databases-for-mongodb-user-management#the-admin-user) to the `admin` user on your deployment.
