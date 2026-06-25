@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-06-24"
+lastupdated: "2026-06-25"
 
 keywords: databases-for-mongodb release notes
 
@@ -33,14 +33,14 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 {: #databases-for-mongodb-01june2026}
 {: release-note}
 
-{{site.data.keyword.databases-for-mongodb}} Gen 2 is now availabe in Mumbai
+{{site.data.keyword.databases-for-mongodb}} Gen 2 is now available in Mumbai
 : {{site.data.keyword.databases-for-mongodb}} Gen 2 is now also available in Mumbai, in addition to Montreal (ca-mon) and Chennai-Airtel (in-che). For more information, see [Overview of Gen 1 and Gen 2{{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
 
 ## 02 March 2026
 {: #databases-for-mongodb-02mar2026}
 {: release-note}
 
-{{site.data.keyword.databases-for-mongodb}} Gen 2 is now availabe in Chennai
+{{site.data.keyword.databases-for-mongodb}} Gen 2 is now available in Chennai
 : {{site.data.keyword.databases-for-mongodb}} Gen 2 is now also available in Chennai - Airtel (in-che), in addition to Montreal (ca-mon). For more information, see [Overview of Gen 1 and Gen 2{{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
 
 ## 26 February 2026
@@ -55,5 +55,5 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 {: release-note}
 
 {{site.data.keyword.databases-for-mongodb}} Gen 2 is now available in beta
-: Support for Mongo v8: Built on VPC architecture with software-defined networking, delivering enhanced security and flexibility. 
+: Support for Mongo v8: Built on VPC architecture with software-defined networking, delivering enhanced security and flexibility.
 : Now available in the Montreal region, giving developers early access to next-generation database innovation.
