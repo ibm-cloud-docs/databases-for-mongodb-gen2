@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2026
-lastupdated: "2026-06-24"
+lastupdated: "2026-06-26"
 
 keywords: mongodb, databases, upgrading, new deployment, major version, upgrade, new instance
 
@@ -149,7 +149,7 @@ Prepare to run on, and then migrate to, the latest version before the EOL date. 
 Rolling back versions is not supported.
 {: .note}
 
-Upgrade to the latest version of MongoDB available to {{site.data.keyword.databases-for-mongodb}}. Find the latest version from the catalog page, from the {{site.data.keyword.databases-for}} CLI plug-in command [`ibmcloud cdb deployables-show`](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployables-show){: external}, or from the {{site.data.keyword.databases-for}} API [`/deployables`](/apidocs/cloud-databases-api/cloud-databases-api-v5#listdeployables){: external} endpoint.
+Upgrade to the latest version of MongoDB available to {{site.data.keyword.databases-for-mongodb}}. Find the latest version from the catalog page, from the {{site.data.keyword.databases-for}} CLI plug-in command `ibmcloud cdb deployables-show`, or from the {{site.data.keyword.databases-for}} API `/deployables`endpoint.
 
 Upgrading is handled by [restoring a backup](/docs/cloud-databases?topic=cloud-databases-dashboard-backups){: external} of your data into a new deployment. Restoring from a backup has various advantages:
 
