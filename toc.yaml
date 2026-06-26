@@ -84,8 +84,6 @@ toc:
             navtitle: Managing security and compliance
           - include: ../cloud-databases-gen2/reference-iam.md
           - include: ../cloud-databases-gen2/reference-key-protect.md
-          - include: ../cloud-databases-gen2/reference-service-endpoints.md
-          - include: ../cloud-databases-gen2/reference-hpcs.md
           - include: ../cloud-databases-gen2/howto-deprovisioning.md
   - navgroup:
       id: reference
@@ -113,7 +111,6 @@ toc:
           topics:
           - include: ../cloud-databases-gen2/faq.md
             navtitle: Gen 2 FAQ
-          - include: ../cloud-databases-gen2/status-page-faq.md
           - topic: service-faq.md
             navtitle: Service FAQ
           - include: ../cloud-databases-gen2/resource-config-faq.md
