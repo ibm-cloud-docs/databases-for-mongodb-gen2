@@ -71,8 +71,6 @@ toc:
           topics:
           - include: ../cloud-databases-gen2/set-up-logging-monitoring.md
           - include: ../cloud-databases-gen2/logging.md
-            navtitle: Logging
-          - include: ../cloud-databases-gen2/reference-monitoring.md
             navtitle: Monitoring
           - include: ../cloud-databases-gen2/at-events.md
             navtitle: Activity tracking events
@@ -90,6 +88,7 @@ toc:
       topics:
       - include: ../cloud-databases-gen2/cli.md
       - include: ../cloud-databases-gen2/api.md
+      - include: ../cloud-databases-gen2/db-version-policy.md
       - include: ../cloud-databases-gen2/learn-getting-to-production.md
         navtitle: Getting to production
       - include: ../cloud-databases-gen2/reference-responsibilities.md
