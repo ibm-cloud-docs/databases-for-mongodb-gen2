@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2026
-lastupdated: "2026-06-24"
+lastupdated: "2026-06-26"
 
 keywords: mongodb ee, mongodb enterprise, mongodb enterprise edition, mongodb enterprise plan
 
@@ -28,7 +28,7 @@ The choice between the two depends on your specific needs, security requirements
 | **Ops Manager** | Not included | Included. Provides monitoring, configuration, backup, automation, and security tooling |
 | **Backups** | Daily automated snapshots for disaster recovery. Manual, on-demand backups also supported | Continuous, incremental backups with [Point-in-Time Recovery](#mongodbee-pitr) for up to 7 days. |
 | **Restores** | Standard restore from backups | Faster restore performance from incremental snapshots and PITR |
-| **Monitoring** | Basic host and database metrics (CPU, memory, ops/sec) through [{{site.data.keyword.monitoringfull}}](/docs/databases-for-mongodb?topic=databases-for-mongodb-monitoring) integration | Ops Manager dashboards with real-time and historical views, query profiler, automated index recommendations, custom alerts, plus [{{site.data.keyword.monitoringfull}}](/docs/databases-for-mongodb?topic=databases-for-mongodb-monitoring) integration |
+| **Monitoring** | Basic host and database metrics (CPU, memory, ops/sec) through [{{site.data.keyword.monitoringfull}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-monitoring) integration | Ops Manager dashboards with real-time and historical views, query profiler, automated index recommendations, custom alerts, plus [{{site.data.keyword.monitoringfull}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-monitoring) integration |
 | **Auditing** | Event auditing through IBM Cloud Activity Tracker | IBM Cloud Activity Tracker plus granular auditing of schema changes, authentication events, and CRUD operations via Ops Manager |
 {: caption="Feature comparison" caption-side="top"}
 
