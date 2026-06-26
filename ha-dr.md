@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-06-24"
+lastupdated: "2026-06-26"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, mongodb
 
@@ -111,7 +111,7 @@ For more information on responsibility ownership between the customer and {{site
 ## Stay informed: {{site.data.keyword.IBM_notm}} notifications
 {: #ibm-service-notifications}
 
-Updates affecting customer workloads are communicated through {{site.data.keyword.cloud_notm}} notifications. To stay informed about planned maintenance, announcements, and release notes related to this service, refer to [Monitoring notifications and status](/docs/account?topic=account-viewing-cloud-status). In addition, regularly review the [Version policy](/docs/cloud-databases?topic=cloud-databases-versioning-policy) for the latest updates on End-of-Life versions and dates.
+Updates affecting customer workloads are communicated through {{site.data.keyword.cloud_notm}} notifications. To stay informed about planned maintenance, announcements, and release notes related to this service, refer to [Monitoring notifications and status](/docs/support?topic=support-viewing-status). In addition, regularly review the [Version policy](/docs/cloud-databases?topic=cloud-databases-versioning-policy) for the latest updates on End-of-Life versions and dates.
 
 ## Additional guidance
 {: #ha_dr-guidance}
