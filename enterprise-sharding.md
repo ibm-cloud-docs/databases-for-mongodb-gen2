@@ -2,7 +2,7 @@
 copyright:
 
   years: 2026
-lastupdated: "2026-06-24"
+lastupdated: "2026-06-26"
 
 keywords: databases, mongodbee, Enterprise Edition, sharding, horizontal scaling, gen2, plan consolidation
 
@@ -23,8 +23,7 @@ subcollection: databases-for-mongodb-gen2
 
 On Gen 2, the Enterprise Edition plan consolidates the previous Gen 1 Enterprise and Enterprise Sharding plans into a single offering. All Enterprise Edition deployments start with one shard (3 members), which is equivalent to the basic Enterprise Edition on Gen 1. As your needs grow, you can add up to 5 additional shards for a total of 6 shards (18 members), providing a seamless scaling path without requiring migration to a different plan.
 
-If you are migrating from Gen 1, see [Migrating {{site.data.keyword.databases-for-mongodb}} Enterprise from Gen 1 to Gen 2](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-migrating-mongodb&interface=ui) for information about plan consolidation and migration paths for existing instances.
-{: tip}
+
 
 ## Benefits of horizontal scaling with sharding
 {: #enterprise-sharding-benefits}
