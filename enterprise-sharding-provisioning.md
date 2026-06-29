@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-06-26"
+lastupdated: "2026-06-29"
 
 keywords: provision cloud databases, terraform, provisioning parameters, cli, resource controller api, provision mongodb, provision mongodb enterprise sharding, provision mongodb ees
 
@@ -13,7 +13,7 @@ subcollection: databases-for-mongodb-gen2
 {{site.data.keyword.attribute-definition-list}}
 
 # Provisioning
-{: #provisioning}
+{: #enterprise-sharding-provisioning}
 
 [Gen 2]{: tag-purple}
 
