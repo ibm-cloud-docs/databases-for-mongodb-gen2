@@ -70,6 +70,8 @@ toc:
           topics:
           - include: ../cloud-databases-gen2/set-up-logging-monitoring.md
           - include: ../cloud-databases-gen2/logging.md
+            navtitle: Logging
+          - topic: reference-monitoring.md
             navtitle: Monitoring
           - include: ../cloud-databases-gen2/at-events.md
             navtitle: Activity tracking events
