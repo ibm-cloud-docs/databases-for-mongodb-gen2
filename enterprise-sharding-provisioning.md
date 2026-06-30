@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-06-29"
+lastupdated: "2026-06-30"
 
 keywords: provision cloud databases, terraform, provisioning parameters, cli, resource controller api, provision mongodb, provision mongodb enterprise sharding, provision mongodb ees
 
@@ -421,5 +421,5 @@ To provision an isolated compute instance, input the appropriate value for your 
 | 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted |
 {: caption="Host flavor sizing parameter" caption-side="bottom"}
 
-CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} isolated compute. Disk autoscaling is coming soon. If you have provisioned an isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-monitoring){: external}, which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
+CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} isolated compute. Disk autoscaling is coming soon. If you have provisioned an isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-monitoring) which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
 {: note}
