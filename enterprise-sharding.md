@@ -2,7 +2,7 @@
 copyright:
 
   years: 2026
-lastupdated: "2026-06-26"
+lastupdated: "2026-07-01"
 
 keywords: databases, mongodbee, Enterprise Edition, sharding, horizontal scaling, gen2, plan consolidation
 
@@ -87,6 +87,6 @@ Existing single-shard deployments do not require migration to adopt multi-shard 
 {: #enterprise-sharding-next-steps}
 
 * Review [Pricing](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-pricing) to understand the cost implications of adding shards.
-* If you migrate from Gen 1, see [Migrating {{site.data.keyword.databases-for-mongodb}} Enterprise from Gen 1 to Gen 2](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-migrating-mongodb&interface=ui).
+
 * Plan your shard key strategy before enabling sharding on your collections.
 * For more information, see [MongoDB's official documentation on shard key selection and sharding best practices](https://www.mongodb.com/docs/manual/core/sharding-choose-a-shard-key/).{: external}
