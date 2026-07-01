@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2026
-lastupdated: "2026-06-26"
+lastupdated: "2026-07-01"
 
 keywords: mongodb, databases, upgrading, new deployment, major version, upgrade, new instance
 
@@ -137,7 +137,7 @@ To ensure a safe upgrade, no user must be able to perform a write action during 
 #### Healthchecks
 {: #upgrading-in-place-healthchecks}
 
-If a service instance is low on resources, the task fails because a safe upgrade cannot be guaranteed under these circumstances. The resource consumption can be evaluated by using the [monitoring integration](/docs/databases-for-mongodb?topic=databases-for-mongodb-monitoring). If not all database components are available to be upgraded, the upgrade task fails. This can happen due to maintenance. Tasks that failed due to failed healthchecks can be retried later. If the task continuously fails, open a support ticket with [IBM Cloud support](https://cloud.ibm.com/login?redirect=%2Funifiedsupport%2Fsupportcenter).
+If a service instance is low on resources, the task fails because a safe upgrade cannot be guaranteed under these circumstances. The resource consumption can be evaluated by using the [monitoring integration](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-monitoring). If not all database components are available to be upgraded, the upgrade task fails. This can happen due to maintenance. Tasks that failed due to failed healthchecks can be retried later. If the task continuously fails, open a support ticket with [IBM Cloud support](https://cloud.ibm.com/login?redirect=%2Funifiedsupport%2Fsupportcenter).
 
 ## Restoring from backup
 {: #upgrading-restoring-from-backup}
