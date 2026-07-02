@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-06-25"
+lastupdated: "2026-07-02"
 
 keywords: mongodb, databases, monitoring, scaling, autoscaling, resources, WiredTiger
 
@@ -32,9 +32,9 @@ If you are concerned about how much space MongoDB is using to store your data, y
 ## Disk I/O
 {: #disk-iops}
 
-The number of Input-Output Operations per second (IOPS) on {{site.data.keyword.databases-for-mongodb}} deployments is limited by the type of storage volume. Storage volumes for {{site.data.keyword.databases-for-mongodb}} deployments are [Block storage endurance volumes in the 5 IOPS per GB tier](/docs/vpc?topic=vpc-block-storage-profiles&interface=ui#block-storage-profile-overview){: .external}. Hitting I/O utilization limits can cause your databases to respond slowly or appear unresponsive. Things like unoptimized queries, [index building](https://docs.mongodb.com/manual/core/index-creation/){: .external}, and creating new indexes can cause spikes in IOPS, but it's also possible that normal work loads for your applications can exceed the available IOPS for your deployment.
+The number of Input-Output Operations per second (IOPS) on {{site.data.keyword.databases-for-mongodb}} deployments is limited by the type of storage volume. Storage volumes for {{site.data.keyword.databases-for-mongodb}} deployments are [Block storage endurance volumes in the 10 IOPS per GB tier](/docs/vpc?topic=vpc-block-storage-profiles&interface=ui#block-storage-profile-overview){: .external}. Hitting I/O utilization limits can cause your databases to respond slowly or appear unresponsive. Things like unoptimized queries, [index building](https://docs.mongodb.com/manual/core/index-creation/){: .external}, and creating new indexes can cause spikes in IOPS, but it's also possible that normal work loads for your applications can exceed the available IOPS for your deployment.
 
-You can increase the number IOPS available to your deployment by increasing disk space. 
+You can increase the number IOPS available to your deployment by increasing disk space.
 
 For more information, see the [MongoDB documentation](https://docs.mongodb.com/manual/faq/storage/#how-frequently-does-wiredtiger-write-to-disk){: .external}.
 
@@ -65,5 +65,5 @@ You can also take advantage of some of the native MongoDB monitoring functions. 
 
 Run any of the [documented commands](https://docs.mongodb.com/manual/administration/monitoring/#commands){: .external} that report on the status of your MongoDB database.
 
-Many of the MongoDB utilities and commands need the [Cluster Monitor](https://www.mongodb.com/docs/manual/reference/built-in-roles/#mongodb-authrole-clusterMonitor){: .external} role to execute. It is not part of the `admin` default role set. [Grant the Cluster Monitor role](/docs/databases-for-mongodb?topic=databases-for-mongodb-user-management#the-admin-user) to the `admin` user on your deployment.
+Many of the MongoDB utilities and commands need the [Cluster Monitor](https://www.mongodb.com/docs/manual/reference/built-in-roles/#mongodb-authrole-clusterMonitor){: .external} role to execute. It is not part of the `manager` default role set. [Grant the Cluster Monitor role](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-user-management&interface=ui#user-manager) to the `manager` user on your deployment.
 {: .tip}

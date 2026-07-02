@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2026
-lastupdated: "2026-06-25"
+lastupdated: "2026-07-02"
 
 keywords: mongodb, databases, admin user, service credentials, ops manager, mongodb managing users, roles, root account
 
@@ -10,8 +10,6 @@ subcollection: databases-for-mongodb-gen2
 ---
 
 {{site.data.keyword.attribute-definition-list}}
-
-[Gen 2]{: tag-purple}
 
 # Managing users and roles
 {: #user-management}
@@ -66,8 +64,3 @@ ibmcloud resource service-key-create <service_key_name> Manager --instance-id <g
 3. Click **New credential**.
 4. Choose a descriptive name for your new credential.
 5. Click **Add** to provision the new credential. A username and password, and an associated database user in the {{site.data.keyword.databases-for-mongodb}} are generated.
-
-Creating a user from the CLI or API doesn't automatically populate that user's connection strings into _Service Credentials_. If you want to add them there, you can create a new credential with the existing user information. Enter the username and password in the JSON field under _Add Inline Configuration Parameters_. For example, `{"existing_credentials":{"username":"Robert","password":"supersecure"}}`. So, you provide the username and password, and _Service Credentials_ generates the connection strings with the credentials filled in.
-
-Generating credentials from an existing user does not check for or create that user.
-{: .tip}

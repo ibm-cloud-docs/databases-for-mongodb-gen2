@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-06-26"
+lastupdated: "2026-07-02"
 
 keywords: provision cloud databases, terraform, provisioning parameters, cli, resource controller api, provision mongodb, provision mongodb standard, provision mongodb ee
 
@@ -62,7 +62,7 @@ Disk size can be increased after provisioning but cannot be decreased to prevent
 {: #service_configuration}
 {: ui}
 
-- **Database version:** [Set only at deployment]{: tag-red} This is the version of your MongoDB deployment. The console highlights the preferred version to ensure optimal performance. For more information, see [Versioning policy](/docs/cloud-databases?topic=cloud-databases-versioning-policy){: external}.
+- **Database version:** [Set only at deployment]{: tag-red} This is the version of your MongoDB deployment. The console highlights the preferred version to ensure optimal performance. For more information, see [Versioning policy](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-versioning-policy){: external}.
 - **Database edition:** [Set only at deployment]{: tag-red} On Gen 2, only the **Standard** edition is available.
 - **Encryption:** [Set only at deployment]{: tag-red} If you use [Key Protect](/docs/cloud-databases?topic=cloud-databases-key-protect&interface=ui){: external}, an instance and key can be selected to encrypt the deployment's disk. If you do not use your own key, the deployment automatically creates and manages its own disk encryption key.
 - **Endpoints** [[Set only at deployment]{: tag-red} - For Gen 2, only private endpoints are supported.
@@ -122,12 +122,13 @@ Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.e
 
    You will see a response like:
 
+
     ```text
-    Creating service instance INSTANCE_NAME in resource group default of account    USER...
+    Creating service instance INSTANCE_NAME in resource group default of account USER...
     OK
     Service instance INSTANCE_NAME was created.
     Name:                INSTANCE_NAME
-    ID:                  crn:v1:bluemix:public:databases-for-mongodb:us-south:a/   40ddc34a846383BGB5b60e:dd13152c-fe15-4bb6-af94-fde0af5303f4::
+    ID:                  crn:v1:bluemix:public:databases-for-mongodb:us-south:a/40ddc34a846383BGB5b60e:dd13152c-fe15-4bb6-af94-fde0af5303f4::
     GUID:                dd13152c-fe15-4bb6-af94-fde0af56897
     Location:            LOCATION
     State:               provisioning
@@ -139,10 +140,9 @@ Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.e
     Created at:          2023-06-26T19:42:07Z
     Updated at:          2023-06-26T19:42:07Z
     Last Operation:
-                         Status    create in progress
-                         Message   Started create instance operation
+                        Status    create in progress
+                        Message   Started create instance operation
     ```
-    {: codeblock}
 
 
 - To check provisioning status, use the following command:
