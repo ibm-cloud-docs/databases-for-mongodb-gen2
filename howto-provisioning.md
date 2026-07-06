@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-03-18"
+lastupdated: "2026-07-02"
 
 keywords: provision cloud databases, terraform, provisioning parameters, cli, resource controller api, provision mongodb, provision mongodb standard, provision mongodb ee
 
@@ -33,18 +33,18 @@ Provision from the console by specifying the following parameters.
 - **Resource group:** If you are organizing your services into [resource groups](/docs/account?topic=account-account_setup){: external}, specify the resource group in this field. Otherwise, you can leave it at default. For more information, see [Managing resource groups](/docs/account?topic=account-rgs){: external}.
 - **Location:** The deployment's cloud region. On Gen 2, {{site.data.keyword.databases-for-mongodb}} is currently available only in the **Montreal (ca-mon)** and **Chennai - Airtel (in-che)** regions.
 
-Select the platform for your deployment.  
+Select the platform for your deployment.
 
-- **Gen 1:** {{site.data.keyword.cloud}}’s original platform, available across all IBM Cloud data centers.  
+- **Gen 1:** {{site.data.keyword.cloud}}’s original platform, available across all IBM Cloud data centers.
 - **Gen 2:** {{site.data.keyword.cloud}}'s latest platform, based on a highly secure software-defined networking architecture. Gen 2 is optimized for cloud-native applications and currently available only in Montreal and Chennai.
 
-For more details, see [Overview of Gen 1 (Classic) and Gen 2 (VPC)](/docs-draft/cloud-databases-gen2?topic=cloud-databases-gen2-overview-gen1-gen2&interface=ui). 
+For more details, see [Overview of Gen 1 (Classic) and Gen 2 (VPC)](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-overview-gen1-gen2&interface=ui).
 
 ### Hosting model
 {: #hosting_model}
 {: ui}
 
-On Gen 2, the only available hosting model is **Isolated**, which is a secure single-tenant offering for complex, highly-performant enterprise workloads. For more information, see [Isolated Compute](/docs-draft/cloud-databases-gen2?topic=cloud-databases-gen2-isolated-compute&interface=ui).
+On Gen 2, the only available hosting model is **Isolated**, which is a secure single-tenant offering for complex, highly-performant enterprise workloads. For more information, see [Isolated Compute](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-isolated-compute&interface=ui).
 
 ### Resource allocation
 {: #resource_allocation}
@@ -52,7 +52,7 @@ On Gen 2, the only available hosting model is **Isolated**, which is a secure si
 
 Choose the initial host size and disk configuration for your deployment. Host size and disk allocation apply per instance member.
 
-- **Host size:** Select from available configurations of vCPU and RAM to match your workload needs. 
+- **Host size:** Select from available configurations of vCPU and RAM to match your workload needs.
 - **Disk:** Configure the initial disk size for your deployment. Use the slider to set disk capacity. Disk size determines the IOPS allocation. Each GB of disk provides 5 IOPS.
 
 Disk size can be increased after provisioning but cannot be decreased to prevent data loss.
@@ -62,9 +62,9 @@ Disk size can be increased after provisioning but cannot be decreased to prevent
 {: #service_configuration}
 {: ui}
 
-- **Database version:** [Set only at deployment]{: tag-red} This is the version of your MongoDB deployment. The console highlights the preferred version to ensure optimal performance. For more information, see [Versioning policy](/docs/cloud-databases?topic=cloud-databases-versioning-policy){: external}.
-- **Database edition:** [Set only at deployment]{: tag-red} On Gen 2, only the **Standard** edition is available.  
-- **Encryption:** [Set only at deployment]{: tag-red} If you use [Key Protect](/docs/cloud-databases?topic=cloud-databases-key-protect&interface=ui){: external}, an instance and key can be selected to encrypt the deployment's disk. If you do not use your own key, the deployment automatically creates and manages its own disk encryption key.  
+- **Database version:** [Set only at deployment]{: tag-red} This is the version of your MongoDB deployment. The console highlights the preferred version to ensure optimal performance. For more information, see [Versioning policy](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-versioning-policy){: external}.
+- **Database edition:** [Set only at deployment]{: tag-red} On Gen 2, only the **Standard** edition is available.
+- **Encryption:** [Set only at deployment]{: tag-red} If you use [Key Protect](/docs/cloud-databases?topic=cloud-databases-key-protect&interface=ui){: external}, an instance and key can be selected to encrypt the deployment's disk. If you do not use your own key, the deployment automatically creates and manages its own disk encryption key.
 - **Endpoints** [[Set only at deployment]{: tag-red} - For Gen 2, only private endpoints are supported.
 
 After you select the appropriate settings, click **Create** to start the provisioning process.
@@ -86,7 +86,7 @@ Before provisioning, follow the instructions provided in the documentation to in
    ```
    {: pre}
 
-2. You can provision {{site.data.keyword.databases-for-mongodb_full}} instances on the [Isolated Compute](/docs-draft/cloud-databases-gen2?topic=cloud-databases-gen2-isolated-compute&interface=ui) hosting model on the Gen 2 platform.
+2. You can provision {{site.data.keyword.databases-for-mongodb_full}} instances on the [Isolated Compute](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-isolated-compute&interface=ui) hosting model on the Gen 2 platform.
 
 3. Provision your database with the following command:
 
@@ -94,7 +94,7 @@ Before provisioning, follow the instructions provided in the documentation to in
    ibmcloud resource service-instance-create <INSTANCE_NAME> <SERVICE_NAME> <SERVICE_PLAN_NAME> <LOCATION> <RESOURCE_GROUP> -p '{"host_flavor": "<host_flavor value>"}'
    ```
    {: pre}
-   
+
   For example, to provision a {{site.data.keyword.databases-for-mongodb}} instance, use a command like:
 
    ```sh
@@ -103,7 +103,7 @@ Before provisioning, follow the instructions provided in the documentation to in
    {: pre}
 
   Provision a {{site.data.keyword.databases-for-mongodb}} Isolated instance with the same `host_flavor` -p parameter, setting it to the desired Isolated size. Available hosting sizes and their `host_flavor value` parameters are listed in [Table 2](#host-flavor-parameter-cli).
-  
+
 Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.encrypted` is 4 CPU and 20 RAM), this request does not accept both, an Isolated size selection and separate CPU and RAM allocation selections.
 {: note}
 
@@ -122,12 +122,13 @@ Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.e
 
    You will see a response like:
 
+
     ```text
-    Creating service instance INSTANCE_NAME in resource group default of account    USER...
+    Creating service instance INSTANCE_NAME in resource group default of account USER...
     OK
     Service instance INSTANCE_NAME was created.
     Name:                INSTANCE_NAME
-    ID:                  crn:v1:bluemix:public:databases-for-mongodb:us-south:a/   40ddc34a846383BGB5b60e:dd13152c-fe15-4bb6-af94-fde0af5303f4::
+    ID:                  crn:v1:bluemix:public:databases-for-mongodb:us-south:a/40ddc34a846383BGB5b60e:dd13152c-fe15-4bb6-af94-fde0af5303f4::
     GUID:                dd13152c-fe15-4bb6-af94-fde0af56897
     Location:            LOCATION
     State:               provisioning
@@ -139,11 +140,10 @@ Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.e
     Created at:          2023-06-26T19:42:07Z
     Updated at:          2023-06-26T19:42:07Z
     Last Operation:
-                         Status    create in progress
-                         Message   Started create instance operation
+                        Status    create in progress
+                        Message   Started create instance operation
     ```
-    {: codeblock}
-    
+
 
 - To check provisioning status, use the following command:
 
@@ -198,7 +198,6 @@ The `host_flavor` parameter defines your Compute sizing.
   |-----------|----------------------|---------------------------|
   | 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted        |
   | 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
-  | 8x80      | 8 vCPU x 80 GB RAM   | mx3d.8x80.encrypted        |
   | 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted       |
   | 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
   | 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
@@ -220,7 +219,7 @@ ibmcloud resource service-instance-create databases-for-mongodb <SERVICE_NAME> s
 -p \ '{
   "backup_id": "crn:v1:blue:public:databases-for-mongodb:us-south:a/54e8ffe85dcedf470db5b5ee6ac4a8d8:1b8f53db-fc2d-4e24-8470-f82b15c71717:backup:06392e97-df90-46d8-98e8-cb67e9e0a8e6",
   "host_flavor": "bx3d.16x80.encrypted"
-}' 
+}'
 ```
 {: .pre}
 
@@ -239,13 +238,12 @@ Follow these steps to provision by using the [Resource Controller API](https://c
     ```
     {: pre}
 
-3. You can provision {{site.data.keyword.databases-for-mongodb_full}} instances on the [Isolated Compute](/docs-draft/cloud-databases-gen2?topic=cloud-databases-gen2-isolated-compute&interface=ui) hosting model on the Gen 2 platform.
+3. You can provision {{site.data.keyword.databases-for-mongodb_full}} instances on the [Isolated Compute](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-isolated-compute&interface=ui) hosting model on the Gen 2 platform.
 
     As shown, the Isolated Compute host flavors available to a {{site.data.keyword.databases-for-mongodb}} instance are:
 
     - `bx3d.4x20.encrypted`
     - `bx3d.8x40.encrypted`
-    - `mx3d.8x80.encrypted`
     - `bx3d.16x80.encrypted`
     - `bx3d.32x160.encrypted`
     - `bx3d.48x240.encrypted`
@@ -298,13 +296,13 @@ Follow these steps to provision by using the [Resource Controller API](https://c
     ```
     {: pre}
 
-    Provision a {{site.data.keyword.databases-for-mongodb}} Isolated instance with the same `host_flavor` parameter, setting it to the desired Isolated size. Available hosting sizes and their `host_flavor value` parameters are listed in [Table 2](#members_host-flavor-parameter-api). For example, `{"host_flavor": "bx3d.4x20.encrypted"}`. 
+    Provision a {{site.data.keyword.databases-for-mongodb}} Isolated instance with the same `host_flavor` parameter, setting it to the desired Isolated size. Available hosting sizes and their `host_flavor value` parameters are listed in [Table 2](#members_host-flavor-parameter-api). For example, `{"host_flavor": "bx3d.4x20.encrypted"}`.
 
 Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.encrypted` is 4 CPU and 20 RAM), this request does not accept both, an Isolated size selection and separate CPU and RAM allocation selections.
 {: note}
-   
+
    The fields in the command are described in the table that follows.
-   
+
    | Field | Description | Flag |
    |-------|------------|------------|
    | `name` [Required]{: tag-red} | The instance name can be any string and is the name that is used on the web and in the CLI to identify the new deployment. |  |
@@ -325,7 +323,6 @@ The `host_flavor` parameter defines your Compute sizing. To provision an Isolate
 |-----------|----------------------|---------------------------|
 | 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted        |
 | 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
-| 8x80      | 8 vCPU x 80 GB RAM   | mx3d.8x80.encrypted        |
 | 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted       |
 | 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
 | 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
@@ -355,7 +352,7 @@ In the `--parameters` object you can provide additional information to create yo
 **Before you begin:**
 
 - [Install the Terraform CLI and the IBM Cloud Provider plug-in](/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-setup_cli#tf_installation){: external}.
-- Make sure you have an [IBM Cloud API key](/docs/account?topic=account-userapikey&interface=ui#create_user_key){: external}.
+- Make sure you have an [IBM Cloud API key](/iam?topic=iam-userapikey&interface=ui#create_user_key){: external}.
 
 Use Terraform to manage your infrastructure through the [`ibm_database` Resource for Terraform](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/database){: external} supports provisioning {{site.data.keyword.databases-for}} deployments.
 
@@ -415,11 +412,10 @@ To provision an Isolated Compute instance, input the appropriate value for your 
 |-----------|----------------------|---------------------------|
 | 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted        |
 | 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
-| 8x80      | 8 vCPU x 80 GB RAM   | mx3d.8x80.encrypted        |
 | 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted       |
 | 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
 | 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
 {: caption="Host flavor sizing parameter" caption-side="bottom"}
 
-CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} Isolated Compute. Disk autoscaling is coming soon. If you have provisioned an Isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases?topic=cloud-databases-monitoring){: external}, which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
+CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} Isolated Compute. Disk autoscaling is coming soon. If you have provisioned an Isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-monitoring){: external}, which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
 {: note}

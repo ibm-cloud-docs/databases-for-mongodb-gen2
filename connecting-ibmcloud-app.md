@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-02-25"
+lastupdated: "2026-06-24"
 
 keywords: mongodb, databases, kubernetes
 
@@ -24,22 +24,14 @@ Applications running in {{site.data.keyword.cloud_notm}} can be bound to your {{
 
 There are two steps to connecting a Cloud databases deployment to a Kubernetes Service application. First, your deployment needs a to be bound to your cluster and its connection strings stored in a secret. The second step is configuring your application to use the connection strings.
 
-The sample app in the [Connecting a Kubernetes Service Tutorial](/docs/databases-for-mongodb?topic=databases-for-mongodb-tutorial-k8s-app) provides a sample application that uses Node.js and demonstrates how to bind the sample application to a {{site.data.keyword.databases-for}} deployment.
-{: .tip}
-
 Before connecting your Kubernetes Service application to a deployment, make sure that the deployment and cluster are both in the same region and resource group.
 
 ### Binding your deployment
 {: #mongodb-binding-deployment}
 
-1. **Public or private endpoints**
+1. **Private endpoints**
 
-  - **Public endpoints** - If you are using the default public service endpoint to connect to your deployment, you can run the `cluster service bind` command with your cluster name, the resource group, and your instance name or CRN.
-
-    ```sh
-    ibmcloud ks cluster service bind <YOUR_CLUSTER_NAME> <RESOURCE_GROUP> <INSTANCE_NAME_OR_CRN>
-    ```
-  - **Private endpoints** - If you want to use a private endpoint (if one is enabled on your deployment), then first you need to create a service key for your database. Kubernetes uses it when binding to the database.
+    To use a private endpoint, create a service key for your database. Kubernetes uses it when binding to the database.
 
     ```sh
     ibmcloud resource service-key-create <YOUR-PRIVATE-KEY> --instance-name <INSTANCE_NAME_OR_CRN> --service-endpoint private

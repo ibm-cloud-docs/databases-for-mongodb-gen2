@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-03-18"
+lastupdated: "2026-06-24"
 
 keywords: mongodb, databases, mongodb compass, mongodbee, mongodb enterprise, mongodb ee provision, mongodb compass, mongodb ops manager, mongodb compass, admin password, logging and monitoring, gen2
 
@@ -34,11 +34,11 @@ Follow these steps to complete the tutorial: {: ui}
 * [Before you begin](#prereqs)
 * [Step 1: Choose your plan](#choose_plan)
 * [Step 2: Provision through the console](#provision_instance_ui)
-* [Step 3: Place holder for Service Credential-Replace-Set your admin password through the console](#admin_pw)
-* [Step 4: Set up context-based restrictions](#mongodb_cbr)
-* [Step 5: Create a connection](#private_connect_setup)
-* [Step 6: Connect {{site.data.keyword.mon_full_notm}}](#connect_monitoring_ui)
-* [Step 7: Connect {{site.data.keyword.atracker_full}}](#mongo_logs)
+* [Step 3: Create the Manager user and generate credentials](#admin_pw)
+
+* [Step 4: Create a connection](#private_connect_setup)
+* [Step 5: Connect {{site.data.keyword.mon_full_notm}}](#connect_monitoring_ui)
+* [Step 6: Connect {{site.data.keyword.atracker_full}}](#mongo_logs)
 * [Next Steps](#next_steps)
 {: ui}
 
@@ -48,10 +48,10 @@ Follow these steps to complete the tutorial: {: cli}
 * [Step 1: Choose your plan](#choose_plan)
 * [Step 2: Provision through the CLI](#provision_instance_cli)
 * [Step 3: Place holder for Service Credential-Replace-Set your admin password through the console](#admin_pw)
-* [Step 4: Set up context-based restrictions](#mongodb_cbr)
-* [Step 5: Create a connection](#private_connect_setup)
-* [Step 6: Connect {{site.data.keyword.mon_full_notm}}](#connect_monitoring_ui)
-* [Step 7: Connect {{site.data.keyword.atracker_full}}](#mongo_logs)
+
+* [Step 4: Create a connection](#private_connect_setup)
+* [Step 5: Connect {{site.data.keyword.mon_full_notm}}](#connect_monitoring_ui)
+* [Step 6: Connect {{site.data.keyword.atracker_full}}](#mongo_logs)
 * [Next Steps](#next_steps)
 {: cli}
 
@@ -61,10 +61,10 @@ Follow these steps to complete the tutorial: {: api}
 * [Step 1: Choose your plan](#choose_plan)
 * [Step 2: Provision through the API](#provision_instance_api)
 * [Step 3: Place holder for Service Credential-Replace-Set your admin password through the console](#admin_pw)
-* [Step 4: Set up context-based restrictions](#mongodb_cbr)
-* [Step 5: Create a connection](#private_connect_setup)
-* [Step 6: Connect {{site.data.keyword.mon_full_notm}}](#connect_monitoring_ui)
-* [Step 7: Connect {{site.data.keyword.atracker_full}}](#mongo_logs)
+
+* [Step 4: Create a connection](#private_connect_setup)
+* [Step 5: Connect {{site.data.keyword.mon_full_notm}}](#connect_monitoring_ui)
+* [Step 6: Connect {{site.data.keyword.atracker_full}}](#mongo_logs)
 * [Next Steps](#next_steps)
 {: api}
 
@@ -72,12 +72,12 @@ Follow these steps to complete the tutorial: {: terraform}
 
 * [Before you begin](#prereqs)
 * [Step 1: Choose your plan](#choose_plan)
-* [Step 2: Provision through the API](#provision_instance_tf)
+* [Step 2: Provision through Terraform](#provision_instance_tf)
 * [Step 3: Place holder for Service Credential-Replace-Set your admin password through the console](#admin_pw)
-* [Step 4: Set up context-based restrictions](#mongodb_cbr)
-* [Step 5: Create a connection](#private_connect_setup)
-* [Step 6: Connect {{site.data.keyword.mon_full_notm}}](#connect_monitoring_ui)
-* [Step 7: Connect {{site.data.keyword.atracker_full}}](#mongo_logs)
+
+* [Step 4: Create a connection](#private_connect_setup)
+* [Step 5: Connect {{site.data.keyword.mon_full_notm}}](#connect_monitoring_ui)
+* [Step 6: Connect {{site.data.keyword.atracker_full}}](#mongo_logs)
 * [Next Steps](#next_steps)
 {: terraform}
 
@@ -155,7 +155,7 @@ You can provision a {{site.data.keyword.databases-for-mongodb}} instance by usin
 
 Use the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5#introduction){: external} to work with your {{site.data.keyword.databases-for-mongodb}} instance. The resource controller API is used to [provision an instance](#provision_instance_api).
 
-You will need an API key to perform actions via the API. Follow [these steps](/docs/account?topic=account-userapikey&interface=ui#create_user_key){: external} to create an IBM Cloud API key that enables you to use the API to provision infrastructure into your account. You can create up to 20 API keys.
+You will need an API key to perform actions via the API. Follow [these steps](/docs/iam?topic=iam-userapikey&interface=ui#create_user_key){: external} to create an IBM Cloud API key that enables you to use the API to provision infrastructure into your account. You can create up to 20 API keys.
 
 For security reasons, the API key is only available to be copied or downloaded at the time of creation. If the API key is lost, you must create a new API key.
 {: note}
@@ -283,14 +283,9 @@ ibmcloud resource service-key-delete <service_key_name>
 
 Changing a user password is not supported via the CLI on Gen 2.
 
-## Step 4: Set up context-based restrictions
-{: #mongodb_cbr}
-
-Context-based restrictions give account owners and administrators the ability to define and enforce access restrictions for {{site.data.keyword.cloud_notm}} resources based on the context of access requests. Access to {{site.data.keyword.databases-for}} resources can be controlled with context-based restrictions and Identity and Access Management (IAM) policies.
 
 
-
-## Step 5: Create a connection
+## Step 4: Create a connection
 {: #private_connect_setup}
 
 
@@ -301,17 +296,18 @@ Because Gen 2 supports **private endpoints only**, all connections are establish
 This guided experience is designed to help you configure a production-ready, secure connection without exposing your database to the public internet.
 
 
-## Step 6: Connect {{site.data.keyword.monitoringlong_notm}}
+## Step 5: Connect {{site.data.keyword.monitoringlong_notm}}
 {: #mongodb_monitoring}
 
 You can use {{site.data.keyword.monitoringlong}} to get operational visibility into the performance and health of your applications, services, and platforms. {{site.data.keyword.monitoringlong_notm}} provides administrators, DevOps teams, and developers full stack telemetry with advanced features to monitor and troubleshoot, define alerts, and design custom dashboards.
 
 For more information about how to use Monitoring with {{site.data.keyword.databases-for-mongodb}}, see [Monitoring integration](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-monitoring&interface=ui).
+/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-monitoring&interface=ui
 
 You cannot connect {{site.data.keyword.monitoringlong_notm}} by using the CLI. Use the console to complete this task.
 {:note }
 
-## Step 7: Connect IBM Cloud Logs Activity Tracker
+## Step 6: Connect IBM Cloud Logs Activity Tracker
 {: #mongo_logs}
 
 {{site.data.keyword.atracker_full}} allows you to view, and audit service activity to comply with corporate policies and industry regulations. {{site.data.keyword.atracker_short}} records user-initiated activities that change the state of a service in IBM Cloud. Use {{site.data.keyword.atracker_short}} to track how users and applications interact with the {{site.data.keyword.databases-for-mongodb}} service.

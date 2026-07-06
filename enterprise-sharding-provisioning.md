@@ -1,0 +1,425 @@
+---
+
+copyright:
+  years: 2026
+lastupdated: "2026-06-30"
+
+keywords: provision cloud databases, terraform, provisioning parameters, cli, resource controller api, provision mongodb, provision mongodb enterprise sharding, provision mongodb ees
+
+subcollection: databases-for-mongodb-gen2
+
+---
+
+{{site.data.keyword.attribute-definition-list}}
+
+# Provisioning
+{: #enterprise-sharding-provisioning}
+
+[Gen 2]{: tag-purple}
+
+Provision an {{site.data.keyword.databases-for-mongodb_full}} Enterprise Sharding deployment through the [catalog](https://cloud.ibm.com/databases/databases-for-mongodb/create){: external}, the [{{site.data.keyword.databases-for}} CLI plug-in](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-cdb-reference){: external}, the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5){: external}, or through [Terraform](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/database){: external}.
+
+You can only provision with 1 shard today. Support for provisioning with more shards and scaling will be added in a future release.
+{: restriction}
+
+## Provisioning through the {{site.data.keyword.cloud_notm}} console
+{: #catalog}
+{: ui}
+
+Provision from the console by specifying the following parameters.
+
+### Service details
+{: #service_details}
+{: ui}
+
+- **Service name:** The name can be any string and is the name that is used on the web and in the CLI to identify the new deployment.
+- **Resource group:** If you are organizing your services into [resource groups](/docs/account?topic=account-account_setup){: external}, specify the resource group in this field. Otherwise, you can leave it at default. For more information, see [Managing resource groups](/docs/account?topic=account-rgs){: external}.
+- **Location:** The deployment's cloud region. On Gen 2, {{site.data.keyword.databases-for-mongodb}} is currently available only in the **Montreal (ca-mon)**, **Chennai - Airtel (in-che)**,  and  **Mumbai (in-mum)** regions.
+
+Select the platform for your deployment.
+
+- **Gen 1:** {{site.data.keyword.cloud}}'s original platform, available across all {{site.data.keyword.cloud}} data centers.
+- **Gen 2:** {{site.data.keyword.cloud}}'s latest platform, based on a highly secure software-defined networking architecture. Gen 2 is optimized for cloud-native applications and currently available only in Montreal, Chennai, and Mumbai.
+
+For more details, see [Overview of Gen 1 (Classic) and Gen 2 (VPC)](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-overview-gen1-gen2&interface=ui).
+
+### Hosting model
+{: #hosting_model}
+{: ui}
+
+On Gen 2, the only available hosting model is **Isolated**, which is a secure single-tenant offering for complex, highly-performant enterprise workloads. For more information, see [Isolated compute](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-isolated-compute&interface=ui).
+
+### Resource allocation
+{: #resource_allocation}
+{: ui}
+
+Choose the initial host size and disk configuration for your deployment. Host size and disk allocation apply per instance member.
+
+- **Host size:** Select from available configurations of vCPU and RAM to match your workload needs.
+- **Disk:** Configure the initial disk size for your deployment. Use the slider to set disk capacity. Disk size determines the IOPS allocation. Each GB of disk provides 5 IOPS.
+
+Disk size can be increased after provisioning but cannot be decreased to prevent data loss.
+{: note}
+
+### Service configuration
+{: #service_configuration}
+{: ui}
+
+- **Database version:** [Set only at deployment]{: tag-red} This is the version of your MongoDB deployment. The console highlights the preferred version to ensure optimal performance. For more information, see [Versioning policy](/docs/cloud-databases?topic=cloud-databases-versioning-policy){: external}.
+- **Database edition:** [Set only at deployment]{: tag-red} On Gen 2, only the **Enterprise Sharding** edition is available.
+- **Encryption:** [Set only at deployment]{: tag-red} If you use [Key Protect](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-key-protect){: external}, an instance and key can be selected to encrypt the deployment's disk. If you do not use your own key, the deployment automatically creates and manages its own disk encryption key.
+- **Endpoints:** [Set only at deployment]{: tag-red} - For Gen 2, only private endpoints are supported.
+
+After you select the appropriate settings, click **Create** to start the provisioning process.
+
+## Provisioning through the CLI
+{: #use-cli}
+{: cli}
+
+### Create a service instance through the CLI
+{: #create-service-instance-cli}
+{: cli}
+
+Before provisioning, follow the instructions provided in the documentation to install the [{{site.data.keyword.cloud_notm}} CLI tool](/docs/cli?topic=cli-install-ibmcloud-cli){: external}.
+
+1. Log in to {{site.data.keyword.cloud_notm}}. If you use a federated user ID, it's important that you switch to a one-time passcode (`ibmcloud login --sso`), or use an API key (`ibmcloud --apikey key or @key_file`) to authenticate. For more information about how to log in by using the CLI, see [General CLI (ibmcloud) commands](/docs/cli?topic=cli-ibmcloud_cli#ibmcloud_login){: external} under `ibmcloud login`.
+
+   ```sh
+   ibmcloud login
+   ```
+   {: pre}
+
+2. You can provision {{site.data.keyword.databases-for-mongodb_full}} Enterprise Sharding instances on the [Isolated compute](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-isolated-compute&interface=ui) hosting model on the Gen 2 platform.
+
+3. Provision your database with the following command:
+
+   ```sh
+   ibmcloud resource service-instance-create <INSTANCE_NAME> <SERVICE_NAME> <SERVICE_PLAN_NAME> <LOCATION> <RESOURCE_GROUP> -p '{"host_flavor": "<host_flavor value>"}'
+   ```
+   {: pre}
+
+  For example, to provision a {{site.data.keyword.databases-for-mongodb}} Enterprise Sharding instance, use a command like:
+
+   ```sh
+   ibmcloud resource service-instance-create test-database databases-for-mongodb enterprise-sharding-gen2 ca-mon -p '{"host_flavor": "bx3d.8x40.encrypted", "storage_gb": 100 }'
+   ```
+   {: pre}
+
+  Provision a {{site.data.keyword.databases-for-mongodb}} Enterprise Sharding isolated instance with the same `host_flavor` -p parameter, setting it to the desired isolated size. Available hosting sizes and their `host_flavor value` parameters are listed in [Table 2](#host-flavor-parameter-cli).
+
+Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.encrypted` is 4 CPU and 20 RAM), this request does not accept both, an isolated size selection and separate CPU and RAM allocation selections.
+{: note}
+
+   The fields in the command are described in the table that follows.
+
+| Field                                     | Description                                                                                                                                                                                                                                 | Flag |
+| -------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ------|
+| `INSTANCE_NAME` [Required]{: tag-red}     | The instance name can be any string and is the name that is used on the web and in the CLI to identify the new deployment.                                                                                                                  |      |
+| `SERVICE_NAME` [Required]{: tag-red}      | Name or ID of the service. For {{site.data.keyword.databases-for-mongodb}} Enterprise Sharding, use `databases-for-mongodb`.                                                                                                                |      |
+| `SERVICE_PLAN_NAME` [Required]{: tag-red} | `enterprise-sharding-gen2`                                                                                                                                                                                                                  |      |
+| `LOCATION` [Required]{: tag-red}          | The location where you want to deploy. To retrieve a list of regions, use the `ibmcloud regions` command.                                                                                                                                   |      |
+| `RESOURCE_GROUP`                          | The Resource group name. The default value is `default`.                                                                                                                                                                                    | -g   |
+| `--parameters`                            | JSON file or JSON string of parameters to create service instance                                                                                                                                                                           | -p   |
+| `host_flavor`                             | To provision an Isolated compute instance, use `{"host_flavor": "<host_flavor value>"}`. For Isolated compute, select the desired CPU and RAM configuration. For more information, see the following [Table 2](#host-flavor-parameter-cli). |      |
+   {: caption="Basic command format fields" caption-side="bottom"}
+
+   You will see a response like:
+
+    ```text
+    Creating service instance INSTANCE_NAME in resource group default of account    USER...
+    OK
+    Service instance INSTANCE_NAME was created.
+    Name:                INSTANCE_NAME
+    ID:                  crn:v1:bluemix:public:databases-for-mongodb:us-south:a/40ddc34a846383BGB5b60e:dd13152c-fe15-4bb6-af94-fde0af5303f4::
+    GUID:                dd13152c-fe15-4bb6-af94-fde0af56897
+    Location:            LOCATION
+    State:               provisioning
+    Type:                service_instance
+    Sub Type:            Public
+    Service Endpoints:   private
+    Allow Cleanup:       false
+    Locked:              false
+    Created at:          2026-06-26T19:42:07Z
+    Updated at:          2026-06-26T19:42:07Z
+    Last Operation:
+                         Status    create in progress
+                         Message   Started create instance operation
+    ```
+    {: codeblock}
+
+
+- To check provisioning status, use the following command:
+
+   ```sh
+   ibmcloud resource service-instance <INSTANCE_NAME>
+   ```
+   {: pre}
+
+   When complete, you will see a response like:
+
+   ```text
+   Retrieving service instance INSTANCE_NAME in resource group default under account USER's Account as USER...
+   OK
+
+   Name:                  INSTANCE_NAME
+   ID:                    crn:v1:bluemix:public:databases-for-mongodb:us-south:a40ddc34a953a8c02f109835656860e:dd13152c-fe15-4bb6-af94-fde0af5303f4::
+   GUID:                  dd13152c-fe15-4bb6-af94-fde5654765
+   Location:              <LOCATION>
+   Service Name:          databases-for-mongodb
+   Service Plan Name:     enterprise-sharding-gen2
+   Resource Group Name:   default
+   State:                 active
+   Type:                  service_instance
+   Sub Type:              Public
+   Locked:                false
+   Service Endpoints:     private
+   Created at:            2026-06-26T19:42:07Z
+   Created by:            USER
+   Updated at:            2026-06-26T19:53:25Z
+   Last Operation:
+                          Status    create succeeded
+                          Message   Provisioning mongodb with version 8 (100%)
+   ```
+   {: codeblock}
+
+- Optional: To delete a service instance, run the following command:
+
+   ```sh
+   ibmcloud resource service-instance-delete <INSTANCE_NAME_OR_CRN>
+   ```
+   {: pre}
+
+### The `host_flavor` parameter
+{: #host-flavor-parameter-cli}
+{: cli}
+
+The `host_flavor` parameter defines your Compute sizing.
+
+- To provision an isolated compute instance, input the appropriate value for your desired CPU and RAM configuration.
+
+| Host size | vCPU x RAM           | host_flavor value     |
+| -----------| ----------------------| -----------------------|
+| 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted   |
+| 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted   |
+| 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted  |
+| 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted |
+| 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted |
+  {: caption="Members host flavor sizing parameter" caption-side="bottom"}
+
+CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} isolated compute. Disk autoscaling is coming soon. If you have provisioned an isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-monitoring){: external}, which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
+{: note}
+
+### The `--parameters` parameter
+{: #flags-params-service-endpoints}
+{: cli}
+
+The `service-instance-create` command supports a `-p` flag, which allows JSON-formatted parameters to be passed to the provisioning process. For example, you can pass Cloud Resource Names (CRNs) as parameter values, which uniquely identify a resource in the cloud. All parameter names and values are passed as strings.
+
+For example, if a database is being provisioned from a particular backup and the new database deployment needs a bigger host of size 16x80, the command looks like:
+
+```sh
+ibmcloud resource service-instance-create databases-for-mongodb <SERVICE_NAME> enterprise-sharding-gen2 us-south \
+-p \ '{
+  "backup_id": "crn:v1:blue:public:databases-for-mongodb:us-south:a/54e8ffe85dcedf470db5b5ee6ac4a8d8:1b8f53db-fc2d-4e24-8470-f82b15c71717:backup:06392e97-df90-46d8-98e8-cb67e9e0a8e6",
+  "host_flavor": "bx3d.16x80.encrypted"
+}'
+```
+{: .pre}
+
+## Provisioning through the Resource Controller API
+{: #provision-controller-api}
+{: api}
+
+Follow these steps to provision by using the [Resource Controller API](https://cloud.ibm.com/apidocs/resource-controller/resource-controller){: external}.
+
+1. Obtain an [IAM token](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#authentication){: external}.
+
+2. You need to know the ID of the resource group that you would like to deploy to. Use this command to obtain a list of resource groups in your account:
+
+    ```sh
+    curl -X GET "https://resource-controller.cloud.ibm.com/v2/resource_groups?account_id=<YOUR_ACCOUNT>" -H "Authorization: Bearer <TOKEN>"
+    ```
+    {: pre}
+
+3. You can provision {{site.data.keyword.databases-for-mongodb_full}} Enterprise Sharding instances on the [isolated compute](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-isolated-compute&interface=ui) hosting model on the Gen 2 platform.
+
+    As shown, the isolated compute host flavors available to a {{site.data.keyword.databases-for-mongodb}} Enterprise Sharding instance are:
+
+    - `bx3d.4x20.encrypted`
+    - `bx3d.8x40.encrypted`
+    - `bx3d.16x80.encrypted`
+    - `bx3d.32x160.encrypted`
+    - `bx3d.48x240.encrypted`
+
+    See below for more information about the `host_flavor` parameter.
+
+5. Once you have all the above information, [provision a new resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#create-resource-instance){: external} with the {{site.data.keyword.cloud_notm}} Resource Controller.
+
+    ```sh
+    curl -X POST \
+      https://resource-controller.cloud.ibm.com/v2/resource_instances \
+      -H "Authorization: Bearer <TOKEN>" \
+      -H 'Content-Type: application/json' \
+        -d '{
+        "name": "<INSTANCE_NAME>",
+        "target": "<targeted-region>",
+        "resource_group": "RESOURCE_GROUP_ID",
+        "resource_plan_id": "<SERVICE_PLAN_NAME>",
+        "dataservices": {
+          "<db-service>":{
+            "host_flavor": "<members_host_flavor_value>",
+          }
+        }
+      }'
+    ```
+    {: pre}
+
+    ### Example
+    {: #provision-controller-api-example}
+    {: api}
+
+    To make an isolated compute instance, follow this example:
+
+    ```sh
+      curl -X POST https://resource-controller.cloud.ibm.com/v2/resource_instances -H "Authorization: Bearer <IAM token>" -H 'Content-Type: application/json' -d '{
+      "name": "my-instance",
+      "target": "ca-mon",
+      "resource_group": "5c49eabc-f5e8-5881-a37e-2d100a33b3df",
+      "resource_plan_id": databases-for-mongodb-gen2-enterprise-sharding",
+      "dataservices": {
+        "mongodb": {
+            "storage_gb": 10,
+            "host_flavor": "bx3d.4x20.encrypted"
+          },
+        "encryption": {
+          "disk": "crn:v1..."
+        },
+        "version": "8",
+      },
+    }'
+    ```
+    {: pre}
+
+    Provision a {{site.data.keyword.databases-for-mongodb}} Enterprise Sharding isolated instance with the same `host_flavor` parameter, setting it to the desired isolated size. Available hosting sizes and their `host_flavor value` parameters are listed in [Table 2](#members_host-flavor-parameter-api). For example, `{"host_flavor": "bx3d.4x20.encrypted"}`.
+
+Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.encrypted` is 4 CPU and 20 RAM), this request does not accept both, an isolated size selection and separate CPU and RAM allocation selections.
+{: note}
+
+   The fields in the command are described in the table that follows.
+
+   | Field | Description | Flag |
+   |-------|------------|------------|
+   | `name` [Required]{: tag-red} | The instance name can be any string and is the name that is used on the web and in the CLI to identify the new deployment. |  |
+   | `resource_plan_id` [Required]{: tag-red} | Name or ID of the service. For {{site.data.keyword.databases-for-mongodb}} Enterprise Sharding, use `databases-for-mongodb-enterprise-sharding`. |  |
+   | `target` [Required]{: tag-red} | The location where you want to deploy. To retrieve a list of regions, use the `ibmcloud regions` command. |  |
+   | `resource_group`[Required]{: tag-red} | The Resource group name. The default value is `default`. | -g |
+   | `--parameters` | JSON file or JSON string of parameters to create service instance. See following information for more details. | -p |
+   | `host_flavor` | To provision an isolated compute instance, use `{"host_flavor": "<members_host_flavor value>"}`. For isolated compute, select desired CPU and RAM configuration. For more information, see the following table.| |
+   {: caption="Basic command format fields" caption-side="bottom"}
+
+### The `host_flavor` parameter
+{: #host-flavor-parameter-api}
+{: api}
+
+The `host_flavor` parameter defines your Compute sizing. To provision an isolated compute instance, input the appropriate value for your desired CPU and RAM configuration.
+
+| Member Host flavor | vCPU x RAM           | host_flavor value     |
+| --------------------| ----------------------| -----------------------|
+| 4x20               | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted   |
+| 8x40               | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted   |
+| 16x80              | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted  |
+| 32x160             | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted |
+| 48x240             | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted |
+{: caption="Members host flavor sizing parameter" caption-side="bottom"}
+
+CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} isolated compute. Disk autoscaling is coming soon. If you have provisioned an isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-monitoring), which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
+{: note}
+
+### List of additional parameters
+{: #provisioning-parameters-api}
+{: api}
+
+In the `--parameters` object you can provide additional information to create your service instance, including:
+
+- `backup_id` - A CRN of a backup resource to restore from. The backup must be created by a database deployment with the same service ID. The backup is loaded after provisioning and the new deployment starts up that uses that data. A backup CRN is in the format `crn:v1:<...>:backup:<uuid>`. If omitted, the database is provisioned empty.
+- `version` - The version of the database to be provisioned. If omitted, the database is created with the most recent major and minor version.
+- `disk_encryption_key_crn` - The CRN of a KMS key ([{{site.data.keyword.keymanagementserviceshort}}](/docs/key-protect?topic=key-protect-about)){: external}, which is then used for disk encryption. A KMS key CRN is in the format `crn:v1:<...>:key:<id>`.
+- `backup_encryption_key_crn` - The CRN of a KMS key ([{{site.data.keyword.keymanagementserviceshort}}](/docs/key-protect?topic=key-protect-about){: external}), which is then used for backup encryption. A KMS key CRN is in the format `crn:v1:<...>:key:<id>`.
+
+    To use a key for your backups, you must first [enable the service-to-service delegation](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-key-protect&interface=ui#key-byok).
+    {: note}
+
+## Provisioning with Terraform
+{: #provisioning-terraform}
+{: terraform}
+
+**Before you begin:**
+
+- [Install the Terraform CLI and the IBM Cloud Provider plug-in](/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-setup_cli#tf_installation){: external}.
+- Make sure you have an [{{site.data.keyword.cloud}} API key](/docs/iam?topic=iam-userapikey&interface=ui#create_user_key){: external}.
+
+Use Terraform to manage your infrastructure through the [`ibm_database` Resource for Terraform](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/database){: external} supports provisioning {{site.data.keyword.databases-for}} deployments.
+
+Select the [hosting model](/docs/databases-for-mongodb?topic=databases-for-mongodb-hosting-models&interface=terraform) you want your database to be provisioned on. You can change this later.
+
+### Provisioning isolated compute with Terraform
+{: #provisioning-isolated-computer-terraform}
+{: terraform}
+
+Provision a {{site.data.keyword.databases-for-mongodb}} Enterprise Sharding isolated instance with the same `"host_flavor"` parameter, setting it to the desired isolated size. Available hosting sizes and their `host_flavor value` parameters are listed in [Table 1](#host-flavor-parameter-terraform). For example, `{"host_flavor": "bx3d.4x20.encrypted"}`. Note that since the host flavor selection includes CPU and RAM sizes (`bx3d.4x20.encrypted` is 4 CPU and 16 RAM), this request does not accept both, an isolated size selection and separate CPU and RAM allocation selections.
+
+```terraform
+data "ibm_resource_group" "group" {
+  name = "<your_group>"
+}
+resource "ibm_database" "<your_database>" {
+  name              = "<your_database_name>"
+  plan              = "enterprise-sharding"
+  location          = "eu-gb"
+  service           = "databases-for-mongodb"
+  resource_group_id = data.ibm_resource_group.group.id
+  service_endpoints = "private"
+  tags              = ["tag1", "tag2"]
+  adminpassword                = "password12"
+  group {
+    group_id = "member"
+    host_flavor {
+      id = "bx3d.4x20.encrypted"
+    }
+    disk {
+      allocation_mb = 256000
+    }
+  }
+  users {
+    name     = "user123"
+    password = "password12"
+  }
+  allowlist {
+    address     = "172.168.1.1/32"
+    description = "desc"
+  }
+}
+output "ICD MongoDB database connection string" {
+  value = "http://${ibm_database.test_acc.ibm_database_connection.icd_conn}"
+}
+```
+{: codeblock}
+
+### The `host flavor` parameter
+{: #host-flavor-parameter-terraform}
+{: terraform}
+
+The `host_flavor` parameter defines your Compute sizing.
+To provision an isolated compute instance, input the appropriate value for your desired CPU and RAM configuration. See the values in the following table.
+
+| Host size | vCPU x RAM           | host_flavor value     |
+| -----------| ----------------------| -----------------------|
+| 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted   |
+| 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted   |
+| 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted  |
+| 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted |
+| 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted |
+{: caption="Host flavor sizing parameter" caption-side="bottom"}
+
+CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} isolated compute. Disk autoscaling is coming soon. If you have provisioned an isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-monitoring) which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
+{: note}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-03-18"
+lastupdated: "2026-06-26"
 
 keywords: HA, DR, high availability, disaster recovery, disaster recovery plan, disaster event, mongodb
 
@@ -111,11 +111,11 @@ For more information on responsibility ownership between the customer and {{site
 ## Stay informed: {{site.data.keyword.IBM_notm}} notifications
 {: #ibm-service-notifications}
 
-Updates affecting customer workloads are communicated through {{site.data.keyword.cloud_notm}} notifications. To stay informed about planned maintenance, announcements, and release notes related to this service, refer to [Monitoring notifications and status](/docs/account?topic=account-viewing-cloud-status). In addition, regularly review the [Version policy](/docs/cloud-databases?topic=cloud-databases-versioning-policy) for the latest updates on End-of-Life versions and dates.
+Updates affecting customer workloads are communicated through {{site.data.keyword.cloud_notm}} notifications. To stay informed about planned maintenance, announcements, and release notes related to this service, refer to [Monitoring notifications and status](/docs/support?topic=support-viewing-status). In addition, regularly review the [Version policy](/docs/cloud-databases?topic=cloud-databases-versioning-policy) for the latest updates on End-of-Life versions and dates.
 
 ## Additional guidance
 {: #ha_dr-guidance}
 
-- [Understanding high availability for Cloud Databases](/docs/cloud-databases?topic=cloud-databases-ha-dr)
-- [Understanding business continuity and disaster recovery for Cloud Databases](/docs/cloud-databases?topic=cloud-databases-bc-dr)
-- [Managing connections - Databases for {{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-managing-connections)
+- [Understanding high availability for {{site.data.keyword.databases-for}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-mongodb-ha-dr)
+- [Understanding business continuity and disaster recovery for {{site.data.keyword.databases-for}}](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-bc-dr)
+- [Managing connections {{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-managing-connections)

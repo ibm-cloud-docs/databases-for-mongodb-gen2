@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2026
-lastupdated: "2026-02-25"
+lastupdated: "2026-06-25"
 
 keywords: mongodb, databases, connecting, pymongo, java driver, service proprietary certificate, mongodbee, tls, cipher suite
 
@@ -45,7 +45,7 @@ All the information a driver needs to make a connection to your deployment is in
 Many MongoDB drivers are able to connect to your deployment when given the URI-formatted connection string found in the "composed" field of the connection information. {{site.data.keyword.databases-for}} provides a highly available instance of MongoDB, so make sure to include all members in the connection string. For example:
 
 ```sh
-mongodb://admin:$PASSWORD@d5eeee66-5bc4-498a-b73b-1307848f1eac.8f7bfd8f3faa4218aec56e069eb46187-0.databases.appdomain.cloud:30484,d5eeee66-5bc4-498a-b73b-1307848f1eac.8f7bfd8f3faa4218aec56e069eb46187-1.databases.appdomain.cloud:30484,d5eeee66-5bc4-498a-b73b-1307848f1eac.8f7bfd8f3faa4218aec56e069eb46187-2.databases.appdomain.cloud:30484/<database name>?authSource=admin&replicaSet=replset
+$ mongodb://$MONGOUSER:$MONGOPASS@mongodb-m-0.19731956-6d59-4c78-91d8-b7e201f4c606.private.uhp.ca-mon.mongodb.dataservices.appdomain.cloud:27017,mongodb-m-1.09751956-6d59-4c78-91d8-b4e201f4c606.private.uhp.ca-mon.mongodb.dataservices.appdomain.cloud:27017,mongodb-m-2.09631956-6d59-4c78-91d8-b6e201f4c606.private.uhp.ca-mon.mongodb.dataservices.appdomain.cloud:27017/ibmclouddb?authSource=admin&replicaSet=replset&tls=true
 ```
 {: pre}
 
