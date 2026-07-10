@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-07-07"
+lastupdated: "2026-07-10"
 
 keywords: databases-for-mongodb release notes
 
@@ -26,8 +26,8 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 {: #databases-for-mongodb-06jul2026}
 {: release-note}
 
-{{site.data.keyword.databases-for-mongodb}} Enterprise Sharding plan is now available in Montreal, Mumbai, and Chennai
-: The MongoDB Enterprise Sharding plan is now available in Montreal (ca-mon), Mumbai (in-mum), and Chennai (in-che). For more information, see [MongoDB Enterprise Sharding plan](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-enterprise-sharding&interface=ui).
+{{site.data.keyword.databases-for-mongodb}} Enterprise Sharding plan is now available in Montreal, Mumbai, Chennai, and Frankfurt
+: The MongoDB Enterprise Sharding plan is now available in Montreal (ca-mon), Chennai (in-che), Mumbai (in-mum), and Frankfurt (eu-de). For more information, see [MongoDB Enterprise Sharding plan](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-enterprise-sharding&interface=ui).
 
 ## 01 June 2026
 {: #databases-for-mongodb-01jun2026}
