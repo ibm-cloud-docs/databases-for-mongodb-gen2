@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-07-10"
+lastupdated: "2026-07-14"
 
 keywords: provision cloud databases, terraform, provisioning parameters, cli, resource controller api, provision mongodb, provision mongodb standard, provision mongodb ee
 
@@ -196,11 +196,9 @@ The `host_flavor` parameter defines your Compute sizing.
 
   | Host size | vCPU x RAM           | host_flavor value         |
   |-----------|----------------------|---------------------------|
-  | 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted        |
   | 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
   | 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted       |
   | 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
-  | 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
   {: caption="Members host flavor sizing parameter" caption-side="bottom"}
 
 CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} Isolated Compute. Disk autoscaling is coming soon. If you have provisioned an Isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-monitoring){: external}, which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
@@ -242,11 +240,9 @@ Follow these steps to provision by using the [Resource Controller API](https://c
 
     As shown, the Isolated Compute host flavors available to a {{site.data.keyword.databases-for-mongodb}} instance are:
 
-    - `bx3d.4x20.encrypted`
     - `bx3d.8x40.encrypted`
     - `bx3d.16x80.encrypted`
     - `bx3d.32x160.encrypted`
-    - `bx3d.48x240.encrypted`
 
     See below for more information about the `host_flavor` parameter.
 
@@ -321,11 +317,9 @@ The `host_flavor` parameter defines your Compute sizing. To provision an Isolate
 
 | Member Host flavor | vCPU x RAM           | host_flavor value         |
 |-----------|----------------------|---------------------------|
-| 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted        |
 | 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
 | 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted       |
 | 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
-| 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
 {: caption="Members host flavor sizing parameter" caption-side="bottom"}
 
 CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} Isolated Compute. Disk autoscaling is coming soon. If you have provisioned an Isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-monitoring), which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
@@ -410,11 +404,9 @@ To provision an Isolated Compute instance, input the appropriate value for your 
 
 | Host size | vCPU x RAM           | host_flavor value         |
 |-----------|----------------------|---------------------------|
-| 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted        |
 | 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
 | 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted       |
 | 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
-| 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
 {: caption="Host flavor sizing parameter" caption-side="bottom"}
 
 CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} Isolated Compute. Disk autoscaling is coming soon. If you have provisioned an Isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-monitoring){: external}, which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
