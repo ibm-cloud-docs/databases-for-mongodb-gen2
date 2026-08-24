@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-07-14"
+lastupdated: "2026-08-24"
 
 keywords: provision cloud databases, terraform, provisioning parameters, cli, resource controller api, provision mongodb, provision mongodb standard, provision mongodb ee
 
@@ -122,7 +122,6 @@ Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.e
 
    You will see a response like:
 
-
     ```text
     Creating service instance INSTANCE_NAME in resource group default of account USER...
     OK
@@ -143,7 +142,6 @@ Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.e
                         Status    create in progress
                         Message   Started create instance operation
     ```
-
 
 - To check provisioning status, use the following command:
 
@@ -190,16 +188,31 @@ Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.e
 {: #host-flavor-parameter-cli}
 {: cli}
 
-The `host_flavor` parameter defines your Compute sizing.
+The `host_flavor` parameter defines your Compute sizing. To provision an Isolated Compute instance, input the appropriate value for your desired CPU and RAM configuration.
 
-- To provision an Isolated Compute instance, input the appropriate value for your desired CPU and RAM configuration.
+#### Fixed profiles
+{: #host-flavor-parameter-cli-fixed}
+{: cli}
 
-  | Host size | vCPU x RAM           | host_flavor value         |
-  |-----------|----------------------|---------------------------|
-  | 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
-  | 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted       |
-  | 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
-  {: caption="Members host flavor sizing parameter" caption-side="bottom"}
+| Host size | vCPU x RAM           | host_flavor value         |
+|-----------|----------------------|---------------------------|
+| 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted        |
+| 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
+| 16x80      | 16 vCPU x 80 GB RAM   | mx3d.16x80.encrypted        |
+| 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
+| 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
+{: caption="Fixed profile CLI selections" caption-side="bottom"}
+
+#### Flex profiles
+{: #host-flavor-parameter-cli-flex}
+{: cli}
+
+| Host size | vCPU x RAM           | host_flavor value         |
+|-----------|----------------------|---------------------------|
+| 4x16      | 4 vCPU x 16 GB RAM   | b3c.4x16.encrypted        |
+| 8x32      | 8 vCPU x 32 GB RAM   | b3c.8x32.encrypted        |
+| 16x64     | 16 vCPU x 64 GB RAM  | b3c.16x64.encrypted       |
+{: caption="Flex profile CLI selections" caption-side="bottom"}
 
 CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} Isolated Compute. Disk autoscaling is coming soon. If you have provisioned an Isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-monitoring){: external}, which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
 {: note}
@@ -237,14 +250,6 @@ Follow these steps to provision by using the [Resource Controller API](https://c
     {: pre}
 
 3. You can provision {{site.data.keyword.databases-for-mongodb_full}} instances on the [Isolated Compute](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-isolated-compute&interface=ui) hosting model on the Gen 2 platform.
-
-    As shown, the Isolated Compute host flavors available to a {{site.data.keyword.databases-for-mongodb}} instance are:
-
-    - `bx3d.8x40.encrypted`
-    - `bx3d.16x80.encrypted`
-    - `bx3d.32x160.encrypted`
-
-    See below for more information about the `host_flavor` parameter.
 
 5. Once you have all the above information, [provision a new resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#create-resource-instance){: external} with the {{site.data.keyword.cloud_notm}} Resource Controller.
 
@@ -315,12 +320,29 @@ Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.e
 
 The `host_flavor` parameter defines your Compute sizing. To provision an Isolated Compute instance, input the appropriate value for your desired CPU and RAM configuration.
 
-| Member Host flavor | vCPU x RAM           | host_flavor value         |
+#### Fixed profiles
+{: #host-flavor-parameter-api-fixed}
+{: api}
+
+| Host size | vCPU x RAM           | host_flavor value         |
 |-----------|----------------------|---------------------------|
+| 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted        |
 | 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
-| 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted       |
+| 16x80      | 16 vCPU x 80 GB RAM   | mx3d.16x80.encrypted        |
 | 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
-{: caption="Members host flavor sizing parameter" caption-side="bottom"}
+| 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
+{: caption="Fixed profile API selections" caption-side="bottom"}
+
+#### Flex profiles
+{: #host-flavor-parameter-api-flex}
+{: api}
+
+| Host size | vCPU x RAM           | host_flavor value         |
+|-----------|----------------------|---------------------------|
+| 4x16      | 4 vCPU x 16 GB RAM   | b3c.4x16.encrypted        |
+| 8x32      | 8 vCPU x 32 GB RAM   | b3c.8x32.encrypted        |
+| 16x64     | 16 vCPU x 64 GB RAM  | b3c.16x64.encrypted       |
+{: caption="Flex profile API selections" caption-side="bottom"}
 
 CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} Isolated Compute. Disk autoscaling is coming soon. If you have provisioned an Isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-monitoring), which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
 {: note}
@@ -402,12 +424,29 @@ output "ICD MongoDB database connection string" {
 The `host_flavor` parameter defines your Compute sizing.
 To provision an Isolated Compute instance, input the appropriate value for your desired CPU and RAM configuration. See the values in the following table.
 
+#### Fixed profiles
+{: #host-flavor-parameter-terraform-fixed}
+{: terraform}
+
 | Host size | vCPU x RAM           | host_flavor value         |
 |-----------|----------------------|---------------------------|
+| 4x20      | 4 vCPU x 20 GB RAM   | bx3d.4x20.encrypted        |
 | 8x40      | 8 vCPU x 40 GB RAM   | bx3d.8x40.encrypted        |
-| 16x80     | 16 vCPU x 80 GB RAM  | bx3d.16x80.encrypted       |
+| 16x80      | 16 vCPU x 80 GB RAM   | mx3d.16x80.encrypted        |
 | 32x160    | 32 vCPU x 160 GB RAM | bx3d.32x160.encrypted      |
-{: caption="Host flavor sizing parameter" caption-side="bottom"}
+| 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted      |
+{: caption="Fixed profile Terraform selections" caption-side="bottom"}
+
+#### Flex profiles
+{: #host-flavor-parameter-terraform-flex}
+{: terraform}
+
+| Host size | vCPU x RAM           | host_flavor value         |
+|-----------|----------------------|---------------------------|
+| 4x16      | 4 vCPU x 16 GB RAM   | b3c.4x16.encrypted        |
+| 8x32      | 8 vCPU x 32 GB RAM   | b3c.8x32.encrypted        |
+| 16x64     | 16 vCPU x 64 GB RAM  | b3c.16x64.encrypted       |
+{: caption="Flex profile Terraform selections" caption-side="bottom"}
 
 CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} Isolated Compute. Disk autoscaling is coming soon. If you have provisioned an Isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-monitoring){: external}, which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
 {: note}
