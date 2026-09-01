@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-07-10"
+lastupdated: "2026-09-01"
 
 keywords: databases-for-mongodb release notes
 
@@ -21,6 +21,12 @@ content-type: release-note
 
 Use these release notes to learn about the latest updates to {{site.data.keyword.databases-for-mongodb_full_notm}} that are grouped by _date_ or _build number_.
 {: shortdesc}
+
+## 1 Sep 2026
+{: #databases-for-mongodb-01sep2026}
+{: release-note}
+
+{{site.data.keyword.databases-for-mongodb}} Standard and Enterprise Sharding plan is now available in Madrid (eu-es) and Sydney (au-syd). For more information, see [Overview of Gen 1 and Gen 2{{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
 
 ## 6 July 2026
 {: #databases-for-mongodb-06jul2026}
