@@ -22,12 +22,13 @@ content-type: release-note
 Use these release notes to learn about the latest updates to {{site.data.keyword.databases-for-mongodb_full_notm}} that are grouped by _date_ or _build number_.
 {: shortdesc}
 
-## 1 Sep 2026
-{: #databases-for-mongodb-01sep2026}
+## 10 Sep 2026
+{: #databases-for-mongodb-10sep2026}
 {: release-note}
 
-{{site.data.keyword.databases-for-mongodb}} Standard and Enterprise Sharding plan are now available in Madrid and Sydney
-: {{site.data.keyword.databases-for-mongodb}} Standard and Enterprise Sharding plans are now available in Madrid (eu-es) and Sydney (au-syd). For more information, see [Overview of Gen 1 and Gen 2](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
+
+{{site.data.keyword.databases-for-mongodb}} Standard and Enterprise Sharding plan are now available in Washington, Madrid, and Sydney
+: {{site.data.keyword.databases-for-mongodb}} Standard and Enterprise Sharding plans are now available in Washington (us-east), Madrid (eu-es), and Sydney (au-syd). For more information, see [Overview of Gen 1 and Gen 2](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
 
 ## 6 July 2026
 {: #databases-for-mongodb-06jul2026}
@@ -41,14 +42,14 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 {: release-note}
 
 {{site.data.keyword.databases-for-mongodb}} Gen 2 is now available in Mumbai
-: {{site.data.keyword.databases-for-mongodb}} Gen 2 is now also available in Mumbai, in addition to Montreal (ca-mon) and Chennai-Airtel (in-che). For more information, see [Overview of Gen 1 and Gen 2{{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
+: {{site.data.keyword.databases-for-mongodb}} Gen 2 is now also available in Mumbai, in addition to Montreal (ca-mon) and Chennai-Airtel (in-che). For more information, see [Overview of Gen 1 and Gen 2](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
 
 ## 02 March 2026
 {: #databases-for-mongodb-02mar2026}
 {: release-note}
 
 {{site.data.keyword.databases-for-mongodb}} Gen 2 is now available in Chennai
-: {{site.data.keyword.databases-for-mongodb}} Gen 2 is now also available in Chennai - Airtel (in-che), in addition to Montreal (ca-mon). For more information, see [Overview of Gen 1 and Gen 2{{site.data.keyword.databases-for-mongodb}}](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
+: {{site.data.keyword.databases-for-mongodb}} Gen 2 is now also available in Chennai - Airtel (in-che), in addition to Montreal (ca-mon). For more information, see [Overview of Gen 1 and Gen 2](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
 
 ## 26 February 2026
 {: #databases-for-mongodb-26feb2026}
