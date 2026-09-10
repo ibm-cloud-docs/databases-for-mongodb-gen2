@@ -39,7 +39,7 @@ Provision from the console by specifying the following parameters.
 Select the platform for your deployment.
 
 - **Gen 1:** {{site.data.keyword.cloud}}'s original platform, available across all {{site.data.keyword.cloud}} data centers.
-- **Gen 2:** {{site.data.keyword.cloud}}'s latest platform, based on a highly secure software-defined networking architecture. Gen 2 is optimized for cloud-native applications and currently available only in Montreal, Chennai, Mumbai, and Frankfurt.
+- **Gen 2:** {{site.data.keyword.cloud}}'s latest platform, based on a highly secure software-defined networking architecture. Gen 2 is optimized for cloud-native applications and currently available only in Montreal, Chennai, Mumbai, Frankfurt, Madrid, and Sydney.
 
 For more details, see [Overview of Gen 1 (Classic) and Gen 2 (VPC)](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-overview-gen1-gen2&interface=ui).
 
