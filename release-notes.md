@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-09-10"
+lastupdated: "2026-09-15"
 
 keywords: databases-for-mongodb release notes
 
@@ -21,6 +21,8 @@ content-type: release-note
 
 Use these release notes to learn about the latest updates to {{site.data.keyword.databases-for-mongodb_full_notm}} that are grouped by _date_ or _build number_.
 {: shortdesc}
+
+
 
 ## 10 Sep 2026
 {: #databases-for-mongodb-10sep2026}

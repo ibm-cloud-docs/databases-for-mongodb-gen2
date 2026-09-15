@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-09-10"
+lastupdated: "2026-09-15"
 
 keywords: provision cloud databases, terraform, provisioning parameters, cli, resource controller api, provision mongodb, provision mongodb standard, provision mongodb ee
 
@@ -31,7 +31,7 @@ Provision from the console by specifying the following parameters.
 
 - **Service name:** The name can be any string and is the name that is used on the web and in the CLI to identify the new deployment.
 - **Resource group:** If you are organizing your services into [resource groups](/docs/account?topic=account-account_setup){: external}, specify the resource group in this field. Otherwise, you can leave it at default. For more information, see [Managing resource groups](/docs/account?topic=account-rgs){: external}.
-- **Location:** The deployment's cloud region. On Gen 2, {{site.data.keyword.databases-for-mongodb}} is currently available only in the **Montreal (ca-mon)**, **Chennai - Airtel (in-che)**, **Mumbai (in-mum)**, **Frankfurt (eu-de)**, **Washington (us-east)**, **Madrid (eu-es)**, and **Sydney (au-syd)** regions.
+- **Location:** The deployment's cloud region. On Gen 2, {{site.data.keyword.databases-for-mongodb}} is currently available only in the **Montreal (ca-mon)**, **Chennai - Airtel (in-che)**, **Mumbai (in-mum)**, **Frankfurt (eu-de)**, **Washington (us-east)**, **Madrid (eu-es)**, **Sydney (au-syd)**, **Dallas (us-south)** and **London (eu-gb)** regions.
 
 Select the platform for your deployment.
 
