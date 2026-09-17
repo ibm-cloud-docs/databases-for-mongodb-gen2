@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-09-10"
+lastupdated: "2026-09-17"
 
 keywords: databases-for-mongodb release notes
 
@@ -21,6 +21,16 @@ content-type: release-note
 
 Use these release notes to learn about the latest updates to {{site.data.keyword.databases-for-mongodb_full_notm}} that are grouped by _date_ or _build number_.
 {: shortdesc}
+
+
+## 17 Sep 2026
+{: #databases-for-mongodb-17sep2026}
+{: release-note}
+
+
+The {{site.data.keyword.databases-for-mongodb}} Standard and Enterprise Sharding plans are now available in Dallas and London
+: The {{site.data.keyword.databases-for-mongodb}} Standard and Enterprise Sharding plans are now available in Dallas (us-south) and London (eu-gb). These regions are in addition to the existing regions of Montreal (ca-mon), Chennai - Airtel (in-che), Mumbai (in-mum), Frankfurt (eu-de), Washington (us-east), Madrid (eu-es), and Sydney (au-syd). For more information, see [Overview of Gen 1 and Gen 2](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
+
 
 ## 10 Sep 2026
 {: #databases-for-mongodb-10sep2026}
