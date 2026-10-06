@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-09-30"
+lastupdated: "2026-10-06"
 
 keywords: databases-for-mongodb release notes
 
@@ -21,6 +21,14 @@ content-type: release-note
 
 Use these release notes to learn about the latest updates to {{site.data.keyword.databases-for-mongodb_full_notm}} that are grouped by _date_ or _build number_.
 {: shortdesc}
+
+## 30 Sep 2026
+{: #databases-for-mongodb-30sep2026}
+{: release-note}
+
+
+The {{site.data.keyword.databases-for-mongodb}} Standard and Enterprise Sharding plans are now available in all VPC multizone regions
+: You can now deploy {{site.data.keyword.databases-for-mongodb}} Standard and Enterprise Sharding Gen 2 plans in all supported {{site.data.keyword.cloud}} VPC multizone regions (MZRs). This release adds support for Toronto (ca-tor), Tokyo (jp-tok), Osaka (jp-osa), and Sao Paulo (br-sao). For more information, see [Overview of Gen 1 and Gen 2](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
 
 
 
