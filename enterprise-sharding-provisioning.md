@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-09-17"
+lastupdated: "2026-10-07"
 
 keywords: provision cloud databases, terraform, provisioning parameters, cli, resource controller api, provision mongodb, provision mongodb enterprise sharding, provision mongodb ees
 
@@ -19,8 +19,11 @@ subcollection: databases-for-mongodb-gen2
 
 Provision an {{site.data.keyword.databases-for-mongodb_full}} Enterprise Sharding deployment through the [catalog](https://cloud.ibm.com/databases/databases-for-mongodb/create){: external}, the [{{site.data.keyword.databases-for}} CLI plug-in](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-cdb-reference){: external}, the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api/cloud-databases-api-v5){: external}, or through [Terraform](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/database){: external}.
 
-You can only provision with 1 shard today. Support for provisioning with more shards and scaling will be added in a future release.
-{: restriction}
+By default, all deployments are provisioned as highly available formations with three members per shard. You can provision with one, two, or three shards. You can also scale shards after provisioning. For more information, see [Scaling shards](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-enterprise-sharding-scaling).
+{: note}
+
+To provision a non-HA, single-zone, single-member instance for development or testing, see [Provisioning a single-node instance](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-enterprise-sharding-provisioning-single-node).
+{: tip}
 
 ## Provisioning through the {{site.data.keyword.cloud_notm}} console
 {: #catalog}
@@ -101,7 +104,7 @@ Before provisioning, follow the instructions provided in the documentation to in
   For example, to provision a {{site.data.keyword.databases-for-mongodb}} Enterprise Sharding instance, use a command like:
 
    ```sh
-   ibmcloud resource service-instance-create test-database databases-for-mongodb enterprise-sharding-gen2 ca-mon -p '{"host_flavor": "bx3d.8x40.encrypted", "storage_gb": 100 }'
+   ibmcloud resource service-instance-create test-database databases-for-mongodb enterprise-sharding-gen2 ca-mon -p '{"host_flavor": "bx3d.8x40.encrypted", "shards": 2, "storage_gb": 100 }'
    ```
    {: pre}
 
@@ -287,9 +290,10 @@ Follow these steps to provision by using the [Resource Controller API](https://c
       "resource_group": "5c49eabc-f5e8-5881-a37e-2d100a33b3df",
       "resource_plan_id": databases-for-mongodb-gen2-enterprise-sharding",
       "dataservices": {
-        "mongodb": {
+        "mongodbees": {
             "storage_gb": 10,
-            "host_flavor": "bx3d.4x20.encrypted"
+            "host_flavor": "bx3d.4x20.encrypted",
+            "shards": 2
           },
         "encryption": {
           "disk": "crn:v1..."
