@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-10-06"
+lastupdated: "2026-10-08"
 
 keywords: databases-for-mongodb release notes
 
@@ -22,18 +22,22 @@ content-type: release-note
 Use these release notes to learn about the latest updates to {{site.data.keyword.databases-for-mongodb_full_notm}} that are grouped by _date_ or _build number_.
 {: shortdesc}
 
-## 30 Sep 2026
-{: #databases-for-mongodb-30sep2026}
+## 7 October 2026
+{: #databases-for-mongodb-gen2-07oct2026}
 {: release-note}
 
+Enhanced Bring Your Own Key (BYOK) experience in the provisioning UI
+ : The provisioning experience now includes an updated encryption configuration component for customer-managed encryption keys through {{site.data.keyword.keymanagementservicefull}}. This update provides a more consistent key management experience during deployment creation. Learn more about [{{site.data.keyword.keymanagementserviceshort}} integration](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-key-protect&interface=ui) or provision a new [{{site.data.keyword.databases-for-mongodb}} Gen 2 deployment](https://cloud.ibm.com/databases/databases-for-mongodb/create) with customer-managed encryption enabled.
+
+## 30 Sep 2026
+{: #databases-for-mongodb-gen2-30sep2026}
+{: release-note}
 
 The {{site.data.keyword.databases-for-mongodb}} Standard and Enterprise Sharding plans are now available in all VPC multizone regions
 : You can now deploy {{site.data.keyword.databases-for-mongodb}} Standard and Enterprise Sharding Gen 2 plans in all supported {{site.data.keyword.cloud}} VPC multizone regions (MZRs). This release adds support for Toronto (ca-tor), Tokyo (jp-tok), Osaka (jp-osa), and Sao Paulo (br-sao). For more information, see [Overview of Gen 1 and Gen 2](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
 
-
-
 ## 17 Sep 2026
-{: #databases-for-mongodb-17sep2026}
+{: #databases-for-mongodb-gen2-17sep2026}
 {: release-note}
 
 
@@ -42,7 +46,7 @@ The {{site.data.keyword.databases-for-mongodb}} Standard and Enterprise Sharding
 
 
 ## 10 Sep 2026
-{: #databases-for-mongodb-10sep2026}
+{: #databases-for-mongodb-gen2-10sep2026}
 {: release-note}
 
 
@@ -50,35 +54,35 @@ The {{site.data.keyword.databases-for-mongodb}} Standard and Enterprise Sharding
 : {{site.data.keyword.databases-for-mongodb}} Standard and Enterprise Sharding plans are now available in Washington (us-east), Madrid (eu-es), and Sydney (au-syd). For more information, see [Overview of Gen 1 and Gen 2](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
 
 ## 6 July 2026
-{: #databases-for-mongodb-06jul2026}
+{: #databases-for-mongodb-gen2-06jul2026}
 {: release-note}
 
 {{site.data.keyword.databases-for-mongodb}} Enterprise Sharding plan is now available in Montreal, Mumbai, Chennai, and Frankfurt
 : The MongoDB Enterprise Sharding plan is now available in Montreal (ca-mon), Chennai (in-che), Mumbai (in-mum), and Frankfurt (eu-de). For more information, see [MongoDB Enterprise Sharding plan](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-enterprise-sharding&interface=ui).
 
 ## 01 June 2026
-{: #databases-for-mongodb-01jun2026}
+{: #databases-for-mongodb-gen2-01jun2026}
 {: release-note}
 
 {{site.data.keyword.databases-for-mongodb}} Gen 2 is now available in Mumbai
 : {{site.data.keyword.databases-for-mongodb}} Gen 2 is now also available in Mumbai, in addition to Montreal (ca-mon) and Chennai-Airtel (in-che). For more information, see [Overview of Gen 1 and Gen 2](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
 
 ## 02 March 2026
-{: #databases-for-mongodb-02mar2026}
+{: #databases-for-mongodb-gen2-02mar2026}
 {: release-note}
 
 {{site.data.keyword.databases-for-mongodb}} Gen 2 is now available in Chennai
 : {{site.data.keyword.databases-for-mongodb}} Gen 2 is now also available in Chennai - Airtel (in-che), in addition to Montreal (ca-mon). For more information, see [Overview of Gen 1 and Gen 2](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-overview-gen1-gen2#feature-differentiators).
 
 ## 26 February 2026
-{: #databases-for-mongodb-26feb2026}
+{: #databases-for-mongodb-gen2-26feb2026}
 {: release-note}
 
 {{site.data.keyword.databases-for-mongodb}} Gen 2 is now generally available (GA)
 : {{site.data.keyword.databases-for-mongodb}} Gen 2 is now available, offering the same fully managed {{site.data.keyword.databases-for-mongodb}} engine on newer VPC‑based infrastructure with improved security, networking, and more performant snapshot‑based backups. [Try {{site.data.keyword.databases-for-mongodb}} Gen 2 now](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-provisioning).
 
 ## 15 December 2025
-{: #databases-for-mongodb-15dec2025}
+{: #databases-for-mongodb-gen2-15dec2025}
 {: release-note}
 
 {{site.data.keyword.databases-for-mongodb}} Gen 2 is now available in beta
