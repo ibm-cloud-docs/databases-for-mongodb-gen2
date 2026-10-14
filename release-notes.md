@@ -27,7 +27,7 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 {: release-note}
 
 Context-based restrictions (CBR) support now available
-:  You can now use context-based restrictions (CBR) to restrict access to {{site.data.keyword.databases-for-mongodb}} resources based on network context, such as IP addresses, VPCs, and {{site.data.keyword.cloud}} services. For more information, see [Managing access with context-based restrictions](/docs-draft/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-cbr&interface=ui).
+:  You can now use context-based restrictions (CBR) to restrict access to {{site.data.keyword.databases-for-mongodb}} resources based on network context, such as IP addresses, VPCs, and {{site.data.keyword.cloud}} services. For more information, see [Managing access with context-based restrictions](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-cbr&interface=ui).
 
 ## 7 October 2026
 {: #databases-for-mongodb-gen2-07oct2026}
