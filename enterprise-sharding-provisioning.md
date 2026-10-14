@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-10-07"
+lastupdated: "2026-10-14"
 
 keywords: provision cloud databases, terraform, provisioning parameters, cli, resource controller api, provision mongodb, provision mongodb enterprise sharding, provision mongodb ees
 
@@ -85,16 +85,14 @@ After you select the appropriate settings, click **Create** to start the provisi
 
 Before provisioning, follow the instructions provided in the documentation to install the [{{site.data.keyword.cloud_notm}} CLI tool](/docs/cli?topic=cli-install-ibmcloud-cli){: external}.
 
-1. Log in to {{site.data.keyword.cloud_notm}}. If you use a federated user ID, it's important that you switch to a one-time passcode (`ibmcloud login --sso`), or use an API key (`ibmcloud --apikey key or @key_file`) to authenticate. For more information about how to log in by using the CLI, see [General CLI (ibmcloud) commands](/docs/cli?topic=cli-ibmcloud_cli#ibmcloud_login){: external} under `ibmcloud login`.
+1. Log in to {{site.data.keyword.cloud_notm}}. If you use a federated user ID, switch to a one-time passcode (`ibmcloud login --sso`), or use an API key (`ibmcloud login --apikey key or @key_file`) to authenticate. For more information about logging in by using the CLI, see [General CLI (ibmcloud) commands](/docs/cli?topic=cli-ibmcloud_cli#ibmcloud_login){: external} under `ibmcloud login`.
 
    ```sh
    ibmcloud login
    ```
    {: pre}
 
-2. You can provision {{site.data.keyword.databases-for-mongodb_full}} Enterprise Sharding instances on the [Isolated compute](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-isolated-compute&interface=ui) hosting model on the Gen 2 platform.
-
-3. Provision your database with the following command:
+2. Provision your database with the following command:
 
    ```sh
    ibmcloud resource service-instance-create <INSTANCE_NAME> <SERVICE_NAME> <SERVICE_PLAN_NAME> <LOCATION> <RESOURCE_GROUP> -p '{"host_flavor": "<host_flavor value>"}'
@@ -108,7 +106,7 @@ Before provisioning, follow the instructions provided in the documentation to in
    ```
    {: pre}
 
-  Provision a {{site.data.keyword.databases-for-mongodb}} Enterprise Sharding isolated instance with the same `host_flavor` -p parameter, setting it to the desired isolated size. Available hosting sizes and their `host_flavor value` parameters are listed in [Table 2](#host-flavor-parameter-cli).
+  Provision a {{site.data.keyword.databases-for-mongodb}} Enterprise Sharding isolated instance with the same `host_flavor` -p parameter, setting it to the desired isolated size. See the available hosting sizes and `host_flavor` values in the [host flavor sizing table](#host-flavor-parameter-cli).
 
 Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.encrypted` is 4 CPU and 20 RAM), this request does not accept both, an isolated size selection and separate CPU and RAM allocation selections.
 {: note}
@@ -126,7 +124,7 @@ Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.e
 | `host_flavor`                             | To provision an Isolated compute instance, use `{"host_flavor": "<host_flavor value>"}`. For Isolated compute, select the desired CPU and RAM configuration. For more information, see the following [Table 2](#host-flavor-parameter-cli). |      |
    {: caption="Basic command format fields" caption-side="bottom"}
 
-   You will see a response like:
+   You see a response similar to the following example:
 
     ```text
     Creating service instance INSTANCE_NAME in resource group default of account    USER...
@@ -151,14 +149,14 @@ Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.e
     {: codeblock}
 
 
-- To check provisioning status, use the following command:
+3. To check provisioning status, use the following command:
 
    ```sh
    ibmcloud resource service-instance <INSTANCE_NAME>
    ```
    {: pre}
 
-   When complete, you will see a response like:
+   When complete, you see a response similar to the following example:
 
    ```text
    Retrieving service instance INSTANCE_NAME in resource group default under account USER's Account as USER...
@@ -185,7 +183,7 @@ Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.e
    ```
    {: codeblock}
 
-- Optional: To delete a service instance, run the following command:
+4. Optional: To delete a service instance, run the following command:
 
    ```sh
    ibmcloud resource service-instance-delete <INSTANCE_NAME_OR_CRN>
@@ -209,7 +207,7 @@ The `host_flavor` parameter defines your Compute sizing.
 | 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted |
   {: caption="Members host flavor sizing parameter" caption-side="bottom"}
 
-CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} isolated compute. Disk autoscaling is coming soon. If you have provisioned an isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-monitoring){: external}, which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
+CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} isolated compute. Disk autoscaling is planned for a future release. If you provisioned an isolated instance or switched from a deployment with autoscaling, monitor your resources by using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-monitoring){: external}, which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
 {: note}
 
 ### The `--parameters` parameter
@@ -256,7 +254,7 @@ Follow these steps to provision by using the [Resource Controller API](https://c
 
     See below for more information about the `host_flavor` parameter.
 
-5. Once you have all the above information, [provision a new resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#create-resource-instance){: external} with the {{site.data.keyword.cloud_notm}} Resource Controller.
+4. After you have all the required information, [provision a new resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#create-resource-instance){: external} with the {{site.data.keyword.cloud_notm}} Resource Controller.
 
     ```sh
     curl -X POST \
@@ -304,7 +302,7 @@ Follow these steps to provision by using the [Resource Controller API](https://c
     ```
     {: pre}
 
-    Provision a {{site.data.keyword.databases-for-mongodb}} Enterprise Sharding isolated instance with the same `host_flavor` parameter, setting it to the desired isolated size. Available hosting sizes and their `host_flavor value` parameters are listed in [Table 2](#members_host-flavor-parameter-api). For example, `{"host_flavor": "bx3d.4x20.encrypted"}`.
+    Provision a {{site.data.keyword.databases-for-mongodb}} Enterprise Sharding isolated instance with the same `host_flavor` parameter, setting it to the desired isolated size. For available hosting sizes and `host_flavor` values, see the [host flavor sizing table](#host-flavor-parameter-api). For example, `{"host_flavor": "bx3d.4x20.encrypted"}`.
 
 Since the members host flavor selection includes CPU and RAM sizes (`bx3d.4x20.encrypted` is 4 CPU and 20 RAM), this request does not accept both, an isolated size selection and separate CPU and RAM allocation selections.
 {: note}
@@ -336,7 +334,7 @@ The `host_flavor` parameter defines your Compute sizing. To provision an isolate
 | 48x240             | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted |
 {: caption="Members host flavor sizing parameter" caption-side="bottom"}
 
-CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} isolated compute. Disk autoscaling is coming soon. If you have provisioned an isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-monitoring), which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
+CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} isolated compute. Disk autoscaling is planned for a future release. If you provisioned an isolated instance or switched from a deployment with autoscaling, monitor your resources by using [{{site.data.keyword.monitoringfull}} integration](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-monitoring), which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
 {: note}
 
 ### List of additional parameters
@@ -370,7 +368,7 @@ Select the [hosting model](/docs/databases-for-mongodb?topic=databases-for-mongo
 {: #provisioning-isolated-computer-terraform}
 {: terraform}
 
-Provision a {{site.data.keyword.databases-for-mongodb}} Enterprise Sharding isolated instance with the same `"host_flavor"` parameter, setting it to the desired isolated size. Available hosting sizes and their `host_flavor value` parameters are listed in [Table 1](#host-flavor-parameter-terraform). For example, `{"host_flavor": "bx3d.4x20.encrypted"}`. Note that since the host flavor selection includes CPU and RAM sizes (`bx3d.4x20.encrypted` is 4 CPU and 16 RAM), this request does not accept both, an isolated size selection and separate CPU and RAM allocation selections.
+Provision a {{site.data.keyword.databases-for-mongodb}} Enterprise Sharding isolated instance with the `"host_flavor"` parameter, setting it to the desired isolated size. For available hosting sizes and `host_flavor` values, see the [host flavor sizing table](#host-flavor-parameter-terraform). For example, `{"host_flavor": "bx3d.4x20.encrypted"}`. Because the host flavor selection includes CPU and RAM sizes (`bx3d.4x20.encrypted` is 4 CPU and 20 RAM), this request does not accept both an isolated size selection and separate CPU and RAM allocation selections.
 
 ```terraform
 data "ibm_resource_group" "group" {
@@ -425,5 +423,5 @@ To provision an isolated compute instance, input the appropriate value for your 
 | 48x240    | 48 vCPU x 240 GB RAM | bx3d.48x240.encrypted |
 {: caption="Host flavor sizing parameter" caption-side="bottom"}
 
-CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} isolated compute. Disk autoscaling is coming soon. If you have provisioned an isolated instance or switched over from a deployment with autoscaling, keep an eye on your resources using [{{site.data.keyword.monitoringfull}} integration](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-monitoring) which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
+CPU and RAM autoscaling is not supported on {{site.data.keyword.databases-for}} isolated compute. Disk autoscaling is planned for a future release. If you provisioned an isolated instance or switched from a deployment with autoscaling, monitor your resources by using [{{site.data.keyword.monitoringfull}} integration](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-monitoring), which provides metrics for memory, disk space, and disk I/O utilization. To add resources to your instance, manually scale your deployment.
 {: note}
