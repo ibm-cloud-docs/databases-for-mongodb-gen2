@@ -78,8 +78,9 @@ toc:
       - topicgroup:
           label: Enhancing security
           topics:
-          - include: ../cloud-databases-gen2/secure.md
           - include: ../cloud-databases-gen2/manage-scc.md
+          - include: ../cloud-databases-gen2/howto-cbr.md
+          - include: ../cloud-databases-gen2/secure.md
             navtitle: Managing security and compliance
           - include: ../cloud-databases-gen2/reference-iam.md
           - include: ../cloud-databases-gen2/reference-key-protect.md
