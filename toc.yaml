@@ -38,6 +38,7 @@ toc:
       id: howto
       topics:
       - howto-provisioning.md
+      - include: ../cloud-databases-gen2/maintenance-windows.md
       - topicgroup:
           label: Managing backups
           topics:
@@ -57,6 +58,7 @@ toc:
           - howto-auditlogging.md
           - enterprise-sharding.md
           - enterprise-sharding-provisioning.md
+          - how-to-provision-ees-single-node.md
       - topicgroup:
           label: Connecting to Databases for MongoDB
           topics:
