@@ -38,6 +38,10 @@ toc:
       id: howto
       topics:
       - howto-provisioning.md
+      - topic: migrate-to-gen2-standard-plan.md
+        navtitle: Migrating Standard to Gen 2
+      - topic: migrate-to-gen2-enteprise-plan.md
+        navtitle: Migrating Enterprise to Gen 2
       - include: ../cloud-databases-gen2/maintenance-windows.md
       - topicgroup:
           label: Managing backups
