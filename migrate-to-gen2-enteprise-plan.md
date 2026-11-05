@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2026
-lastupdated: "2026-11-02"
+lastupdated: "2026-11-05"
 
 keywords: mongodb enterprise migration, gen1 to gen2, classic infrastructure, vpc, continuous replication, mongosync, migration hub, ibmcloud cli, api, private endpoints, version upgrade, context-based restrictions
 
@@ -290,7 +290,7 @@ Before you begin:
    ```
    {: pre}
 
-Migration to Gen 2 is initially available in the `us-east` (Washington, DC) region, with additional regions to follow. Ensure that the region you specify is a supported Gen 2 region, such as `us-east`.
+Migration to Gen 2 is initially available in the us-east (Washington, DC), br-sao (São Paulo), and us-south (Dallas) regions, with additional regions to follow. Ensure that the region you specify is a supported Gen 2 region, such as `us-east`.
 {: note}
 
 ### Continuous replication with the CLI
@@ -475,7 +475,7 @@ IAM_TOKEN=$(curl -s -X POST "https://iam.cloud.ibm.com/identity/token" \
 ```
 {: pre}
 
-Migration to Gen 2 is initially available in the `us-east` (Washington, DC) region, with additional regions to follow. Ensure that the region you specify is a supported Gen 2 region, such as `us-east`.
+Migration to Gen 2 is initially available in the us-east (Washington, DC), br-sao (São Paulo), and us-south (Dallas) regions, with additional regions to follow. Ensure that the region you specify is a supported Gen 2 region, such as `us-east`.
 {: note}
 
 ### Continuous replication with the API
