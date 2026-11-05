@@ -48,7 +48,7 @@ For in-place upgrade instructions, see [Upgrading MongoDB](/docs/databases-for-m
 
 Gen 2 deployments use private endpoints only. Public endpoints are not available on Gen 2. Before you start the migration, confirm that your application infrastructure can reach private service endpoints. If your applications currently connect over public endpoints, plan the network changes before you begin.
 
-For continuous replication, the Gen 1 source must have a private endpoint, in addition to Gen 2 being private-only. Replication cannot be set up unless the Gen 1 source has a private endpoint. Public endpoint support for Gen 1 will be rolled out in near future. For the steps to do migration using CLI or API, see [Continuous replication with the CLI](#cli-continuous-replication-migration) and [Continuous replication with the API](#api-continuous-replication-migration).
+For migration steps that use the CLI or API,see [Continuous replication with the CLI](#cli-continuous-replication-migration) and [Continuous replication with the API](#api-continuous-replication-migration).
 {: important}
 
 ### Context-based restrictions
@@ -63,7 +63,6 @@ Keep these points in mind when planning your migration:
 
 * Deployments on v8.0 or v7.0 can both use continuous replication via MongoSync. No Gen 1 upgrade is required before starting the wizard.
 * Gen 2 supports private endpoints only. Plan your VPE gateway and any VPN or VSI connectivity before you start the wizard.
-* Migration can be done only for Gen 1 instances that have a private endpoint. Support for Gen 1 instances with public endpoints is planned for a future release.
 * Migration is not supported for Gen 1 instances that have CBR rules enabled.
 * Downtime is limited to the final cutover event. The Gen 1 source stays operational throughout the continuous replication phase.
 * Test the full procedure in a non-production environment before scheduling a production cutover.
@@ -85,7 +84,6 @@ Run through these checks on the source deployment:
 * Verify that a recent successful backup exists.
 * Check disk utilization and available capacity.
 * Identify whether applications connect over public endpoints, private endpoints, or both.
-* Confirm that the Gen 1 deployment has a private endpoint. Migration can be done only for Gen 1 instances that have a private endpoint.
 * Confirm that no CBR rules are enabled for the Gen 1 deployment. Migration is not supported for Gen 1 instances that have CBR rules enabled.
 
 Run the migration against a development or low-traffic instance first to validate the procedure before scheduling a production cutover.
@@ -338,14 +336,7 @@ The continuous replication path creates a Gen 2 instance that is synchronized wi
    Migration is not supported for Gen 1 instances that have context-based restrictions (CBR) rules enabled. Confirm that no CBR rules apply to the Gen 1 source before you continue.
    {: important}
 
-5. **Verify that the Gen 1 instance has a private endpoint enabled.**
-
-   Replication cannot be set up unless the Gen 1 source instance has a private service endpoint enabled.
-   {: important}
-
-   In the {{site.data.keyword.cloud_notm}} console, open the Gen 1 deployment and verify that a private endpoint is enabled. Deployments that use only a public endpoint aren't currently supported for migration. Support for Gen 1 deployments with public endpoints is planned for a future release.
-
-6. **Prepare the provisioning parameters file.**
+5. **Prepare the provisioning parameters file.**
 
    Create a `params.json` file with the following content. Replace `<crn>` with the Gen 1 instance CRN from step 2. Use `host_flavor` to size the Gen 2 cluster. Provision with at least twice the Gen 1 disk allocation. For more information, see [Step 3: Create Gen 2 cluster](#cr-provision-cluster).
 
@@ -374,7 +365,7 @@ The continuous replication path creates a Gen 2 instance that is synchronized wi
    Use the Gen 1 **instance** CRN, not a backup CRN. Do not pass `restore_backup_id`.
    {: note}
 
-7. **Create the Gen 2 instance.**
+6. **Create the Gen 2 instance.**
 
    ```bash
    ibmcloud resource service-instance-create "$GEN2_NAME" \
@@ -383,7 +374,7 @@ The continuous replication path creates a Gen 2 instance that is synchronized wi
    ```
    {: pre}
 
-8. **Wait until the instance is active.**
+7. **Wait until the instance is active.**
 
    Provisioning and the initial synchronization can take several hours depending on data volume. Poll the status until `State` shows `active`:
 
@@ -538,14 +529,7 @@ The continuous replication path creates a Gen 2 instance that is synchronized wi
    Migration is not supported for Gen 1 instances that have context-based restrictions (CBR) rules enabled. Confirm that no CBR rules apply to the Gen 1 source before you continue.
    {: important}
 
-4. **Verify that the Gen 1 instance has a private endpoint enabled.**
-
-   Replication cannot be set up unless the Gen 1 source instance has a private service endpoint enabled.
-   {: important}
-
-   In the {{site.data.keyword.cloud_notm}} console, open the Gen 1 deployment and verify that a private endpoint is enabled. Deployments that use only a public endpoint aren't currently supported for migration. Support for Gen 1 deployments with public endpoints is planned for a future release.
-
-5. **Provision the Gen 2 instance with replication from Gen 1.**
+4. **Provision the Gen 2 instance with replication from Gen 1.**
 
    The `resource_plan_id` for {{site.data.keyword.databases-for-mongodb}} Enterprise on Gen 2 is `databases-for-mongodb-gen2-enterprise-sharding`. Specify the Gen 1 source in `parameters.dataservices.mongodbees.migrate`. The optional sizing parameter, `host_flavor`, is specified in `parameters.dataservices.mongodbees`. If these parameters are not provided, the service broker applies default values. Provision with at least twice the Gen 1 disk allocation. For more information, see [Step 3: Create Gen 2 cluster](#cr-provision-cluster).
 
@@ -582,7 +566,7 @@ The continuous replication path creates a Gen 2 instance that is synchronized wi
    ```
    {: pre}
 
-6. **Wait until the instance is active.**
+5. **Wait until the instance is active.**
 
    Provisioning and the initial synchronization can take several hours depending on data volume. Poll the status until `state` shows `active`:
 
