@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-11-02"
+lastupdated: "2026-11-05"
 
 keywords: databases-for-mongodb release notes
 
@@ -22,11 +22,18 @@ content-type: release-note
 Use these release notes to learn about the latest updates to {{site.data.keyword.databases-for-mongodb_full_notm}} that are grouped by _date_ or _build number_.
 {: shortdesc}
 
+## 5 November 2026
+{: #cloud-databases-for-mongodb-gen2-05nov2026}
+{: release-note}
+
+New regions available for {{site.data.keyword.databases-for-mongodb}} Gen 1 to Gen 2 migration
+:  Migration from Gen 1 (Classic) to Gen 2 (VPC) is now available in the `br-sao` and `us-south` regions, in addition to `us-east`, for all {{site.data.keyword.databases-for-mongodb}} services.
+
 ## 2 November 2026
 {: #cloud-databases-for-mongodb-gen2-02nov2026}
 {: release-note}
 
-{{site.data.keyword.databases-for-mongodb}}  Gen 1 to Gen 2 migration is now generally available
+{{site.data.keyword.databases-for-mongodb}} Gen 1 to Gen 2 migration is now generally available
 :  Migration from Gen 1 (Classic) to Gen 2 (VPC) is now available for {{site.data.keyword.databases-for-mongodb}}. MongoDB Standard deployments support migration through backup and restore, while MongoDB Enterprise Edition supports migration through continuous replication by using MongoSync. You can migrate by using the Migration Hub in the {{site.data.keyword.cloud}} console, Terraform, the API, or the CLI. For more information, see [Migrating {{site.data.keyword.databases-for-mongodb}} from Gen 1 to Gen 2](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-migrating-mongodb-standard-gen1-to-gen2&interface=ui) or [Migrating {{site.data.keyword.databases-for-mongodb}} Enterprise Edition from Gen 1 to Gen 2](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-migrating-mongodb-enterprise-gen1-to-gen2&interface=ui).
 
 ## 21 October 2026
