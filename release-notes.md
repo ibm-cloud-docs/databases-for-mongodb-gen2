@@ -27,7 +27,7 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 {: release-note}
 
 New regions available for {{site.data.keyword.databases-for-mongodb}} Gen 1 to Gen 2 migration
-:  Migration from Gen 1 (Classic) to Gen 2 (VPC) is now available in the `br-sao` and `us-south` regions, in addition to `us-east`, for all {{site.data.keyword.databases-for-mongodb}} services.
+:  Migration from Gen 1 (Classic) to Gen 2 (VPC) is now available in the `br-sao` and `us-south` regions, in addition to `us-east`, for {{site.data.keyword.databases-for-mongodb}}.
 
 ## 2 November 2026
 {: #cloud-databases-for-mongodb-gen2-02nov2026}
