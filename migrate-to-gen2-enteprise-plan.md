@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2026
-lastupdated: "2026-11-05"
+lastupdated: "2026-11-11"
 
 keywords: mongodb enterprise migration, gen1 to gen2, classic infrastructure, vpc, continuous replication, mongosync, migration hub, ibmcloud cli, api, private endpoints, version upgrade, context-based restrictions
 
@@ -64,8 +64,8 @@ Keep these points in mind when planning your migration:
 * Deployments on v8.0 or v7.0 can both use continuous replication via MongoSync. No Gen 1 upgrade is required before starting the wizard.
 * Gen 2 supports private endpoints only. Plan your VPE gateway and any VPN or VSI connectivity before you start the wizard.
 * Migration is not supported for Gen 1 instances that have CBR rules enabled.
-* Downtime is limited to the final cutover event. The Gen 1 source stays operational throughout the continuous replication phase.
-* Test the full procedure in a non-production environment before scheduling a production cutover.
+* The Gen 1 source stays operational and accepts writes during the continuous replication phase. When you promote the Gen 2 cluster, the Gen 1 source changes to read-only and stays read-only after the migration. Plan a maintenance window for the cutover. During the window, your applications can't write to Gen 1, and they can't use Gen 2 until promotion completes.
+* Write downtime is limited to the final cutover event. The duration depends on your data volume, write rate, and synchronization lag. Test the full procedure in a non-production environment to measure the cutover time for your workload before scheduling a production cutover.
 
 ## Before you begin
 {: #prereqs}
@@ -95,7 +95,7 @@ Run the migration against a development or low-traffic instance first to validat
 {: #continuous-replication-migration}
 {: ui}
 
-The continuous replication path migrates your data through live synchronization using MongoSync, keeping the Gen 1 source running until you are ready to cut over. Downtime is limited to the final cutover event.
+The continuous replication path migrates your data through live synchronization using MongoSync, keeping the Gen 1 source running until you are ready to cut over. Write downtime is limited to the final cutover event.
 
 * [Phase 1: Prepare and provision](#cr-phase-1)
 
@@ -219,21 +219,30 @@ Enable {{site.data.keyword.monitoringlong}} and {{site.data.keyword.logs_full}} 
 
 The cutover step handles the final switchover. In the wizard, you promote the Gen 2 cluster, and then update your application endpoints to use it.
 
+When you click **Promote Gen 2 cluster**, these actions occur in sequence:
+
+1. MongoSync stops writes to the Gen 1 source. The Gen 1 source changes to read-only.
+2. MongoSync copies the remaining changes to Gen 2 (commit).
+3. Writes are enabled on the Gen 2 cluster. Gen 2 becomes an independent instance.
+
+The commit is not instant. It can take some minutes, and longer when the synchronization lag is high. During the commit, your applications can't write to Gen 1 or Gen 2. Don't stop or restart the migration while the commit is in progress.
+{: important}
+
 **Promote the Gen 2 cluster**
 
-You do not need to stop writes to Gen 1 manually. When you promote the Gen 2 cluster, MongoSync automatically stops writes and puts the Gen 1 source in read-only mode while it completes the final synchronization.
+When you promote the Gen 2 cluster, MongoSync automatically stops writes and puts the Gen 1 source in read-only mode. The Gen 1 source stays read-only after the final synchronization completes.
 
 Confirm that synchronization health is **Active** and lag is at or near zero before you promote the cluster.
 {: important}
 
 Promoting the Gen 2 cluster stops MongoSync replication. When you promote the cluster:
 
-* MongoSync stops writes to the Gen 1 source and puts it in read-only mode.
+* MongoSync stops writes to the Gen 1 source and puts it in read-only mode. The source stays read-only after promotion.
 * Continuous replication stops.
 * The Gen 2 cluster becomes an independent instance.
 * Backups are enabled on the new Gen 2 (VPC) primary cluster.
 
-Promotion cannot be undone. Confirm that synchronization is complete and your rollback plan is in place before clicking **Promote Gen 2 cluster**.
+Promotion cannot be undone. Before you click **Promote Gen 2 cluster**, make sure that synchronization health is **Active**, lag is at or near zero, and your rollback plan is in place. If you can, stop or pause application writes to Gen 1 first. Writes that occur after the source changes to read-only fail.
 {: important}
 
 **Update application endpoints**
@@ -405,7 +414,7 @@ The continuous replication path creates a Gen 2 instance that is synchronized wi
 
    Promote the Gen 2 cluster in the Migration hub by clicking **Promote Gen 2 cluster**. For more information, see [Step 6: Cutover](#cr-cutover).
 
-   You do not need to stop writes to Gen 1 manually. MongoSync automatically stops writes and puts the Gen 1 source in read-only mode during cutover.
+   You do not need to stop writes to Gen 1 manually. MongoSync automatically stops writes and puts the Gen 1 source in read-only mode during cutover. The Gen 1 deployment remains read-only after cutover. The commit process can take several minutes to complete. During this time, applications can't write to the deployment.
    {: note}
 
    Promotion stops continuous replication and makes the Gen 2 cluster an independent instance. It cannot be undone.
@@ -599,7 +608,7 @@ The continuous replication path creates a Gen 2 instance that is synchronized wi
 
    Promote the Gen 2 cluster in the Migration hub by clicking **Promote Gen 2 cluster**. For more information, see [Step 6: Cutover](#cr-cutover).
 
-   You do not need to stop writes to Gen 1 manually. MongoSync automatically stops writes and puts the Gen 1 source in read-only mode during cutover.
+   You do not need to stop writes to Gen 1 manually. MongoSync automatically stops writes and puts the Gen 1 source in read-only mode during cutover. The Gen 1 deployment remains read-only after cutover. The commit process can take several minutes to complete. During this time, applications can't write to the deployment.
    {: note}
 
    Promotion stops continuous replication and makes the Gen 2 cluster an independent instance. It cannot be undone.
