@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-10-23"
+lastupdated: "2026-11-20"
 
 keywords: provision single node, single member, non-ha, single zone, mongodb enterprise sharding, mongodb ees, databases-for-mongodb, single shard
 
@@ -20,8 +20,10 @@ subcollection: databases-for-mongodb-gen2
 Provision a {{site.data.keyword.databases-for-mongodb_full}} Enterprise Sharding deployment as a single-node, single-zone formation through the [{{site.data.keyword.databases-for}} CLI plug-in](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-cdb-reference){: external}, the [{{site.data.keyword.databases-for}} API](/apidocs/cloud-databases-api/cloud-databases-api-v5){: external}, or through [Terraform](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/database){: external}.
 {: shortdesc}
 
-Single-node provisioning is currently supported only for **{{site.data.keyword.databases-for-mongodb_full}} Enterprise** on Gen 2, and only for **single-shard deployments**. Multi-shard single-node formations are not supported at this time.
+Single-node provisioning is currently supported only for **{{site.data.keyword.databases-for-mongodb_full}} Enterprise** on Gen 2, only for **single-shard deployments**, and only in **Frankfurt (eu-de)**. Multi-shard single-node formations are not supported at this time.
 {: restriction}
+
+For general information about single-node deployments across {{site.data.keyword.databases-for}} services, including availability by region, see [Single-node deployments](/docs/cloud-databases-gen2?topic=cloud-databases-gen2-single-node).
 
 By default, {{site.data.keyword.databases-for-mongodb_full}} Enterprise Sharding deployments are provisioned as highly available formations with three members per shard. The single-node formation described in this topic provisions one member and is intended for non-production use cases such as development, testing, and proof-of-concept workloads. For standard high-availability provisioning, see [Provisioning](/docs/databases-for-mongodb-gen2?topic=databases-for-mongodb-gen2-enterprise-sharding-provisioning).
 {: note}
@@ -81,13 +83,13 @@ Before provisioning, follow the instructions provided in the documentation to in
    ```
    {: pre}
 
-   For example, to provision a single-node instance in Washington DC:
+   For example, to provision a single-node instance in Frankfurt:
 
    ```sh
    ibmcloud resource service-instance-create my-single-node-mongodb \
      databases-for-mongodb \
      enterprise-sharding-gen2 \
-     us-east \
+     eu-de \
      -p '{
        "dataservices": {
          "mongodbees": {
@@ -239,7 +241,7 @@ Follow these steps to provision a single-node instance by using the [Resource Co
    {: #single-node-api-example}
    {: api}
 
-   To provision a single-node instance in Washington DC:
+   To provision a single-node instance in Frankfurt:
 
    ```sh
    curl -X POST \
@@ -248,7 +250,7 @@ Follow these steps to provision a single-node instance by using the [Resource Co
      -H "Content-Type: application/json" \
      -d '{
        "name": "my-single-node-mongodb",
-       "target": "us-east",
+       "target": "eu-de",
        "resource_group": "5c49eabc-f5e8-5881-a37e-2d100a33b3df",
        "resource_plan_id": "databases-for-mongodb-gen2-enterprise-sharding",
        "dataservices": {
