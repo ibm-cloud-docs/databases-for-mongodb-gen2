@@ -60,9 +60,11 @@ toc:
           label: MongoDB Enterprise Edition
           topics:
           - howto-auditlogging.md
+          - howto-ops-manager.md
           - enterprise-sharding.md
           - enterprise-sharding-provisioning.md
           - how-to-provision-ees-single-node.md
+          - include: ../cloud-databases-gen2/single-node.md
       - topicgroup:
           label: Connecting to Databases for MongoDB
           topics:
